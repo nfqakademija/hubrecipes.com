@@ -1,3 +1,4 @@
+.vagrant/machines/*
 # Bootstrap
 app/bootstrap*
 
