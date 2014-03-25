@@ -1,0 +1,4 @@
+hub_recipes_front_end:
+    resource: "@HubRecipesFrontEndBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,7 @@
+parameters:
+#    hub_recipes_front_end.example.class: HubRecipes\FrontEndBundle\Example
+
+services:
+#    hub_recipes_front_end.example:
+#        class: %hub_recipes_front_end.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
