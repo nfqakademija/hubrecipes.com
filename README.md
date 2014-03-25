@@ -21,3 +21,8 @@ Resources
 * https://developer.yummly.com/
 * http://socialitejs.com/
 * https://developers.facebook.com/docs/plugins/comments/
+* 
+
+Known Bugs
+--------
+sudo a2dissite default
