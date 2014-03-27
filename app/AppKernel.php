@@ -17,6 +17,10 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new HubRecipes\FrontEndBundle\HubRecipesFrontEndBundle(),
+
+            //third party stuff
+            new FOS\UserBundle\FOSUserBundle(),
+            new Hubrecipes\UsersBundle\HubrecipesUsersBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
