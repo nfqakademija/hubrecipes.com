@@ -4,6 +4,8 @@ composer.phar
 # Bootstrap
 app/bootstrap*
 
+bin/*
+
 # Symfony directories
 vendor/*
 */logs/*
