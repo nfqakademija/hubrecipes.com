@@ -6,6 +6,7 @@ var gulp = require('gulp');
 var bower = require('gulp-bower');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
+var watch = require('gulp-watch');
 
 gulp.task('init', function() {
     bower()
@@ -13,9 +14,6 @@ gulp.task('init', function() {
 });
 
 gulp.task('default', function() {
-    gulp.src('app/Resources/style.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('web/css'));
 
     gulp.src(['app/Resources/lib/jquery/jquery.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js',
@@ -36,4 +34,14 @@ gulp.task('default', function() {
 
     gulp.src('app/Resources/lib/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*')
         .pipe(gulp.dest('web/fonts'));
+
 });
+
+gulp.task('watch', function() {
+    gulp.src('app/Resources/style.scss')
+        .pipe(watch(function(files) {
+            return files.pipe(sass())
+                .pipe(gulp.dest('web/css'));
+        }));
+});
+
