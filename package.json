@@ -7,7 +7,7 @@
     "url": "https://github.com/nfqakademija/hubrecipes.com.git"
   },
   "dependencies": {
-    "gulp": "~3.5.6",
+    "gulp": "~3.6.0",
     "gulp-sass": "~0.7.1",
     "bower": "~1.2.7",
     "gulp-bower": "~0.0.3",
