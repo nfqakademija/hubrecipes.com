@@ -2,14 +2,28 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}HubRecipes.com{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}
-
+            {% block headerblock %}
+            <div class="page-header">
+                <h1>
+                    {% block pageheader %} {{ block('title') }} {% endblock %}
+                    <small>{% block subheader %}{{ 'somthing unique' | trans  }} {% endblock %}</small>
+                </h1>
+            </div>
+            {% endblock %}
+            {% block content %}
+            {% endblock %}
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        {% block javascripts %}
+            <script type="application/javascript" src="{{ asset('js/all.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
