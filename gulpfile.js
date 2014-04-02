@@ -27,7 +27,9 @@ gulp.task('default', function() {
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js',
-            'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js'
+            'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js',
+            'app/Resources/lib/jquery-ui/ui/jquery.ui.slider.js'
+
         ])
         .pipe(concat('all.js'))
         .pipe(gulp.dest('web/js'));
