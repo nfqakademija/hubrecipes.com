@@ -1,3 +1,10 @@
 hub_recipes_front_end_homepage:
     pattern:  /
     defaults: { _controller: HubRecipesFrontEndBundle:Default:index }
+
+autoComplete:
+    pattern: /autoComplete
+    defaults: { _controller: HubRecipesFrontEndBundle:Default:getIngredients }
+exists:
+    pattern: /exists
+    defaults: { _controller: HubRecipesFrontEndBundle:Default:exists }

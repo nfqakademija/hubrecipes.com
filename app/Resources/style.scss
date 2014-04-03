@@ -1,7 +1,11 @@
+$icon-font-path: "../fonts/";
 .search-form {
+  background-color: #f5f5f5;
+  border: 1px solid #e1e1e8;
   padding-left: 5%;
   padding-right: 5%;
-  padding-top: 1%;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 .h5{
   display: inline-block;
