@@ -16,6 +16,8 @@ gulp.task('init', function() {
 gulp.task('default', function() {
 
     gulp.src(['app/Resources/lib/jquery/jquery.js',
+            'app/Resources/lib/seiyria-bootstrap-slider/js/bootstrap-slider.js',
+            'app/Resources/js/search-form.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js',
