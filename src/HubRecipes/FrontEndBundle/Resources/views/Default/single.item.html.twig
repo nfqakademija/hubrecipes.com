@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+{% block pageheader %} {{ parent() }} {{ 'home page' | trans }}
+{% endblock %}
+{% block headerblock %} {{ parent() }} {% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-8">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="badge">14</span>
+                    Cras justo odio</li>
+                <li class="list-group-item">
+                    <span class="badge">14</span>
+                    Dapibus ac facilisis in</li>
+                <li class="list-group-item">
+                    <span class="badge">14</span>
+                    Morbi leo risus</li>
+                <li class="list-group-item">
+                    <span class="badge">14</span>
+                    Porta ac consectetur ac</li>
+                <li class="list-group-item">
+                    <span class="badge">14</span>
+                    Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
