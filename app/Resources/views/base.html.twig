@@ -5,6 +5,7 @@
         <title>{% block title %}HubRecipes.com{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -27,7 +28,16 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Link</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </li>
                                 <li><a href="#">Link</a></li>
 
                             </ul>
@@ -55,6 +65,64 @@
                     <small>{% block subheader %}{{ 'somthing unique' | trans  }} {% endblock %}</small>
                 </h1>
             </div>#}
+                <div class="search-form">
+                    <div class="flavors">
+                        <h5 class="text-center">Choose yours flavors</h5>
+                        <div class="row">
+                            <div class="col-md-4">Sour</div>
+                            <div class="col-md-4">Salty</div>
+                            <div class="col-md-4">Sweet</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input id="Sour" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="Salty" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="Sweet" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">Meaty</div>
+                            <div class="col-md-4">Bitter</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input id="Meaty" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="Bitter" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h5 class="text-left type">Choose Type:</h5>
+                            <select class="form-control">
+                                <option>Main Dishes</option>
+                                <option>Cocktails</option>
+                                <option>Desserts</option>
+                                <option>Lounch and Snacks</option>
+                                <option>Beverges</option>
+                                <option>Salads</option>
+                                <option>Soups</option>
+                                <option>Breads</option>
+                                <option>Side Dishes</option>
+                                <option>Lunch and Snacks</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h5 class="text-left type">Ingridients:</h5>
+
+                            <button type="button" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                </div>
+
             {% endblock %}
             {% block content %}
             {% endblock %}
@@ -62,9 +130,8 @@
 
         {% block javascripts %}
             <script type="application/javascript" src="{{ asset('js/all.js') }}"></script>
-            <script type="text/javascript">
-                $('.slider').slider();
-            </script>
+            <script type="application/javascript" src="{{ asset('js/bootstrap-slider.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/search-form.js') }}"></script>
         {% endblock %}
     </body>
 </html>
