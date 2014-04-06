@@ -54,6 +54,7 @@ $('body').delegate('#add-ing', 'click', function () {
             if (data.exists == 'yes') {
                 $(k).attr('class', 'glyphicon glyphicon-minus-sign');
                 $(k).parent().attr('id', 'min-ing');
+                $('input[type="text"]#ing').last().prop('readonly', true);
                 $(add_rodykle).after($(
                     '<div id="ing" class="col-md-3 ">' +
                         '<form class="form-inline" role="form">' +
@@ -89,6 +90,7 @@ $('body').delegate('#add-no-ing', 'click', function () {
             if (data.exists == 'yes') {
                 $(k).attr('class', 'glyphicon glyphicon-minus-sign');
                 $(k).parent().attr('id', 'min-no-ing');
+                $('input[type="text"]#no-ing').last().prop('readonly', true);
                 $(add_rodykle).after($(
                     '<div id="no-ing" class="col-md-3 ">' +
                         '<form class="form-inline" role="form">' +
