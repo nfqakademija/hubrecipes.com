@@ -3,28 +3,81 @@
 {% endblock %}
 {% block headerblock %} {{ parent() }} {% endblock %}
 {% block content %}
-    <div class="row">
-        <div class="col-md-4">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <script src="https://apis.google.com/js/plusone.js"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="http://lh6.ggpht.com/1_N-5pu3ZZxouAYQqacsLKIpwC2_LhgFk8m2wjfHrazX3aLWYJRGwSwIXIwgSQeKct7MSXT4TUNdGhMu7Hl2WQ=s360-c"
+                     class="img-responsive img-thumbnail" alt="Responsive image">
+                <br>
+                <br>
+                <a href="#" class="btn btn-primary btn-lg active btn-block" role="button">Full Recipe</a>
+            </div>
+            <div class="col-md-8">
+                <h3>Ingredients:</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">14</span>
+                        Cras justo odio</li>
+                    <li class="list-group-item">
+                        <span class="badge">14</span>
+                        Dapibus ac facilisis in</li>
+                    <li class="list-group-item">
+                        <span class="badge">14</span>
+                        Morbi leo risus</li>
+                    <li class="list-group-item">
+                        <span class="badge">14</span>
+                        Porta ac consectetur ac</li>
+                    <li class="list-group-item">
+                        <span class="badge">14</span>
+                        Vestibulum at eros</li>
+                </ul>
+                <h3>Missing ingredients:</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">14</span>
+                        Cras justo odio</li>
+                    <li class="list-group-item">
+                        <span class="badge">14</span>
+                        Dapibus ac facilisis in</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="#" class="btn btn-default pull-right btn-md active" role="button">Add to favourites</a>
+
+                <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" />
+
+                <div class="fb-share-button" data-href="https://hubrecipes.com" data-type="button"></div>
+                <g:plus action="share"></g:plus>
+            </div>
 
         </div>
-        <div class="col-md-8">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="badge">14</span>
-                    Cras justo odio</li>
-                <li class="list-group-item">
-                    <span class="badge">14</span>
-                    Dapibus ac facilisis in</li>
-                <li class="list-group-item">
-                    <span class="badge">14</span>
-                    Morbi leo risus</li>
-                <li class="list-group-item">
-                    <span class="badge">14</span>
-                    Porta ac consectetur ac</li>
-                <li class="list-group-item">
-                    <span class="badge">14</span>
-                    Vestibulum at eros</li>
-            </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="fb-comments" data-href="http://example.com/comments" data-numposts="1" data-colorscheme="light"></div>
+            </div>
         </div>
     </div>
 {% endblock %}

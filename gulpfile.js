@@ -19,6 +19,8 @@ gulp.task('default', function() {
             'app/Resources/lib/seiyria-bootstrap-slider/js/bootstrap-slider.js',
             'app/Resources/js/search-form.js',
             'app/Resources/js/typeahead.js',
+            'app/Resources/js/rate.js',
+            'app/Resources/lib/bootstrap-rating-input/src/bootstrap-rating-input.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js',
@@ -30,10 +32,7 @@ gulp.task('default', function() {
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js',
-            'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js',
-            'app/Resources/lib/jquery-ui/ui/jquery.ui.slider.js',
-            'app/Resources/lib/seiyria-bootstrap-slider/js/bootstrap-slider.js',
-            'app/Resources/js/searchForm.js'
+            'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js'
 
         ])
         .pipe(concat('all.js'))

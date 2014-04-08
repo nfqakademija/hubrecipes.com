@@ -14,6 +14,10 @@ exists:
     resource: "@HubRecipesFrontEndBundle/Resources/config/routing.yml"
     prefix:   /
 
+single_recipe:
+    resource: "@HubRecipesFrontEndBundle/Resources/config/routing.yml"
+    prefix:   /
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
@@ -32,4 +36,5 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
 

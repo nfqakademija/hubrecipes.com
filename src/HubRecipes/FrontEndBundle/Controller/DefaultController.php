@@ -15,6 +15,10 @@ class DefaultController extends Controller
         return $this->render('HubRecipesFrontEndBundle:Default:index.html.twig');
     }
 
+    public function recipeAction()
+    {
+        return $this->render('HubRecipesFrontEndBundle:Default:single.item.html.twig');
+    }
     //ingredients auto complete
     public function getIngredientsAction(){
         if ($this->get('request')->isXmlHttpRequest()){

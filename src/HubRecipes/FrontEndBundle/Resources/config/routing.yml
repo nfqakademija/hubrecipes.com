@@ -2,6 +2,10 @@ hub_recipes_front_end_homepage:
     pattern:  /
     defaults: { _controller: HubRecipesFrontEndBundle:Default:index }
 
+single_recipe:
+    pattern: /recipe/{recipeid}
+    defaults: { _controller: HubRecipesFrontEndBundle:Default:recipe }
+
 autoComplete:
     pattern: /autoComplete
     defaults: { _controller: HubRecipesFrontEndBundle:Default:getIngredients }
