@@ -1,3 +1,7 @@
+hub_recipes_yummly_client:
+    resource: "@HubRecipesYummlyClientBundle/Resources/config/routing.yml"
+    prefix:   /
+
 hubrecipes_users:
     resource: "@HubrecipesUsersBundle/Resources/config/routing.yml"
     prefix:   /

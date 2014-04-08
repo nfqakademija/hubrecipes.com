@@ -16,17 +16,19 @@ function exists(ing) {
     return false;
 }
 
-function deleteIngredient(ing, which){
-    if(which == 'like'){
+function deleteIngredient(ing, which) {
+    if (which == 'like') {
         var index = like_ingredients.indexOf(ing);
         if (index > -1) {
             like_ingredients.splice(index, 1);
-        };
+        }
+        ;
     } else {
         var index = unlike_ingredients.indexOf(ing);
         if (index > -1) {
             unlike_ingredients.splice(index, 1);
-        };
+        }
+        ;
     }
 }
 
@@ -97,7 +99,7 @@ $('body').delegate('#add-ing', 'click', function () {
                     $('input[type="text"]#ing').last().prop('readonly', true);
                     $(add_rodykle).after($(
                         '<div id="ing" class="col-md-3 ">' +
-                            '<form class="form-inline" role="form">' +
+                            '<form class="form-inline" data-dismiss="modal">' +
                             '<div class="form-group input-group-sm">' +
                             '<input id="ing" type="text" class="form-control " placeholder="Ingredient" autocomplete="off">' +
                             '</div>' +
@@ -111,6 +113,39 @@ $('body').delegate('#add-ing', 'click', function () {
             }
         }
     )
+});
+
+$('body').delegate('#ing', 'keypress', function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        var add_rodykle, k, p;
+        k = $(this).parent().parent().children('button').children('span');
+        add_rodykle = $(this).parent().parent().parent();
+        $.post('/app_dev.php/exists', { data: p = $('input[type="text"]#ing').last().val()},
+            function (data) {
+                if (data.exists == 'yes') {
+                    if (!exists(p)) {
+                        like_ingredients.push(p);
+                        $(k).attr('class', 'glyphicon glyphicon-minus-sign');
+                        $(k).parent().attr('id', 'min-ing');
+                        $('input[type="text"]#ing').last().prop('readonly', true);
+                        $(add_rodykle).after($(
+                            '<div id="ing" class="col-md-3 ">' +
+                                '<form class="form-inline" data-dismiss="modal">' +
+                                '<div class="form-group input-group-sm">' +
+                                '<input id="ing" type="text" class="form-control " placeholder="Ingredient" autocomplete="off">' +
+                                '</div>' +
+                                '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
+                                '</form>' +
+                                '</div>'));
+                    }
+                }
+                /*if (data.exists == 'no') {
+                    //galima parodyt kokia nors pagalba
+                }*/
+            }
+        )
+    }
 });
 
 //delete ingredient
@@ -134,20 +169,53 @@ $('body').delegate('#add-no-ing', 'click', function () {
                     $('input[type="text"]#no-ing').last().prop('readonly', true);
                     $(add_rodykle).after($(
                         '<div id="no-ing" class="col-md-3 ">' +
-                            '<form class="form-inline" role="form">' +
+                            '<form class="form-inline" data-dismiss="modal">' +
                             '<div class="form-group input-group-sm">' +
-                            '<input id="no-ing" type="text" class="form-control " placeholder="Ingredient" autocomplete="off">' +
+                            '<input id="ing" type="text" class="form-control " placeholder="Ingredient" autocomplete="off">' +
                             '</div>' +
                             '<button id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
                             '</form>' +
                             '</div>'));
                 }
             }
-            if (data.exists == 'no') {
-                //Galima parodyt kokia nors pagalba
-            }
+            /*if (data.exists == 'no') {
+             //Galima parodyt kokia nors pagalba
+             }*/
         }
     );
+});
+
+$('body').delegate('#no-ing', 'keypress', function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        var add_rodykle, k, p;
+        k = $(this).parent().parent().children('button').children('span');
+        add_rodykle = $(this).parent().parent().parent();
+        $.post('/app_dev.php/exists', { data: p = $('input[type="text"]#no-ing').last().val()},
+            function (data) {
+                if (data.exists == 'yes') {
+                    if (!exists(p)) {
+                        unlike_ingredients.push(p);
+                        $(k).attr('class', 'glyphicon glyphicon-minus-sign');
+                        $(k).parent().attr('id', 'min-no-ing');
+                        $('input[type="text"]#no-ing').last().prop('readonly', true);
+                        $(add_rodykle).after($(
+                            '<div id="no-ing" class="col-md-3 ">' +
+                                '<form class="form-inline" data-dismiss="modal">' +
+                                '<div class="form-group input-group-sm">' +
+                                '<input id="ing" type="text" class="form-control " placeholder="Ingredient" autocomplete="off">' +
+                                '</div>' +
+                                '<button id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
+                                '</form>' +
+                                '</div>'));
+                    }
+                }
+                /*if (data.exists == 'no') {
+                 //Galima parodyt kokia nors pagalba
+                 }*/
+            }
+        );
+    }
 });
 
 //delete unlike ingredient
@@ -170,7 +238,7 @@ $('body').delegate('input[type="text"]', 'keyup', function () {
     });
 });
 
-$('#find').click(function() {
+$('#find').click(function () {
     var sour, salty, sweet, spicy, bitter, savory, time, type;
     sour = $('#Sour').val();
     salty = $('#Salty').val();
@@ -180,6 +248,6 @@ $('#find').click(function() {
     savory = $('#Savory').val();
     time = $('#Time').val();
     type = $('#type').val();
-    //console.log(like_ingredients);
-    //console.log(unlike_ingredients);
+    console.log(like_ingredients);
+    console.log(unlike_ingredients);
 })
