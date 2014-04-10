@@ -3,6 +3,7 @@
 namespace HubRecipes\YummlyClientBundle\Service;
 
 use GuzzleHttp\Client;
+use HubRecipes\YummlyClientBundle\Model\RecipeModel;
 
 class SearchService
 {
@@ -21,12 +22,24 @@ class SearchService
 
     /**
      * @param array $params
+     * @return RecipeModel[]
      */
     public function search($params)
     {
+        $out = [];
+
         $response = $this->client->createRequest('get')->setPath('search')->setQuery([
                 'sweetness' => 5
             ]);
-        return json_decode($response);
+        $response = json_decode($response);
+
+        foreach ($response as $item) {
+            $recipe = new RecipeModel();
+            $recipe->setTitle($item['title']);
+            // ...
+            $out[] = $recipe;
+        }
+
+        return $out;
     }
 }
