@@ -1,17 +1,29 @@
 parameters:
     hub_recipes_yummly_client.http.class: GuzzleHttp\Client
-    hub_recipes_yummly_client.http.base_url: http://yumly.com/json/
+    hub_recipes_yummly_client.http.base_url: http://api.yummly.com/v1/api/
+    hub_recipes_yummly_client.http.app_key: a2c43605a424494b51d58abf6694e88c
+    hub_recipes_yummly_client.http.app_id: 631b8d91
 
 
-    hub_recipes_yummly_client.search_service.class: HubRecipes\YummlyClientBundle\Service\SearchService
+    hub_recipes_yummly_client.search_service.class: HubRecipes\YummlyClientBundle\Services\SearchService
+    hub_recipes_yummly_client.getrecipe_service.class: HubRecipes\YummlyClientBundle\Services\GetRecipeService
 
 services:
     hub_recipes_yummly_client.http:
         class: %hub_recipes_yummly_client.http.class%
-        arguments:
-          - { base_url: %hub_recipes_yummly_client.http.base_url% }
 
     hub_recipes_yummly_client.search_service:
-        class: %hub_recipes_yummly_client.search_service.http%
+        class: %hub_recipes_yummly_client.search_service.class%
         arguments:
           - @hub_recipes_yummly_client.http
+          - %hub_recipes_yummly_client.http.app_key%
+          - %hub_recipes_yummly_client.http.app_id%
+          - %hub_recipes_yummly_client.http.base_url%
+
+    hub_recipes_yummly_client.getrecipe_service:
+        class: %hub_recipes_yummly_client.getrecipe_service.class%
+        arguments:
+          - @hub_recipes_yummly_client.http
+          - %hub_recipes_yummly_client.http.app_key%
+          - %hub_recipes_yummly_client.http.app_id%
+          - %hub_recipes_yummly_client.http.base_url%

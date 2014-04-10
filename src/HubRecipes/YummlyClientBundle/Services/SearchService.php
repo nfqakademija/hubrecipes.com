@@ -11,13 +11,23 @@ class SearchService
      * @var Client
      */
     protected $client;
+    /**
+     * @var String
+     */
+    protected $appKey;
 
+    /**
+     * @var String
+     */
+    protected $appID;
     /**
      * @param $client
      */
-    public function __construct($client)
+    public function __construct($client, $appKey, $appId)
     {
         $this->client = $client;
+        $this->appID = $appId;
+        $this->appKey = $appKey;
     }
 
     /**
