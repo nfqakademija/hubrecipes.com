@@ -23,39 +23,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img src="http://lh6.ggpht.com/1_N-5pu3ZZxouAYQqacsLKIpwC2_LhgFk8m2wjfHrazX3aLWYJRGwSwIXIwgSQeKct7MSXT4TUNdGhMu7Hl2WQ=s360-c"
+                <img src="{{ response.images[0].hostedLargeUrl }}"
                      class="img-responsive img-thumbnail" alt="Responsive image">
                 <br>
                 <br>
-                <a href="#" class="btn btn-primary btn-lg active btn-block" role="button">Full Recipe</a>
+                <a href="{{ response.source.sourceRecipeUrl }}" class="btn btn-primary btn-lg active btn-block" role="button">Full Recipe</a>
             </div>
             <div class="col-md-8">
+                <h2>{{ response.name }}</h2>
                 <h3>Ingredients:</h3>
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <span class="badge">14</span>
-                        Cras justo odio</li>
-                    <li class="list-group-item">
-                        <span class="badge">14</span>
-                        Dapibus ac facilisis in</li>
-                    <li class="list-group-item">
-                        <span class="badge">14</span>
-                        Morbi leo risus</li>
-                    <li class="list-group-item">
-                        <span class="badge">14</span>
-                        Porta ac consectetur ac</li>
-                    <li class="list-group-item">
-                        <span class="badge">14</span>
-                        Vestibulum at eros</li>
-                </ul>
-                <h3>Missing ingredients:</h3>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <span class="badge">14</span>
-                        Cras justo odio</li>
-                    <li class="list-group-item">
-                        <span class="badge">14</span>
-                        Dapibus ac facilisis in</li>
+                    {% for ingredient in response.ingredientLines %}
+                        <li class="list-group-item">
+                            {{ ingredient }}
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

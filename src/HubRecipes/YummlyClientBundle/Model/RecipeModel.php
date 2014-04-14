@@ -25,30 +25,36 @@ class RecipeModel implements \JsonSerializable
     protected $title;
 
     /**
+     * @var array of strings
+     */
+    protected $ingredients;
+
+    /**
+     * @var array of int
+     */
+    protected $flavors;
+
+    /**
      * @var string
      */
-    protected $description;
+    protected $imageUrl;
+
+    /**
+     * @var int
+     */
+    protected $totalTimeInSeconds;
+
+    /**
+     * @var string
+     */
+    protected $sourceRecipeUrl;
 
     /**
      * @var int
      */
     protected $sweetness;
 
-    /**
-     * @param string $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 
     /**
      * @param int $sweetness

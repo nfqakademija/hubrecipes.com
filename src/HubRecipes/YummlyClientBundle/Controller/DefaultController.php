@@ -16,8 +16,7 @@ class DefaultController extends Controller
       //  $results = $search->search(['sss' => 'sdfsf']);
         $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
         $recipe = $getRecipe->getRecipe($name);
-
-        return $this->render('HubRecipesYummlyClientBundle:Default:index.html.twig', array('name' => $recipe));
+        return $this->render('HubRecipesYummlyClientBundle:Default:index.html.twig', array('response' => $recipe));
     }
 
 

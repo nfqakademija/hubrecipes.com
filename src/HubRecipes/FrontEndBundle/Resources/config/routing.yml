@@ -3,7 +3,7 @@ hub_recipes_front_end_homepage:
     defaults: { _controller: HubRecipesFrontEndBundle:Default:index }
 
 single_recipe:
-    pattern: /recipe/{recipeid}
+    pattern: /recipe/{id}
     defaults: { _controller: HubRecipesFrontEndBundle:Default:recipe }
 
 autoComplete:

@@ -43,10 +43,11 @@ class GetRecipeService {
             'query' => ['_app_id' => $this->appID,
                         '_app_key' => $this->appKey]
         ] );
-        $data = $response->json();
+        $response = $response->json();
 
-        //$response = json_encode($response);
-        return var_dump($data['ingredientLines']);
+        //return var_dump($data['flavors']);
+        return $response;
+        //['ingredientLines']
        // $client->get('http://httpbin.org', [
        //     'query' => ['foo' => 'bar']
        // ]);

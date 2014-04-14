@@ -8,6 +8,8 @@ use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
+use HubRecipes\YummlyClientBundle\Services\SearchService;
+
 class DefaultController extends Controller
 {
     public function indexAction()
@@ -15,9 +17,11 @@ class DefaultController extends Controller
         return $this->render('HubRecipesFrontEndBundle:Default:index.html.twig');
     }
 
-    public function recipeAction()
+    public function recipeAction($id)
     {
-        return $this->render('HubRecipesFrontEndBundle:Default:single.item.html.twig');
+        $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
+        $recipe = $getRecipe->getRecipe($id);
+        return $this->render('HubRecipesFrontEndBundle:Default:single.item.html.twig', array('response' => $recipe));
     }
     //ingredients auto complete
     public function getIngredientsAction(){
