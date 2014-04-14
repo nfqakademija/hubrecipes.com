@@ -9,6 +9,7 @@ single_recipe:
 autoComplete:
     pattern: /autoComplete
     defaults: { _controller: HubRecipesFrontEndBundle:Default:getIngredients }
+
 exists:
     pattern: /exists
     defaults: { _controller: HubRecipesFrontEndBundle:Default:exists }

@@ -1,3 +1,7 @@
 hub_recipes_yummly_client_homepage:
     pattern:  /recipes/{name}
     defaults: { _controller: HubRecipesYummlyClientBundle:Default:index }
+
+results:
+    pattern:  /results
+    defaults: { _controller: HubRecipesYummlyClientBundle:Default:searchResults }

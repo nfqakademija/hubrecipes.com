@@ -22,13 +22,11 @@ function deleteIngredient(ing, which) {
         if (index > -1) {
             like_ingredients.splice(index, 1);
         }
-        ;
     } else {
         var index = unlike_ingredients.indexOf(ing);
         if (index > -1) {
             unlike_ingredients.splice(index, 1);
         }
-        ;
     }
 }
 
@@ -76,40 +74,34 @@ $('#Time').slider({
 
 //Open search form
 $('#open-search').click(function () {
-    $('.search-form').slideDown("slow");
+    $('#search-form').slideDown("slow");
 })
 
 //close search form
 $('#up-search').click(function () {
-    $(this).parent().parent().parent().slideUp("slow");
+    $(this).parent().parent().slideUp("slow");
 })
 
 //add like ingredient
 $('body').delegate('#add-ing', 'click', function () {
     var add_rodykle, k, p;
     k = $(this).children();
-    add_rodykle = $(this).parent().parent();
+    add_rodykle = $(this).parent();
     $.post('/app_dev.php/exists', { data: p = $('input[type="text"]#ing').last().val()},
         function (data) {
             if (data.exists == 'yes') {
                 if (!exists(p)) {
-                    like_ingredients.push(p);
                     $(k).attr('class', 'glyphicon glyphicon-minus-sign');
                     $(k).parent().attr('id', 'min-ing');
                     $('input[type="text"]#ing').last().prop('readonly', true);
                     $(add_rodykle).after($(
-                        '<div id="ing" class="col-md-3 ">' +
-                            '<form class="form-inline" data-dismiss="modal">' +
-                            '<div class="form-group input-group-sm">' +
-                            '<input id="ing" type="text" class="form-control " placeholder="Ingredient" autocomplete="off">' +
-                            '</div>' +
-                            '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
-                            '</form>' +
-                            '</div>'));
+                        '<div id="ing" class="form-inline col-md-3  input-group-sm">' +
+                           '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off">' +
+                           '<button style="margin-left: 3.5px" id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
+                        '</div>'
+                    ));
+                    like_ingredients.push(p);
                 }
-            }
-            if (data.exists == 'no') {
-                //galima parodyt kokia nors pagalba
             }
         }
     )
@@ -118,26 +110,24 @@ $('body').delegate('#add-ing', 'click', function () {
 $('body').delegate('#ing', 'keypress', function (e) {
     if (e.keyCode == 13) {
         e.preventDefault();
-        var add_rodykle, k, p;
-        k = $(this).parent().parent().children('button').children('span');
-        add_rodykle = $(this).parent().parent().parent();
-        $.post('/app_dev.php/exists', { data: p = $('input[type="text"]#ing').last().val()},
+        var add_rodykle, k, p, th;
+        th = this;
+        k = $(this).parent().children('button').children('span');
+        add_rodykle = $(this).parent();
+        $.post('/app_dev.php/exists', { data: p = $(this).val()},
             function (data) {
                 if (data.exists == 'yes') {
                     if (!exists(p)) {
-                        like_ingredients.push(p);
                         $(k).attr('class', 'glyphicon glyphicon-minus-sign');
                         $(k).parent().attr('id', 'min-ing');
-                        $('input[type="text"]#ing').last().prop('readonly', true);
+                        $(th).prop('readonly', true);
                         $(add_rodykle).after($(
-                            '<div id="ing" class="col-md-3 ">' +
-                                '<form class="form-inline" data-dismiss="modal">' +
-                                '<div class="form-group input-group-sm">' +
-                                '<input id="ing" type="text" class="form-control " placeholder="Ingredient" autocomplete="off">' +
-                                '</div>' +
-                                '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
-                                '</form>' +
-                                '</div>'));
+                            '<div id="ing" class="form-inline col-md-3  input-group-sm">' +
+                                '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off">' +
+                                '<button style="margin-left: 3.5px" id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
+                                '</div>'
+                        ));
+                        like_ingredients.push(p);
                     }
                 }
                 /*if (data.exists == 'no') {
@@ -150,15 +140,15 @@ $('body').delegate('#ing', 'keypress', function (e) {
 
 //delete ingredient
 $('body').delegate('#min-ing', 'click', function () {
-    $(this).parent().parent().remove();
-    deleteIngredient($(this).parent().children(".form-group").children('#ing').val(), 'like');
+    $(this).parent().remove();
+    deleteIngredient($(this).parent().children('#ing').val(), 'like');
 });
 
 //add unlike ingredient
 $('body').delegate('#add-no-ing', 'click', function () {
     var add_rodykle, k, p;
     k = $(this).children();
-    add_rodykle = $(this).parent().parent();
+    add_rodykle = $(this).parent();
     $.post('/app_dev.php/exists', { data: p = $('input[type="text"]#no-ing').last().val()},
         function (data) {
             if (data.exists == 'yes') {
@@ -168,14 +158,11 @@ $('body').delegate('#add-no-ing', 'click', function () {
                     $(k).parent().attr('id', 'min-no-ing');
                     $('input[type="text"]#no-ing').last().prop('readonly', true);
                     $(add_rodykle).after($(
-                        '<div id="no-ing" class="col-md-3 ">' +
-                            '<form class="form-inline" data-dismiss="modal">' +
-                            '<div class="form-group input-group-sm">' +
-                            '<input id="ing" type="text" class="form-control " placeholder="Ingredient" autocomplete="off">' +
-                            '</div>' +
-                            '<button id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
-                            '</form>' +
-                            '</div>'));
+                      '<div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
+                        '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off">'   +
+                        '<button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
+                      '</div>'
+                    ));
                 }
             }
             /*if (data.exists == 'no') {
@@ -188,26 +175,24 @@ $('body').delegate('#add-no-ing', 'click', function () {
 $('body').delegate('#no-ing', 'keypress', function (e) {
     if (e.keyCode == 13) {
         e.preventDefault();
-        var add_rodykle, k, p;
-        k = $(this).parent().parent().children('button').children('span');
-        add_rodykle = $(this).parent().parent().parent();
-        $.post('/app_dev.php/exists', { data: p = $('input[type="text"]#no-ing').last().val()},
+        var add_rodykle, k, p, th;
+        th = this;
+        k = $(this).parent().children('button').children('span');
+        add_rodykle = $(this).parent();
+        $.post('/app_dev.php/exists', { data: p = $(this).val()},
             function (data) {
                 if (data.exists == 'yes') {
                     if (!exists(p)) {
-                        unlike_ingredients.push(p);
                         $(k).attr('class', 'glyphicon glyphicon-minus-sign');
                         $(k).parent().attr('id', 'min-no-ing');
-                        $('input[type="text"]#no-ing').last().prop('readonly', true);
+                        $(th).prop('readonly', true);
                         $(add_rodykle).after($(
-                            '<div id="no-ing" class="col-md-3 ">' +
-                                '<form class="form-inline" data-dismiss="modal">' +
-                                '<div class="form-group input-group-sm">' +
-                                '<input id="ing" type="text" class="form-control " placeholder="Ingredient" autocomplete="off">' +
-                                '</div>' +
-                                '<button id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
-                                '</form>' +
-                                '</div>'));
+                            '<div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
+                                '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off">'   +
+                                '<button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
+                                '</div>'
+                        ));
+                        unlike_ingredients.push(p);
                     }
                 }
                 /*if (data.exists == 'no') {
@@ -220,8 +205,8 @@ $('body').delegate('#no-ing', 'keypress', function (e) {
 
 //delete unlike ingredient
 $('body').delegate('#min-no-ing', 'click', function () {
-    $(this).parent().parent().remove();
-    deleteIngredient($(this).parent().children(".form-group").children('#no-ing').val(), 'unlike');
+    $(this).parent().remove();
+    deleteIngredient($(this).parent().children('#no-ing').val(), 'unlike');
 });
 
 //auto complete
@@ -237,17 +222,3 @@ $('body').delegate('input[type="text"]', 'keyup', function () {
         minLength: 1
     });
 });
-
-$('#find').click(function () {
-    var sour, salty, sweet, spicy, bitter, savory, time, type;
-    sour = $('#Sour').val();
-    salty = $('#Salty').val();
-    sweet = $('#Sweet').val();
-    spicy = $('#Spicy').val();
-    bitter = $('#Bitter').val();
-    savory = $('#Savory').val();
-    time = $('#Time').val();
-    type = $('#type').val();
-    console.log(like_ingredients);
-    console.log(unlike_ingredients);
-})

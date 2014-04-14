@@ -14,7 +14,6 @@
             {% block headerblock %}
                 <div class="container">
 
-
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="container-fluid">
                         <!-- Brand and toggle get grouped for better mobile display -->
@@ -70,6 +69,7 @@
             </div>#}
                 <div class="container">
                 <div class="search-form">
+                    <form role="form" action=" {{ path('results') }}" method="get" >
                     <div class="flavors">
                         <h5 class="text-center">Choose yours flavors</h5>
                         <div class="row">
@@ -79,13 +79,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <input id="Sour" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
+                                <input name="Sour" id="Sour" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
                             </div>
                             <div class="col-md-4">
-                                <input id="Salty" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
+                                <input name="Salty" id="Salty" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
                             </div>
                             <div class="col-md-4">
-                                <input id="Sweet" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
+                                <input name="Sweet" id="Sweet" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
                             </div>
                         </div>
                         <div class="row">
@@ -95,13 +95,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <input id="Spicy" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
+                                <input name="Spicy" id="Spicy" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
                             </div>
                             <div class="col-md-4">
-                                <input id="Bitter" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
+                                <input name="Bitter" id="Bitter" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
                             </div>
                             <div class="col-md-4">
-                                <input id="Savory" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
+                                <input name="Savory" id="Savory" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.01" data-slider-value="0.5"/>
                             </div>
                         </div>
                         <div class="row">
@@ -109,10 +109,9 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <input id="Time" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="16" data-slider-step="1" data-slider-value="0"/>
+                                <input name="Time" id="Time" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="16" data-slider-step="1" data-slider-value="0"/>
                             </div>
                         </div>
-
                     </div>
                     <div class="row">
                         <div class="col-md-2">
@@ -134,34 +133,25 @@
                     </div>
                     <h5 class="text-left type">With Ingredients:</h5>
                     <div class="row">
-                        <div id="ing" class="col-md-3 ">
-                            <form class="form-inline" data-dismiss="modal">
-                                <div class="form-group input-group-sm">
-                                    <input id="ing" type="text" class="form-control" placeholder="Ingredient" autocomplete="off">
-                                </div>
-                                <button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>
-                            </form>
+                        <div id="ing" class="form-inline col-md-3  input-group-sm">
+                            <input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off">
+                            <button style="margin-left: 3.5px" id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>
                         </div>
                     </div>
                     <h5 class="text-left type">Without Ingredients:</h5>
                     <div class="row">
-                        <div id="no-ing" class="col-md-3 ">
-                            <form class="form-inline" data-dismiss="modal">
-                                <div class="form-group input-group-sm">
-                                    <input id="no-ing" type="text" class="form-control " placeholder="Ingredient" autocomplete="off">
-                                </div>
-                                <button id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>
-                            </form>
+                        <div id="no-ing" class="form-inline col-md-3  input-group-sm">
+                            <input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off">
+                            <button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="pull-right">
-                            <button id="find" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></button>
-                            <button id="up-search" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-chevron-up"></span></button>
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                    <button id="up-search" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-chevron-up"></span></button>
+
+                    </form>
                 </div>
+
                 </div>
 
             {% endblock %}
