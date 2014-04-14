@@ -39,6 +39,9 @@
                         </li>
                     {% endfor %}
                 </ul>
+                {% if response.totalTime != null %}
+                    <h3>Total time: {{ response.totalTime }}</h3>
+                {% endif %}
             </div>
         </div>
     </div>
