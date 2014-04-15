@@ -106,4 +106,21 @@ class SearchService
         }*/
         return $data;
     }
+
+    public function getCuisineResults($cuisine, $start){
+        $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
+        $query = $r->getQuery();
+        $query->set('_app_id', $this->appID);
+        $query->set('_app_key', $this->appKey);
+        $query->set('allowedCuisine', $cuisine);
+        $query->set('maxResult', 16);
+        $query->set('start', $start);
+
+        $query->setEncodingType(false);
+        $query->setAggregator(Query::phpAggregator(false));
+        $response = $this->client->send($r);
+
+        $data = $response->json();
+        return $data;
+    }
 }

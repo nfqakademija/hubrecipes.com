@@ -49,4 +49,11 @@ class DefaultController extends Controller
 
         return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results ));
     }
+
+    public function searchByCuisineAction($cuisine){
+
+        $getResults = $this->get('hub_recipes_yummly_client.search_service');
+        $results = $getResults->getCuisineResults($cuisine, 0);
+        return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results ));
+    }
 }

@@ -5,3 +5,7 @@ hub_recipes_yummly_client_homepage:
 results:
     pattern:  /results
     defaults: { _controller: HubRecipesYummlyClientBundle:Default:searchResults }
+
+by_Cuisine:
+    pattern:  /Cuisine/{cuisine}
+    defaults: { _controller: HubRecipesYummlyClientBundle:Default:searchByCuisine }
