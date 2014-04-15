@@ -24,7 +24,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="/">HubRecipes.com</a>
+                            <a class="navbar-brand" href="#">HubRecipes.com</a>
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,7 +40,7 @@
                                         <li><a href="#">Separated link</a></li>
                                     </ul>
                                 </li>
-                                <li id="open-search"><a href="#">Search</a></li>
+                                <li id="open-search"><a>Search</a></li>
                             </ul>
 
                             <ul class="nav navbar-nav navbar-right">
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <input name="Time" id="Time" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="120" data-slider-step="1" data-slider-value="0"/>
+                                        <input name="Time" id="Time" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="16" data-slider-step="1" data-slider-value="0"/>
                                     </div>
                                 </div>
                             </div>
@@ -198,17 +198,17 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-6 col-md-3">
-                         <div class="thumbnail">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                            <div class="thumbnail">
                                 <img src="http://lh3.ggpht.com/3mrCi4GzhI75_GpuGPApplVPP9vEqsUnURhlFI361PmTaNS570dnvjT8iwaHdixUPXTbdTC2XbJsc_Ob6-oq=s230-c" alt="...">
                                 <div class="caption">
                                     <h3>Label</h3>
                                     <p>short description</p>
                                     <p><a href="#" class="btn btn-primary" role="button">Button</a>
                                 </div>
-                         </div>
-                    </div>
+                            </div>
+                        </div>
                         <div class="col-sm-6 col-md-3">
                             <div class="thumbnail">
                                 <img src="http://lh3.ggpht.com/3mrCi4GzhI75_GpuGPApplVPP9vEqsUnURhlFI361PmTaNS570dnvjT8iwaHdixUPXTbdTC2XbJsc_Ob6-oq=s230-c" alt="...">
@@ -252,10 +252,62 @@
                     </ul>
                     </div>
                 </div>
-                <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
-            {% endblock %}
 
+                {% block travelModal %}
+
+                    <div id="travelModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Where do you want to travel today?</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="row center-block">
+                                            <a href="#"><img src="{{ asset('img/americanCuisine.jpg') }}" class="img-thumbnail" alt="America"></a>
+                                            <a href="#"><img src="{{ asset('img/chineseCuisine.jpg') }}" class="img-thumbnail" alt="China"></a>
+                                            <a href="#"><img src="{{ asset('img/englishCuisine.jpg') }}" class="img-thumbnail" alt="England"></a>
+                                            <a href="#"><img src="{{ asset('img/frenchCuisine.jpg') }}" class="img-thumbnail" alt="France"></a>
+                                        </div>
+                                        <div class="row center-block">
+                                            <a href="#"><img src="{{ asset('img/germanCuisine.jpg') }}" class="img-thumbnail"  alt="Germany"></a>
+                                            <a href="#"><img src="{{ asset('img/greekCuisine.jpg') }}" class="img-thumbnail" alt="Greece"></a>
+                                            <a href="#"><img src="{{ asset('img/indianCuisine.jpg') }}" class="img-thumbnail" alt="India"></a>
+                                            <a href="#"><img src="{{ asset('img/irishCuisine.jpg') }}" class="img-thumbnail" alt="Ireland"></a>
+                                        </div>
+                                        <div class="row center-block">
+                                            <a href="#"><img src="{{ asset('img/italianCuisine.jpg') }}" class="img-thumbnail"  alt="Italy"></a>
+                                            <a href="#"><img src="{{ asset('img/mexicanCuisine.jpg') }}" class="img-thumbnail" alt="Mexico"></a>
+                                            <a href="#"><img src="{{ asset('img/spanishCuisine.jpg') }}" class="img-thumbnail" alt="Spain"></a>
+                                            <a href="#"><img src="{{ asset('img/thaiCuisine.jpg') }}" class="img-thumbnail" alt="Thailand"></a>
+                                        </div>
+                                        <div class="row center-block">
+                                            <a href="#"><img src="{{ asset('img/hawaiianCuisine.jpg') }}" class="img-thumbnail"  alt="Hawaii"></a>
+                                            <a href="#"><img src="{{ asset('img/japaneseCuisine.jpg') }}" class="img-thumbnail" alt="Japan"></a>
+                                            <a href="#"><img src="{{ asset('img/moroccanCuisine.jpg') }}" class="img-thumbnail" alt="Morocco"></a>
+                                            <a href="#"><img src="{{ asset('img/cubanCuisine.jpg') }}" class="img-thumbnail" alt="Cuba"></a>
+                                        </div>
+                                        <div class="row center-block">
+                                            <a href="#"><img src="{{ asset('img/swedishCuisine.jpg') }}" class="img-thumbnail"  alt="Sweden"></a>
+                                            <a href="#"><img src="{{ asset('img/portugeseCuisine.jpg') }}" class="img-thumbnail" alt="Portugal"></a>
+                                            <a href="#"><img src="{{ asset('img/hungarianCuisine.jpg') }}" class="img-thumbnail" alt="Hungary"></a>
+                                            <a href="#"><img src="{{ asset('img/mediterraneanCuisine.jpg') }}" class="img-thumbnail" alt="Mediterranean"></a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                {% endblock %}
+            {% endblock %}
         {% endblock %}
+
+
 
         {% block javascripts %}
             <script type="application/javascript" src="{{ asset('js/all.js') }}"></script>
