@@ -56,7 +56,7 @@ class SearchService
         }
 
         if ($type != "-") {
-            $query->set('allowedCourse', 'course^course-'.$type);
+            $query->set('allowedCourse', 'course^course-' . $type);
         }
 
         if($sour != ""){
@@ -94,8 +94,8 @@ class SearchService
         }
 
         $query->set('maxResult', 16);
-        //$query->set('requirePictures',true);
         $query->set('start', $start);
+        $query->set('requirePictures', true);
         $query->setEncodingType(false);
         $query->setAggregator(Query::phpAggregator(false));
 
@@ -119,6 +119,7 @@ class SearchService
         $query->set('allowedCuisine', $cuisine);
         $query->set('maxResult', 16);
         $query->set('start', $start);
+        $query->set('requirePictures', true);
 
         $query->setEncodingType(false);
         $query->setAggregator(Query::phpAggregator(false));
