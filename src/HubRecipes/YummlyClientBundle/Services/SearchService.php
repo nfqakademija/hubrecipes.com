@@ -3,6 +3,7 @@
 namespace HubRecipes\YummlyClientBundle\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Query;
 use HubRecipes\YummlyClientBundle\Model\RecipeModel;
 
 class SearchService
@@ -37,41 +38,65 @@ class SearchService
      * @param array $params
      * @return RecipeModel[]
      */
-    public function getResults($params)
+    public function getResults($sour,$salty,$sweet, $spicy, $bitter, $savory
+        ,$time,$allowedIngredients, $excludedIngredients, $start)
     {
-        $out = [];
+        //$out = [];
+        $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
+        $query = $r->getQuery();
+        $query->set('_app_id', $this->appID);
+        $query->set('_app_key', $this->appKey);
 
-        $response = $this->client->get($this->baseURL . "recipes" , [
-            'query' => ['_app_id' => $this->appID,
-                        '_app_key' => $this->appKey,
-                        'allowedIngredient' => array('onion'),
-                        'requirePictures' => 'true']
-        ]);
+        if(count($allowedIngredients) > 0){
+            $query->set('allowedIngredient', $allowedIngredients);
+        }
 
-       /* $r = $this->client->createRequest('get', $this->baseURL);
-        $r->getQuery()->set('v1', [1,2]);
+        if(count($excludedIngredients) > 0){
+            $query->set('excludedIngredient', $excludedIngredients);
+        }
 
-        $url = $this->baseURL.'?'.http_build_query(['v1' => [1,2]]);*/
-        //print $url;
+        if($sour != ""){
+            $query->set('flavor.sour.min',0);
+            $query->set('flavor.sour.max',$sour);
+        }
 
-        //$response = $this->client->send($r);
-        //print($r->getUrl());exit;
+        if($sweet != ""){
+            $query->set('flavor.sweet.min',0);
+            $query->set('flavor.sweet.max',$sweet);
+        }
 
+        if($spicy != ""){
+            $query->set('flavor.piquant.min',0);
+            $query->set('flavor.piquant.max',$spicy);
+        }
 
+        if($bitter != ""){
+            $query->set('flavor.bitter.min',0);
+            $query->set('flavor.bitter.max',$bitter);
+        }
 
-      /*  $c = new Guzzle\h('GET',$this->baseURL . "recipes");
+        if($savory != ""){
+            $query->set('flavor.meaty.min',0);
+            $query->set('flavor.meaty.max',$bitter);
+        }
 
-        $request = $c->get();
+        if($salty != ""){
+            $query->set('flavor.salty.min',0);
+            $query->set('flavor.salty.max',$salty);
+        }
 
-        $q = $request->getQuery();
-        $q->set('par', array('1','2'));
+        if ($time > 0){
+            $query->set('maxTotalTimeInSeconds', $time);
+        }
 
-        $q->useUrlEncoding(false);
+        $query->set('maxResult', 16);
+        //$query->set('requirePictures',true);
+        $query->set('start', $start);
+        $query->setEncodingType(false);
+        $query->setAggregator(Query::phpAggregator(false));
 
-        $a = $c->send($request);*/
+        $response = $this->client->send($r);
 
-
-        //$response = json_decode($response);
         $data = $response->json();
         /* foreach ($response as $item) {
             $recipe = new RecipeModel();
@@ -79,7 +104,6 @@ class SearchService
             // ...
             $out[] = $recipe;
         }*/
-
         return $data;
     }
 }

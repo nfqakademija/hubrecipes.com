@@ -21,25 +21,32 @@ class DefaultController extends Controller
     }
 
     public function searchResultsAction(Request $request){
+        $withIngredientsI = [];
+        $withoutIngredientsI = [];
         $withIngredients = $request->query->get('likeIngredients');
         $withoutIngredients = $request->query->get('unlikeIngredients');
 
-        $time = $request->query->get('Time');
+        for($i=0; $i < count($withIngredients) - 1; $i++){
+            $withIngredientsI[$i] = $withIngredients[$i];
+        }
+
+        for($i=0; $i < count($withoutIngredients) - 1; $i++){
+            $withoutIngredientsI[$i] = $withoutIngredients[$i];
+        }
+
         $sour = $request->query->get('Sour');
         $salty = $request->query->get('Salty');
         $sweet = $request->query->get('Sweet');
         $spicy = $request->query->get('Spicy');
         $bitter = $request->query->get('Bitter');
         $savory = $request->query->get('Savory');
-        $time = $request->query->get('Time');
+        $time = $request->query->get('Time')*60;
+        $start = 0;
 
         /** @var SearchService $search */
         $getResults = $this->get('hub_recipes_yummly_client.search_service');
-        $results = $getResults->getResults($withIngredients);
+        $results = $getResults->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $withIngredientsI, $withoutIngredientsI,$start);
 
-        return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => var_dump($results) ));
-        //return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig');
+        return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results ));
     }
-
-
 }
