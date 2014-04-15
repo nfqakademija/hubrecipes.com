@@ -39,7 +39,7 @@ class SearchService
      * @return RecipeModel[]
      */
     public function getResults($sour,$salty,$sweet, $spicy, $bitter, $savory
-        ,$time,$allowedIngredients, $excludedIngredients, $start)
+        ,$time, $type, $allowedIngredients, $excludedIngredients, $start)
     {
         //$out = [];
         $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
@@ -53,6 +53,10 @@ class SearchService
 
         if(count($excludedIngredients) > 0){
             $query->set('excludedIngredient', $excludedIngredients);
+        }
+
+        if ($type != "-") {
+            $query->set('allowedCourse', 'course^course-'.$type);
         }
 
         if($sour != ""){

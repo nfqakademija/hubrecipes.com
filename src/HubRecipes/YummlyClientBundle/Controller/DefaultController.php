@@ -41,11 +41,12 @@ class DefaultController extends Controller
         $bitter = $request->query->get('Bitter');
         $savory = $request->query->get('Savory');
         $time = $request->query->get('Time')*60;
+        $type = $request->query->get('Type');
         $start = 0;
 
         /** @var SearchService $search */
         $getResults = $this->get('hub_recipes_yummly_client.search_service');
-        $results = $getResults->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $withIngredientsI, $withoutIngredientsI,$start);
+        $results = $getResults->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredientsI, $withoutIngredientsI,$start);
 
         return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results ));
     }
