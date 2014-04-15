@@ -1,1 +1,92 @@
-{{ results }}
+
+{% extends '::base.html.twig' %}
+{% block pageheader %} {{ parent() }} {{ 'home page' | trans }}
+{% endblock %}
+{% block headerblock %} {{ parent() }} {% endblock %}
+
+{% block content %}
+    {{ results }}
+<div class="container">
+    <div id="cards">
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="#"><img src="http://lh3.ggpht.com/3mrCi4GzhI75_GpuGPApplVPP9vEqsUnURhlFI361PmTaNS570dnvjT8iwaHdixUPXTbdTC2XbJsc_Ob6-oq=s230-c" alt="..."></a>
+                <div class="caption">
+                    <a href="#"> <h5>Thumbnail label</h5></a>
+                    <div>Ingredients</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="#"><img src="http://lh3.ggpht.com/3mrCi4GzhI75_GpuGPApplVPP9vEqsUnURhlFI361PmTaNS570dnvjT8iwaHdixUPXTbdTC2XbJsc_Ob6-oq=s230-c" alt="..."></a>
+                <div class="caption">
+                    <a href="#"> <h5>Thumbnail label</h5></a>
+                    <div>Ingredients</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="#"><img src="http://lh3.ggpht.com/3mrCi4GzhI75_GpuGPApplVPP9vEqsUnURhlFI361PmTaNS570dnvjT8iwaHdixUPXTbdTC2XbJsc_Ob6-oq=s230-c" alt="..."></a>
+                <div class="caption">
+                    <a href="#"> <h5>Thumbnail label</h5></a>
+                    <div>Ingredients</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="#"><img src="http://lh3.ggpht.com/3mrCi4GzhI75_GpuGPApplVPP9vEqsUnURhlFI361PmTaNS570dnvjT8iwaHdixUPXTbdTC2XbJsc_Ob6-oq=s230-c" alt="..."></a>
+                <div class="caption">
+                    <a href="#"> <h5>Thumbnail label</h5></a>
+                    <div>Ingredients</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="#"><img src="http://lh3.ggpht.com/3mrCi4GzhI75_GpuGPApplVPP9vEqsUnURhlFI361PmTaNS570dnvjT8iwaHdixUPXTbdTC2XbJsc_Ob6-oq=s230-c" alt="..."></a>
+                <div class="caption">
+                    <a href="#"> <h5>Thumbnail label</h5></a>
+                    <div>Ingredients</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="#"><img src="http://lh3.ggpht.com/3mrCi4GzhI75_GpuGPApplVPP9vEqsUnURhlFI361PmTaNS570dnvjT8iwaHdixUPXTbdTC2XbJsc_Ob6-oq=s230-c" alt="..."></a>
+                <div class="caption">
+                    <a href="#"> <h5>Thumbnail label</h5></a>
+                    <div>Ingredients</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="#"><img src="http://lh3.ggpht.com/3mrCi4GzhI75_GpuGPApplVPP9vEqsUnURhlFI361PmTaNS570dnvjT8iwaHdixUPXTbdTC2XbJsc_Ob6-oq=s230-c" alt="..."></a>
+                <div class="caption">
+                    <a href="#"> <h5>Thumbnail label</h5></a>
+                    <div>Ingredients</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="#"><img src="http://lh3.ggpht.com/3mrCi4GzhI75_GpuGPApplVPP9vEqsUnURhlFI361PmTaNS570dnvjT8iwaHdixUPXTbdTC2XbJsc_Ob6-oq=s230-c" alt="..."></a>
+                <div class="caption">
+                    <a href="#"> <h5>Thumbnail label</h5></a>
+                    <div>Ingredients</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
+        <div class="col-md-12">
+            <button class="btn btn-inverse btn-large"><i class="icon-plus-sign-alt"></i> Load more</button>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

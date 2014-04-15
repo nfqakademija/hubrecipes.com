@@ -74,7 +74,7 @@ $('#Time').slider({
 
 //Open search form
 $('#open-search').click(function () {
-    $('#search-form').slideDown("slow");
+    $('.search-form').slideToggle("slow");
 })
 
 //close search form

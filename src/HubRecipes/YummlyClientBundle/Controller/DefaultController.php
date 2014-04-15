@@ -38,6 +38,7 @@ class DefaultController extends Controller
         $results = $getResults->getResults($withIngredients);
 
         return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => var_dump($results) ));
+        //return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig');
     }
 
 

@@ -41,21 +41,21 @@ class SearchService
     {
         $out = [];
 
-//        $response = $this->client->get($this->baseURL . "recipes" , [
-//            'query' => ['_app_id' => $this->appID,
-//                        '_app_key' => $this->appKey,
-//                        'allowedIngredient' => array('onion'),
-//                        'requirePictures' => 'true']
-//        ]);
+        $response = $this->client->get($this->baseURL . "recipes" , [
+            'query' => ['_app_id' => $this->appID,
+                        '_app_key' => $this->appKey,
+                        'allowedIngredient' => array('onion'),
+                        'requirePictures' => 'true']
+        ]);
 
-        $r = $this->client->createRequest('get', $this->baseURL);
+       /* $r = $this->client->createRequest('get', $this->baseURL);
         $r->getQuery()->set('v1', [1,2]);
 
-        $url = $this->baseURL.'?'.http_build_query(['v1' => [1,2]]);
-        print $url;
+        $url = $this->baseURL.'?'.http_build_query(['v1' => [1,2]]);*/
+        //print $url;
 
         //$response = $this->client->send($r);
-        print($r->getUrl());exit;
+        //print($r->getUrl());exit;
 
 
 
@@ -72,7 +72,7 @@ class SearchService
 
 
         //$response = json_decode($response);
-       // $data = $response->json();
+        $data = $response->json();
         /* foreach ($response as $item) {
             $recipe = new RecipeModel();
             $recipe->setTitle($item['title']);
@@ -80,6 +80,6 @@ class SearchService
             $out[] = $recipe;
         }*/
 
-        return $response;
+        return $data;
     }
 }
