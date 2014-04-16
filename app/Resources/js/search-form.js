@@ -4,11 +4,13 @@
 
 
 $(function(){
-    sessionStorage.setItem('showmodal', false);
-    if (!(sessionStorage.getItem('showmodal'))) {
+
+    if (sessionStorage.getItem('showmodal')!=='done') {
         $("#travelModal").modal("show");
-        sessionStorage.setItem('showmodal', true);
+        sessionStorage.setItem('showmodal','done');
     };
+
+
 
     $('#Sour').slider({
         formater: function (value) {
