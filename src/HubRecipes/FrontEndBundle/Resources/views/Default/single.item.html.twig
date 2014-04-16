@@ -28,6 +28,10 @@
                 <br>
                 <br>
                 <a href="{{ response.source.sourceRecipeUrl }}" class="btn btn-primary btn-lg active btn-block" role="button">Full Recipe</a>
+                <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" />
+
+                <div class="fb-share-button" data-href="https://hubrecipes.com" data-type="button"></div>
+                <g:plus action="share"></g:plus>
             </div>
             <div class="col-md-8">
                 <h2>{{ response.name }}</h2>
@@ -50,10 +54,7 @@
             <div class="col-md-12">
                 <a href="#" class="btn btn-default pull-right btn-md active" role="button">Add to favourites</a>
 
-                <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" />
 
-                <div class="fb-share-button" data-href="https://hubrecipes.com" data-type="button"></div>
-                <g:plus action="share"></g:plus>
             </div>
 
         </div>

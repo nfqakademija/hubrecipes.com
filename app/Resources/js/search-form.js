@@ -1,8 +1,14 @@
 /**
  * Created by elvinas on 4/2/14.
  */
+
+
 $(function(){
-    $('#travelModal').modal('show');
+    sessionStorage.setItem('showmodal', false);
+    if (!(sessionStorage.getItem('showmodal'))) {
+        $("#travelModal").modal("show");
+        sessionStorage.setItem('showmodal', true);
+    };
 
     $('#Sour').slider({
         formater: function (value) {
