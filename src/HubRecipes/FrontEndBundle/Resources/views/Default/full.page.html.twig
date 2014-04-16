@@ -1,5 +1,7 @@
 {% extends '::base.html.twig' %}
-{% block pageheader %} {{ parent() }} {{ 'home page' | trans }}
+{% block body %}
+    {{ block('content') }}
+    {{ block('headerblock') }}
 {% endblock %}
 {% block content %}
     <iframe width="100%" height="100%" src="{{ response.source.sourceRecipeUrl }}"></iframe>
@@ -18,7 +20,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">HubRecipes.com</a>
+                <a class="navbar-brand" href="/">HubRecipes.com</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -30,3 +32,4 @@
         </div><!-- /.container-fluid -->
     </nav>
 {% endblock %}
+
