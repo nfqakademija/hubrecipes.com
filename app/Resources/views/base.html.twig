@@ -30,18 +30,7 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose your emotion<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#"><img src="{{ asset('img/happy.png') }}">Happy</a></li>
-                                        <li><a href="#"><img src="{{ asset('img/surprised.png') }}">Surprised</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#"><img src="{{ asset('img/sad.png') }}">Sad</a></li>
-                                        <li><a href="#"><img src="{{ asset('img/afraid.png') }}">Afraid</a></li>
-                                        <li><a href="#"><img src="{{ asset('img/disgusted.png') }}">Disgusted</a></li>
-                                        <li><a href="#"><img src="{{ asset('img/angry.png') }}">Angry</a></li>
-                                    </ul>
-                                </li>
+                                <li><a data-toggle="modal" data-target=".bs-example-modal-sm">Choose your emotion</a></li>
                                 <li id="open-search"><a>Search</a></li>
                             </ul>
 
@@ -129,7 +118,7 @@
                                         <option>Salads</option>
                                         <option>Soups</option>
                                         <option>Breads</option>
-                                        <option value="Side%20Dishes">Side Dishes</option
+                                        <option value="Side%20Dishes">Side Dishes</option>
                                         <option>Appetizers</option>
                                         <option value="Condiments%20and%20Sauces">Condiments and Sauces</option>
                                     </select>
@@ -307,6 +296,25 @@
                     </div>
 
 
+                {% endblock %}
+                {% block emotionModal %}
+                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="false">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">How are you?</h4>
+                                </div>
+                                <div class="modal-body text-center">
+                                            <a href="#"><img src="{{ asset('img/happy.png') }}" class="img-thumbnail" alt="Happy"></a>
+                                            <a href="#"><img src="{{ asset('img/surprised.png') }}" class="img-thumbnail" alt="Surprised"></a>
+                                            <a href="#"><img src="{{ asset('img/sad.png') }}" class="img-thumbnail" alt="Sad"></a>
+                                            <a href="#"><img src="{{ asset('img/angry.png') }}" class="img-thumbnail" alt="Angry"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 {% endblock %}
             {% endblock %}
         {% endblock %}
