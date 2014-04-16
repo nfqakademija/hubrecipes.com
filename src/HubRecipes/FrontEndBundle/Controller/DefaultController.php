@@ -23,6 +23,13 @@ class DefaultController extends Controller
         $recipe = $getRecipe->getRecipe($id);
         return $this->render('HubRecipesFrontEndBundle:Default:single.item.html.twig', array('response' => $recipe));
     }
+
+    public function fullRecipeAction($id)
+    {
+        $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
+        $recipe = $getRecipe->getRecipe($id);
+        return $this->render('HubRecipesFrontEndBundle:Default:full.page.html.twig', array('response' => $recipe));
+    }
     //ingredients auto complete
     public function getIngredientsAction(){
         if ($this->get('request')->isXmlHttpRequest()){

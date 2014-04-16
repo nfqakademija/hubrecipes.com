@@ -6,6 +6,10 @@ single_recipe:
     pattern: /recipe/{id}
     defaults: { _controller: HubRecipesFrontEndBundle:Default:recipe }
 
+full_recipe:
+    pattern: /recipe/full/{id}
+    defaults: { _controller: HubRecipesFrontEndBundle:Default:fullRecipe }
+
 autoComplete:
     pattern: /autoComplete
     defaults: { _controller: HubRecipesFrontEndBundle:Default:getIngredients }
