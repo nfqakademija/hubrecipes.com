@@ -130,4 +130,20 @@ class SearchService
         $data = $response->json();
         return $data;
     }
+
+    public function fillIngredients(){
+        $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
+        $query = $r->getQuery();
+        $query->set('_app_id', $this->appID);
+        $query->set('_app_key', $this->appKey);
+        $query->set('allowedCourse', 'course^course-Breads');
+        $query->set('maxResult', 4000);
+        $query->set('start', 8000);
+        $query->setEncodingType(false);
+        $query->setAggregator(Query::phpAggregator(false));
+        $response = $this->client->send($r);
+
+        $data = $response->json();
+        return $data;
+    }
 }

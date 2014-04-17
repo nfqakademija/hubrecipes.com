@@ -13,3 +13,7 @@ by_Cuisine:
 loadMoreCuisine:
     pattern:  /loadMoreCuisine
     defaults: { _controller: HubRecipesYummlyClientBundle:Default:loadMoreCuisine }
+
+fill:
+    pattern:  /fill
+    defaults: { _controller: HubRecipesYummlyClientBundle:Default:fillIngredients }

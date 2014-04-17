@@ -7,6 +7,7 @@ use HubRecipes\YummlyClientBundle\Services\SearchService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use HubRecipes\FrontEndBundle\Entity\Ingredients;
 
 class DefaultController extends Controller
 {
@@ -137,5 +138,43 @@ class DefaultController extends Controller
             $results = $getResults->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $like, $unlike, $k, $cuisine);
             return new JsonResponse(array('res'=>$results));
         }
+    }
+
+    public function fillIngredientsAction(){
+        $getResults = $this->get('hub_recipes_yummly_client.search_service');
+        $results = $getResults->fillIngredients();
+        $em = $this->getDoctrine()->getManager();
+        $yra = false;
+        $new = 0;
+        for($i = 0; $i < count($results); $i++){
+            $yra = false;
+            $query = $em->createQuery(
+                'SELECT i.ingredient
+                 FROM HubRecipes\\FrontEndBundle\\Entity\\Ingredients i
+                  ');
+            $products = $query->getArrayResult();
+            for($j = 0; $j < count($results['matches'][$i]['ingredients']); $j++){
+                for($jj = 0; $jj < count($products); $jj++){
+                    if($products[$jj]['ingredient'] == $results['matches'][$i]['ingredients'][$j]){
+                        $yra = true;
+                    }
+                }
+                if(!$yra){
+                    $ing = new Ingredients();
+                    $ing->setIngredient($results['matches'][$i]['ingredients'][$j]);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($ing);
+                    $em->flush();
+                    $new++;
+                }
+               $yra = false;
+            }
+
+        }
+
+        print $new;
+
+
+        //print $results['matches'][0]['ingredients'][0]; exit;
     }
 }
