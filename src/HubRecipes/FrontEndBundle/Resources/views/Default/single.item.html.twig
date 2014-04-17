@@ -3,23 +3,7 @@
 {% endblock %}
 {% block headerblock %} {{ parent() }} {% endblock %}
 {% block content %}
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-    <script src="https://apis.google.com/js/plusone.js"></script>
+
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -30,8 +14,7 @@
                 <a href="{{ path('full_recipe', {'id': response.id }) }}" class="btn btn-primary btn-lg active btn-block" role="button">Full Recipe</a>
                 <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" />
 
-                <div class="fb-share-button" data-href="https://hubrecipes.com" data-type="button"></div>
-                <g:plus action="share"></g:plus>
+
             </div>
             <div class="col-md-8">
                 <h2>{{ response.name }}</h2>
@@ -53,6 +36,8 @@
         <div class="row">
             <div class="col-md-12">
                 <a href="#" class="btn btn-default pull-right btn-md active" role="button">Add to favourites</a>
+                <div class="fb-share-button" data-href="{{ app.request.uri }}" data-type="button"></div>
+                <div class="g-plus" data-action="share" data-annotation="none"></div>
 
 
             </div>
@@ -62,11 +47,31 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <div class="fb-comments" data-href="http://example.com/comments" data-numposts="1" data-colorscheme="light"></div>
+                <div class="fb-comments" data-href="{{ app.request.uri }}" data-numposts="1" data-colorscheme="light"></div>
             </div>
         </div>
     </div>
+
+
     {% block emotionModal %}
         {{ parent() }}
     {% endblock %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=640212159391500";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <script type="text/javascript">
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
 {% endblock %}

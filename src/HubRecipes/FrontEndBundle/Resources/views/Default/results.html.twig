@@ -46,7 +46,9 @@
     {% endif %}
 </div>
 {% endblock %}
-
+{% block emotionModal %}
+    {{ parent() }}
+{% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script>
