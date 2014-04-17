@@ -14,7 +14,21 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('HubRecipesFrontEndBundle:Default:index.html.twig');
+        $getRecipes = $this->get('hub_recipes_yummly_client.search_service');
+        $withIngredientsI = [];
+        $withoutIngredientsI = [];
+        $sour = rand(0,1);
+        $salty = rand(0,1);
+        $sweet = rand(0,1);
+        $spicy = rand(0,1);
+        $bitter = rand(0,1);
+        $savory = rand(0,1);
+        $time = rand(0,1);
+        $cuisine = '';
+        $type = '';
+        $start = 0;
+        $results = $getRecipes->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredientsI, $withoutIngredientsI, $start, $cuisine);
+        return $this->render('HubRecipesFrontEndBundle:Default:index.html.twig', array('response' => $results));
     }
 
     public function recipeAction($id)
