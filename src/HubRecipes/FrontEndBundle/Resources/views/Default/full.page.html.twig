@@ -4,7 +4,7 @@
     {{ block('headerblock') }}
 {% endblock %}
 {% block content %}
-    <iframe width="100%" height="100%" src="{{ response.source.sourceRecipeUrl }}"></iframe>
+    <iframe id="externalPage" width="100%" height="100%" src="{{ response.source.sourceRecipeUrl }}"></iframe>
     {% block emotionModal %}
         {{ parent() }}
     {% endblock %}
