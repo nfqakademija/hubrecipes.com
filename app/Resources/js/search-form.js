@@ -10,7 +10,14 @@ $(function(){
         sessionStorage.setItem('showmodal','done');
     };
 
+    if (sessionStorage.getItem('needSearch') === 'yes') {
+        $(".search-form").slideDown("slow");
+        sessionStorage.setItem('needSearch', 'no');
+    }
 
+    $("#newSearch").click(function(){
+        sessionStorage.setItem('needSearch', 'yes')
+    })
 
     $('#Sour').slider({
         formater: function (value) {
