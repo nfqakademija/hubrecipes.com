@@ -68,7 +68,7 @@ $(function(){
 
     //close search form
     $('#up-search').click(function () {
-        $(this).parent().parent().slideUp("slow");
+        $(this).parent().parent().parent().parent().slideUp("slow");
     });
 
     var like_ingredients, unlike_ingredients;
