@@ -30,6 +30,10 @@ by_Cuisine:
     resource: "@HubRecipesFrontEndBundle/Resources/config/routing.yml"
     prefix:   /
 
+loadMoreCuisine:
+    resource: "@HubRecipesYummlyClientBundle/Resources/config/routing.yml"
+    prefix:   /
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

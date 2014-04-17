@@ -7,5 +7,9 @@ results:
     defaults: { _controller: HubRecipesYummlyClientBundle:Default:searchResults }
 
 by_Cuisine:
-    pattern:  /Cuisine/{cuisine}
+    pattern:  /Cuisine/{cuisine}/{start}
     defaults: { _controller: HubRecipesYummlyClientBundle:Default:searchByCuisine }
+
+loadMoreCuisine:
+    pattern:  /loadMoreCuisine
+    defaults: { _controller: HubRecipesYummlyClientBundle:Default:loadMoreCuisine }

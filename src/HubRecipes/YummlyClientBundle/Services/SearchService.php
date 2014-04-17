@@ -39,7 +39,7 @@ class SearchService
      * @return RecipeModel[]
      */
     public function getResults($sour,$salty,$sweet, $spicy, $bitter, $savory
-        ,$time, $type, $allowedIngredients, $excludedIngredients, $start)
+        ,$time, $type, $allowedIngredients, $excludedIngredients, $start, $cuisine)
     {
         //$out = [];
         $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
@@ -92,7 +92,9 @@ class SearchService
         if ($time > 0){
             $query->set('maxTotalTimeInSeconds', $time);
         }
-
+        if ($cuisine != "-") {
+            $query->set('allowedCuisine', $cuisine);
+        }
         $query->set('maxResult', 16);
         $query->set('start', $start);
         $query->set('requirePictures', true);

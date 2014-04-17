@@ -64,12 +64,12 @@ $(function(){
     //Open search form
     $('#open-search').click(function () {
         $('.search-form').slideToggle("slow");
-    })
+    });
 
-//close search form
+    //close search form
     $('#up-search').click(function () {
         $(this).parent().parent().slideUp("slow");
-    })
+    });
 
     var like_ingredients, unlike_ingredients;
     like_ingredients = new Array();
@@ -115,7 +115,7 @@ $(function(){
                             '<div id="ing" class="form-inline col-md-3  input-group-sm">' +
                                 '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off">' +
                                 '<button style="margin-left: 3.5px" id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
-                                '</div>'
+                            '</div>'
                         ));
                         like_ingredients.push(p);
                     }
@@ -142,7 +142,7 @@ $(function(){
                                 '<div id="ing" class="form-inline col-md-3  input-group-sm">' +
                                     '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off">' +
                                     '<button style="margin-left: 3.5px" id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
-                                    '</div>'
+                                '</div>'
                             ));
                             like_ingredients.push(p);
                         }
@@ -239,6 +239,165 @@ $(function(){
             minLength: 1
         });
     });
+
+    if ((window.location.href.indexOf('results') > 0) || (window.location.href.indexOf('Cuisine') > 0) ){
+
+        if(sour != ""){
+            $('#Sour').slider('setValue', parseFloat(sour));
+        }
+
+        if(salty != ""){
+            $('#Salty').slider('setValue', parseFloat(salty));
+        }
+
+        if(sweet != ""){
+            $('#Sweet').slider('setValue', parseFloat(sweet));
+        }
+
+        if(spicy != ""){
+            $('#Spicy').slider('setValue', parseFloat(spicy));
+        }
+
+        if(bitter != ""){
+            $('#Bitter').slider('setValue', parseFloat(bitter));
+        }
+
+        if(savory != "") {
+            $('#Savory').slider('setValue', parseFloat(savory));
+        }
+
+        if(timee != ""){
+            $('#Time').slider('setValue', parseFloat(timee)/60);
+        }
+
+        if(typeS != "-"){
+            $('#type').val(typeS);
+        }
+
+        if(cuisine != "-"){
+            $('#Cuisine').val(cuisine);
+        }
+
+        if(likeI.length > 0){
+            for(i = 0; i < likeI.length; i++){
+                if (((i+1)%4 == 0) && (i != 0)){
+                    alert();
+                    $('#add-ing').parent().remove();
+                    $('div#ing:last').after($(
+                        '<div id="ing" class="form-inline col-md-3  input-group-sm">' +
+                            '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + likeI[i] + '" readonly>' +
+                            '<button style="margin-left: 3.5px" id="min-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus-sign"></span></button>' +
+                        '</div>'
+                    ));
+                    $('#ing-row').after($(
+                        '<div id="ing-row" class="row"><div id="ing" class="form-inline col-md-3  input-group-sm">' +
+                            '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off">' +
+                            '<button style="margin-left: 3.5px" id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
+                        '</div></div>'
+                    ));
+                    like_ingredients.push(likeI[i]);
+                } else {
+                $('div#ing:last').before($(
+                    '<div id="ing" class="form-inline col-md-3  input-group-sm">' +
+                        '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + likeI[i] + '" readonly>' +
+                        '<button style="margin-left: 3.5px" id="min-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus-sign"></span></button>' +
+                    '</div>'
+                ));
+                like_ingredients.push(likeI[i]);
+                }
+            }
+        }
+
+        if(unlikeI.length > 0){
+            for(i = 0; i < unlikeI.length; i++){
+                if (((i+1)%4 == 0) && (i != 0)){
+                    alert();
+                    $('#add-no-ing').parent().remove();
+                    $('div#no-ing:last').after($(
+                        '<div id="no-ing" class="form-inline col-md-3  input-group-sm">' +
+                            '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + unlikeI[i] + '" readonly>' +
+                            '<button style="margin-left: 3.5px" id="min-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus-sign"></span></button>' +
+                            '</div>'
+                    ));
+                    $('#no-ing-row').after($(
+                        '<div id="ing-row" class="row"><div id="no-ing" class="form-inline col-md-3  input-group-sm">' +
+                            '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off">' +
+                            '<button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
+                            '</div></div>'
+                    ));
+                    unlike_ingredients.push(unlikeI[i]);
+                } else {
+                    $('div#no-ing:last').before($(
+                        '<div id="no-ing" class="form-inline col-md-3  input-group-sm">' +
+                            '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + unlikeI[i] + '" readonly>' +
+                            '<button style="margin-left: 3.5px" id="min-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus-sign"></span></button>' +
+                            '</div>'
+                    ));
+                    unlike_ingredients.push(unlikeI[i]);
+                }
+            }
+        }
+        var k = 16;
+        $('#load-more').click(function() {
+            var i, j, str, t, div_count_in_row ,row_count, ing;
+            div_count_in_row = 4;
+            $.post('/app_dev.php/loadMoreCuisine', {
+                    start: k,
+                    cuisine: cuisine,
+                    sour: sour,
+                    salty: salty,
+                    sweet: sweet,
+                    spicy: spicy,
+                    bitter: bitter,
+                    savory: savory,
+                    timee: timee,
+                    typeS: typeS,
+                    like: likeI,
+                    unlike: unlikeI
+                },
+                function(data){
+                    console.log(data.res);
+                    //console.log(data.res);
+                    str = '';
+                    t = 0;
+                    if(data.res.matches.length > 0){
+
+                        if(data.res.matches.length < 4){
+                            div_count_in_row = data.res.matches.length;
+                            row_count = 1;
+                        } else {
+                            row_count = Math.ceil(data.res.matches.length/4);
+                        }
+                        for(var i = 0; i < row_count ; i++){
+                            console.log(row_count);
+                            if((i == row_count - 1)){
+                                div_count_in_row = data.res.matches.length - t;
+                            }
+                            str = str + '<div class="row">';
+                            for(var j = 0; j < div_count_in_row; j++){
+                                str = str + '<div class="col-md-3"> <div class="thumbnail">'
+                                str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.res.matches[t].id + '">'+ '<img src="'+data.res.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '" alt="bla"></a>';
+                                str = str + '<div class="caption">';
+                                str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.res.matches[t].id + '">' + '<h5>' + data.res.matches[t].recipeName + '</h5></a>';
+                                str = str + '<div>';
+
+                                for(var ing = 0; ing < data.res.matches[t].ingredients.length; ing++){
+                                    str = str + data.res.matches[t].ingredients[ing] + ' ';
+                                }
+                                str = str + '</div></div></div></div>';
+                                t++;
+                            }
+                            str = str + '</div>';
+                        }
+                        k = k + data.res.matches.length;
+                        $('#load').before($(str));
+                    } else {
+                        $('#load').remove();
+                        $('.row:last').after($('<div class="text-center"><h4>No more results...</h4></div>'))
+                    }
+                })
+        });
+    }
 });
 
 
