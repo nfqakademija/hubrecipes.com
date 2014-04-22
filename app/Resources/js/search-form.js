@@ -398,6 +398,58 @@ $(function(){
                 })
         });
     }
+
+  if(window.location.href === 'http://hubrecipes.dev/app_dev.php/'){
+
+      $('#load-more').click(function() {
+          var i, j, str, t, div_count_in_row ,row_count, ing;
+
+          div_count_in_row = 4;
+          $.post('/app_dev.php/',{},
+              function(data){
+                  console.log(data.res);
+                  //console.log(data.res);
+                  str = '';
+                  t = 0;
+                  if(data.res.matches.length > 0){
+
+                      if(data.res.matches.length < 4){
+                          div_count_in_row = data.res.matches.length;
+                          row_count = 1;
+                      } else {
+                          row_count = Math.ceil(data.res.matches.length/4);
+                      }
+                      for(var i = 0; i < row_count ; i++){
+                          console.log(row_count);
+                          if((i == row_count - 1)){
+                              div_count_in_row = data.res.matches.length - t;
+                          }
+                          str = str + '<div class="row">';
+                          for(var j = 0; j < div_count_in_row; j++){
+                              str = str + '<div class="col-md-3"> <div class="thumbnail">'
+                              str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.res.matches[t].id + '">'+ '<img src="'+data.res.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '" alt="bla"></a>';
+                              str = str + '<div class="caption">';
+                              str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.res.matches[t].id + '">' + '<h5>' + data.res.matches[t].recipeName + '</h5></a>';
+                              str = str + '<div>';
+
+                              for(var ing = 0; ing < data.res.matches[t].ingredients.length; ing++){
+                                  str = str + data.res.matches[t].ingredients[ing] + ' ';
+                              }
+                              str = str + '</div></div></div></div>';
+                              t++;
+                          }
+                          str = str + '</div>';
+                      }
+                      k = k + data.res.matches.length;
+                      $('#load').before($(str));
+                  } else {
+                      $('#load').remove();
+                      $('.row:last').after($('<div class="text-center"><h4>No more results...</h4></div>'))
+                  }
+              })
+      });
+  }
+
 });
 
 
