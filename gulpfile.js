@@ -20,6 +20,7 @@ gulp.task('default', function() {
             'app/Resources/js/search-form.js',
             'app/Resources/js/typeahead.js',
             'app/Resources/js/rate.js',
+            'app/Resources/js/scrollToTop.js',
             'app/Resources/lib/bootstrap-rating-input/src/bootstrap-rating-input.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js',
             'app/Resources/lib/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js',
