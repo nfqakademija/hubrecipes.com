@@ -13,44 +13,43 @@
         {% block body %}
             {% block headerblock %}
                 <div class="container">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="/">HubRecipes.com</a>
+                            </div>
 
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="/">HubRecipes.com</a>
-                        </div>
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li id="emotion"><a data-toggle="modal" data-target=".bs-example-modal-sm">Choose your emotion</a></li>
+                                    <li id="open-search"><a>Search</a></li>
+                                </ul>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li><a data-toggle="modal" data-target=".bs-example-modal-sm">Choose your emotion</a></li>
-                                <li id="open-search"><a>Search</a></li>
-                            </ul>
-
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Create an account</a></li>
-                                <li><a href="#">Sign in</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="#">Create an account</a></li>
+                                    <li><a href="#">Sign in</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div><!-- /.navbar-collapse -->
+                        </div><!-- /.container-fluid -->
+                    </nav>
                 </div>
             {#<div class="page-header">
                 <h1>
@@ -155,14 +154,14 @@
                             <div id="ing-row" class="row">
                                 <div id="ing" class="form-inline col-md-3  input-group-sm">
                                     <input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off">
-                                    <button style="margin-left: 3.5px" id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>
+                                    <button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>
                                 </div>
                             </div>
                             <h5 class="text-left type">Without Ingredients:</h5>
                             <div id="no-ing-row" class="row">
                                 <div id="no-ing" class="form-inline col-md-3  input-group-sm">
                                     <input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off">
-                                    <button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>
+                                    <button id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>
                                 </div>
                             </div>
                             <div class="row">
@@ -173,8 +172,6 @@
                                     <button id="up-search" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-chevron-up"></span></button>
                                 </div>
                             </div>
-
-
                         </form>
                     </div>
                 </div>
@@ -182,37 +179,37 @@
             {% endblock %}
             {% block content %}
                 <div class="container">
-                <div class="row">
-                    {% if response.matches|length > 1 %}
-                        {% for recipe in response.matches %}
-                            {% if loop.index %4 == 0  %}
-                                <div class="row">
-                            {% endif %}
-                            <div class="col-md-3">
-                                <div class="thumbnail">
-                                    {% set replace_value_var= 's90' %}
-                                    {% set replace_with_value_var = 's360' %}
-                                    <a href="{{ path('single_recipe', {'id': recipe.id }) }}"><img src="{{ recipe.imageUrlsBySize['90']|replace({ (replace_value_var): replace_with_value_var }) }}" alt="{{ recipe.recipeName }}"></a>
-                                    <div class="caption">
-                                        <a href="{{ path('single_recipe', {'id': recipe.id }) }}"> <h5>{{ recipe.recipeName }}</h5></a>
-                                        <div>
-                                            {% for ingredient in recipe.ingredients %}
-                                                {{ ingredient }}
-                                            {%  endfor %}
+                    <div class="row">
+                        {% if response.matches|length > 1 %}
+                            {% for recipe in response.matches %}
+                                {% if loop.index %4 == 0  %}
+                                    <div class="row">
+                                {% endif %}
+                                <div class="col-md-3">
+                                    <div class="thumbnail">
+                                        {% set replace_value_var= 's90' %}
+                                        {% set replace_with_value_var = 's360' %}
+                                        <a href="{{ path('single_recipe', {'id': recipe.id }) }}"><img src="{{ recipe.imageUrlsBySize['90']|replace({ (replace_value_var): replace_with_value_var }) }}" alt="{{ recipe.recipeName }}"></a>
+                                        <div class="caption">
+                                            <a href="{{ path('single_recipe', {'id': recipe.id }) }}"> <h5>{{ recipe.recipeName }}</h5></a>
+                                            <div>
+                                                {% for ingredient in recipe.ingredients %}
+                                                    {{ ingredient }}
+                                                {%  endfor %}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                {% if loop.index %4 == 0 or loop.last %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="text-center">
+                                <h4>No results...</h4>
                             </div>
-                            {% if loop.index %4 == 0 or loop.last %}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    {% else %}
-                        <div class="text-center">
-                            <h4>No results...</h4>
-                        </div>
-                    {% endif %}
-                </div>
+                        {% endif %}
+                    </div>
                     {% if response.matches|length > 1 %}
                         <div id="load" class="row">
                             <div class="span12" style="text-align:center">
@@ -223,7 +220,6 @@
                     </div>
 
                 {% block travelModal %}
-
                     <div id="travelModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -264,41 +260,34 @@
                                             <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-mediterranean', 'start': 0}) }}"><img src="{{ asset('img/mediterraneanCuisine.jpg') }}" class="img-thumbnail" alt="Mediterranean" title="Mediterranean"></a>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 {% endblock %}
             {% endblock %}
         {% endblock %}
 
         {% block emotionModal %}
-                                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="false">
-                                    <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                    <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            <h4 class="modal-title">How are you?</h4>
-                                                        </div>
-                                                   <div class="modal-body text-center">
-                                                                    <a href="#"><img src="{{ asset('img/happy.png') }}" class="img-thumbnail" alt="Happy" title="Happy"></a>
-                                                                    <a href="#"><img src="{{ asset('img/surprised.png') }}" class="img-thumbnail" alt="Surprised" title="Surprised"></a>
-                                                                    <a href="#"><img src="{{ asset('img/sad.png') }}" class="img-thumbnail" alt="Sad" title="Sad"></a>
-                                                                    <a href="#"><img src="{{ asset('img/angry.png') }}" class="img-thumbnail" alt="Angry" title="Angry"></a>
-                                                        </div>
-
-                                                </div>
-                                        </div>
-                                </div>
-                            {% endblock %}
-
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="false">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">How are you?</h4>
+                        </div>
+                        <div class="modal-body text-center">
+                            <a href="#"><img src="{{ asset('img/happy.png') }}" class="img-thumbnail" alt="Happy" title="Happy"></a>
+                            <a href="#"><img src="{{ asset('img/surprised.png') }}" class="img-thumbnail" alt="Surprised" title="Surprised"></a>
+                            <a href="#"><img src="{{ asset('img/sad.png') }}" class="img-thumbnail" alt="Sad" title="Sad"></a>
+                            <a href="#"><img src="{{ asset('img/angry.png') }}" class="img-thumbnail" alt="Angry" title="Angry"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
 
         {% block javascripts %}
-
             <script type="application/javascript" src="{{ asset('js/all.js') }}"></script>
         {% endblock %}
     </body>

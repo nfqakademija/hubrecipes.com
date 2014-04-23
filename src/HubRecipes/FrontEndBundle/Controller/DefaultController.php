@@ -31,6 +31,26 @@ class DefaultController extends Controller
         return $this->render('HubRecipesFrontEndBundle:Default:index.html.twig', array('response' => $results));
     }
 
+    public function loadMoreHomePageAction()
+    {
+        $getRecipes = $this->get('hub_recipes_yummly_client.search_service');
+        $withIngredientsI = [];
+        $withoutIngredientsI = [];
+        $sour = rand(0,10000)/10000;
+        $salty = rand(0,10000)/10000;
+        $sweet = rand(0,10000)/10000;
+        $spicy = rand(0,10000)/10000;
+        $bitter = rand(0,10000)/10000;
+        $savory = rand(0,10000)/10000;
+        $time = rand(0,10000)/10000;
+        $cuisine = '-';
+        $type = '-';
+        $start = 0;
+        $results = $getRecipes->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredientsI, $withoutIngredientsI, $start, $cuisine);
+        return new JsonResponse(array('response'=>$results));
+    }
+
+
     public function recipeAction($id)
     {
         $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
@@ -55,6 +75,7 @@ class DefaultController extends Controller
                 FROM HubRecipes\\FrontEndBundle\\Entity\\Ingredients i
                 WHERE i.ingredient LIKE :a ')->setParameter('a','%' . $what . '%');
 
+            $em->flush();
             $products = $query->getArrayResult();
             $a = [];
             if (!$products) {
@@ -79,6 +100,7 @@ class DefaultController extends Controller
                  FROM HubRecipes\\FrontEndBundle\\Entity\\Ingredients i
                  WHERE i.ingredient LIKE :a ')->setParameter('a', $what );
             $products = $query->getArrayResult();
+            $em->flush();
             if (!$products) {
                 return new JsonResponse(array("exists" => 'no'));
             } else {

@@ -2,7 +2,6 @@
  * Created by elvinas on 4/2/14.
  */
 
-
 $(function(){
 
     if (sessionStorage.getItem('showmodal')!=='done') {
@@ -17,7 +16,7 @@ $(function(){
 
     $("#newSearch").click(function(){
         sessionStorage.setItem('needSearch', 'yes')
-    })
+    });
 
     $('#Sour').slider({
         formater: function (value) {
@@ -99,10 +98,10 @@ $(function(){
         }
     }
 
-    //add like ingredient
-    $('body').delegate('#add-ing', 'click', function () {
-        var add_rodykle, k, p;
+    function addIngredientButton() {
+        var add_rodykle, k, p, divCount;
         k = $(this).children();
+        divCount = $('div#ing').length;
         add_rodykle = $(this).parent();
         $.post('/app_dev.php/exists', { data: p = $('input[type="text"]#ing').last().val()},
             function (data) {
@@ -111,23 +110,35 @@ $(function(){
                         $(k).attr('class', 'glyphicon glyphicon-minus-sign');
                         $(k).parent().attr('id', 'min-ing');
                         $('input[type="text"]#ing').last().prop('readonly', true);
-                        $(add_rodykle).after($(
-                            '<div id="ing" class="form-inline col-md-3  input-group-sm">' +
-                                '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off">' +
-                                '<button style="margin-left: 3.5px" id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
-                            '</div>'
-                        ));
+                        if (divCount % 4 == 0){
+                            $(add_rodykle).parent().after($(
+                                '<div id="ing-row" class="row">' +
+                                    '<div id="ing" class="form-inline col-md-3 input-group-sm">' +
+                                    '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" > ' +
+                                    '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
+                                    '</div>' +
+                                    '<div>'
+                            ));
+                        } else {
+                            $(add_rodykle).after($(
+                                '<div id="ing" class="form-inline col-md-3 input-group-sm">' +
+                                    '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" > ' +
+                                    '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
+                                    '</div>'
+                            ));
+                        }
                         like_ingredients.push(p);
                     }
                 }
             }
         )
-    });
+    }
 
-    $('body').delegate('#ing', 'keypress', function (e) {
+    function addIngredientKey(e){
         if (e.keyCode == 13) {
             e.preventDefault();
-            var add_rodykle, k, p, th;
+            var add_rodykle, k, p, th, divCount;
+            divCount = $('div#ing').length;
             th = this;
             k = $(this).parent().children('button').children('span');
             add_rodykle = $(this).parent();
@@ -138,34 +149,36 @@ $(function(){
                             $(k).attr('class', 'glyphicon glyphicon-minus-sign');
                             $(k).parent().attr('id', 'min-ing');
                             $(th).prop('readonly', true);
-                            $(add_rodykle).after($(
-                                '<div id="ing" class="form-inline col-md-3  input-group-sm">' +
-                                    '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off">' +
-                                    '<button style="margin-left: 3.5px" id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
-                                '</div>'
-                            ));
+                            if (divCount % 4 == 0){
+                                $(add_rodykle).parent().after($(
+                                    '<div id="ing-row" class="row">' +
+                                        '<div id="ing" class="form-inline col-md-3 input-group-sm">' +
+                                        '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" > ' +
+                                        '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
+                                        '</div>' +
+                                    '<div>'
+                                ));
+                            } else {
+                                $(add_rodykle).after($(
+                                    '<div id="ing" class="form-inline col-md-3 input-group-sm">' +
+                                        '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" > ' +
+                                        '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
+                                        '</div>'
+                                ));
+                            }
                             like_ingredients.push(p);
                         }
                     }
-                    /*if (data.exists == 'no') {
-                     //galima parodyt kokia nors pagalba
-                     }*/
                 }
             )
         }
-    });
+    }
 
-//delete ingredient
-    $('body').delegate('#min-ing', 'click', function () {
-        $(this).parent().remove();
-        deleteIngredient($(this).parent().children('#ing').val(), 'like');
-    });
-
-//add unlike ingredient
-    $('body').delegate('#add-no-ing', 'click', function () {
-        var add_rodykle, k, p;
+    function addNoIngredientButton() {
+        var add_rodykle, k, p, divCount;
         k = $(this).children();
         add_rodykle = $(this).parent();
+        divCount = $('div#no-ing').length;
         $.post('/app_dev.php/exists', { data: p = $('input[type="text"]#no-ing').last().val()},
             function (data) {
                 if (data.exists == 'yes') {
@@ -174,27 +187,37 @@ $(function(){
                         $(k).attr('class', 'glyphicon glyphicon-minus-sign');
                         $(k).parent().attr('id', 'min-no-ing');
                         $('input[type="text"]#no-ing').last().prop('readonly', true);
-                        $(add_rodykle).after($(
-                            '<div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
-                                '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off">'   +
-                                '<button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
+                        if (divCount % 4 == 0){
+                            $(add_rodykle).parent().after($(
+                                '<div id="no-ing-row" class="row">' +
+                                    '<div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
+                                        '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" >'   +
+                                        '<button id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
+                                    '</div>' +
                                 '</div>'
-                        ));
+                            ))
+                        } else {
+                            $(add_rodykle).after($(
+                                '<div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
+                                    '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" >'   +
+                                    '<button id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
+                                '</div>'
+                            ));
+                        }
+                        unlike_ingredients.push(p);
                     }
                 }
-                /*if (data.exists == 'no') {
-                 //Galima parodyt kokia nors pagalba
-                 }*/
             }
         );
-    });
+    }
 
-    $('body').delegate('#no-ing', 'keypress', function (e) {
+    function addNoIngredientKey(e){
         if (e.keyCode == 13) {
             e.preventDefault();
-            var add_rodykle, k, p, th;
+            var add_rodykle, k, p, th, divCount;
             th = this;
             k = $(this).parent().children('button').children('span');
+            divCount = $('div#no-ing').length;
             add_rodykle = $(this).parent();
             $.post('/app_dev.php/exists', { data: p = $(this).val()},
                 function (data) {
@@ -203,30 +226,52 @@ $(function(){
                             $(k).attr('class', 'glyphicon glyphicon-minus-sign');
                             $(k).parent().attr('id', 'min-no-ing');
                             $(th).prop('readonly', true);
-                            $(add_rodykle).after($(
-                                '<div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
-                                    '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off">'   +
-                                    '<button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
-                                    '</div>'
-                            ));
+                            if (divCount % 4 == 0){
+                                $(add_rodykle).parent().after($(
+                                    '<div id="no-ing-row" class="row"><div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
+                                        '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" >'   +
+                                        '<button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
+                                        '</div></div>'
+                                ))
+                            } else {
+                                $(add_rodykle).after($(
+                                    '<div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
+                                        '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" >'   +
+                                        '<button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
+                                        '</div>'
+                                ));
+                            }
                             unlike_ingredients.push(p);
                         }
                     }
-                    /*if (data.exists == 'no') {
-                     //Galima parodyt kokia nors pagalba
-                     }*/
                 }
             );
         }
+    }
+
+    //add like ingredient
+    $('body').delegate('#add-ing', 'click', addIngredientButton);
+
+    $('body').delegate('#ing', 'keypress', addIngredientKey);
+
+    //delete ingredient
+    $('body').delegate('#min-ing', 'click', function () {
+        $(this).parent().remove();
+        deleteIngredient($(this).parent().children('#ing').val(), 'like');
     });
 
-//delete unlike ingredient
+    //add unlike ingredient
+    $('body').delegate('#add-no-ing', 'click', addNoIngredientButton);
+
+    $('body').delegate('#no-ing', 'keypress', addNoIngredientKey);
+
+    //delete unlike ingredient
     $('body').delegate('#min-no-ing', 'click', function () {
         $(this).parent().remove();
         deleteIngredient($(this).parent().children('#no-ing').val(), 'unlike');
     });
 
-//auto complete
+    //auto complete
     $('body').delegate('input[type="text"]', 'keyup', function () {
         $(this).typeahead({
             source: function (query, process) {
@@ -281,29 +326,28 @@ $(function(){
         if(likeI.length > 0){
             for(i = 0; i < likeI.length; i++){
                 if (((i+1)%4 == 0) && (i != 0)){
-                    alert();
-                    $('#add-ing').parent().remove();
+                    $('#add-ing:last').parent().remove();
                     $('div#ing:last').after($(
                         '<div id="ing" class="form-inline col-md-3  input-group-sm">' +
-                            '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + likeI[i] + '" readonly>' +
+                            '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + likeI[i].replace(/%20/gi,' ') + '" readonly>' +
                             '<button style="margin-left: 3.5px" id="min-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus-sign"></span></button>' +
                         '</div>'
                     ));
-                    $('#ing-row').after($(
+                    $('.search-form').find('div#ing-row').last().after($(
                         '<div id="ing-row" class="row"><div id="ing" class="form-inline col-md-3  input-group-sm">' +
                             '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off">' +
                             '<button style="margin-left: 3.5px" id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
-                        '</div></div>'
+                            '</div></div>'
                     ));
-                    like_ingredients.push(likeI[i]);
+                    like_ingredients.push(likeI[i].replace(/%20/gi,' '));
                 } else {
                 $('div#ing:last').before($(
                     '<div id="ing" class="form-inline col-md-3  input-group-sm">' +
-                        '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + likeI[i] + '" readonly>' +
+                        '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + likeI[i].replace(/%20/gi,' ') + '" readonly>' +
                         '<button style="margin-left: 3.5px" id="min-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus-sign"></span></button>' +
                     '</div>'
                 ));
-                like_ingredients.push(likeI[i]);
+                like_ingredients.push(likeI[i].replace(/%20/gi,' '));
                 }
             }
         }
@@ -311,29 +355,28 @@ $(function(){
         if(unlikeI.length > 0){
             for(i = 0; i < unlikeI.length; i++){
                 if (((i+1)%4 == 0) && (i != 0)){
-                    alert();
-                    $('#add-no-ing').parent().remove();
+                    $('#add-no-ing:last').parent().remove();
                     $('div#no-ing:last').after($(
                         '<div id="no-ing" class="form-inline col-md-3  input-group-sm">' +
-                            '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + unlikeI[i] + '" readonly>' +
+                            '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + unlikeI[i].replace(/%20/gi,' ') + '" readonly>' +
                             '<button style="margin-left: 3.5px" id="min-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus-sign"></span></button>' +
                             '</div>'
                     ));
-                    $('#no-ing-row').after($(
-                        '<div id="ing-row" class="row"><div id="no-ing" class="form-inline col-md-3  input-group-sm">' +
+                    $('.search-form').find('div#no-ing-row').last().after($(
+                        '<div id="no-ing-row" class="row"><div id="no-ing" class="form-inline col-md-3  input-group-sm">' +
                             '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off">' +
                             '<button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
                             '</div></div>'
                     ));
-                    unlike_ingredients.push(unlikeI[i]);
+                    unlike_ingredients.push(unlikeI[i].replace(/%20/gi,' '));
                 } else {
                     $('div#no-ing:last').before($(
                         '<div id="no-ing" class="form-inline col-md-3  input-group-sm">' +
-                            '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + unlikeI[i] + '" readonly>' +
+                            '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" value="' + unlikeI[i].replace(/%20/gi,' ') + '" readonly>' +
                             '<button style="margin-left: 3.5px" id="min-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus-sign"></span></button>' +
                             '</div>'
                     ));
-                    unlike_ingredients.push(unlikeI[i]);
+                    unlike_ingredients.push(unlikeI[i].replace(/%20/gi,' '));
                 }
             }
         }
@@ -354,48 +397,46 @@ $(function(){
                     typeS: typeS,
                     like: likeI,
                     unlike: unlikeI
-                },
-                function(data){
-                    console.log(data.res);
-                    //console.log(data.res);
-                    str = '';
-                    t = 0;
-                    if(data.res.matches.length > 0){
-
-                        if(data.res.matches.length < 4){
-                            div_count_in_row = data.res.matches.length;
-                            row_count = 1;
-                        } else {
-                            row_count = Math.ceil(data.res.matches.length/4);
-                        }
-                        for(var i = 0; i < row_count ; i++){
-                            console.log(row_count);
-                            if((i == row_count - 1)){
-                                div_count_in_row = data.res.matches.length - t;
-                            }
-                            str = str + '<div class="row">';
-                            for(var j = 0; j < div_count_in_row; j++){
-                                str = str + '<div class="col-md-3"> <div class="thumbnail">'
-                                str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.res.matches[t].id + '">'+ '<img src="'+data.res.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '" alt="bla"></a>';
-                                str = str + '<div class="caption">';
-                                str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.res.matches[t].id + '">' + '<h5>' + data.res.matches[t].recipeName + '</h5></a>';
-                                str = str + '<div>';
-
-                                for(var ing = 0; ing < data.res.matches[t].ingredients.length; ing++){
-                                    str = str + data.res.matches[t].ingredients[ing] + ' ';
-                                }
-                                str = str + '</div></div></div></div>';
-                                t++;
-                            }
-                            str = str + '</div>';
-                        }
-                        k = k + data.res.matches.length;
-                        $('#load').before($(str));
+            },
+            function(data){
+                str = '';
+                t = 0;
+                if(data.res.matches.length > 0){
+                    if(data.res.matches.length < 4){
+                        div_count_in_row = data.res.matches.length;
+                        row_count = 1;
                     } else {
-                        $('#load').remove();
-                        $('.row:last').after($('<div class="text-center"><h4>No more results...</h4></div>'))
+                        row_count = Math.ceil(data.res.matches.length/4);
                     }
-                })
+                    for(var i = 0; i < row_count ; i++){
+                        if((i == row_count - 1)){
+                            div_count_in_row = data.res.matches.length - t;
+                        }
+                        str = str + '<div class="row">';
+
+                        for(var j = 0; j < div_count_in_row; j++){
+                            str = str + '<div class="col-md-3"> <div class="thumbnail">'
+                            str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.res.matches[t].id + '">'+ '<img src="'+data.res.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '" alt="' + data.res.matches[t].recipeName + '"></a>';
+                            str = str + '<div class="caption">';
+                            str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.res.matches[t].id + '">' + '<h5>' + data.res.matches[t].recipeName + '</h5></a>';
+                            str = str + '<div>';
+                            for(var ing = 0; ing < data.res.matches[t].ingredients.length; ing++){
+                                str = str + data.res.matches[t].ingredients[ing] + ' ';
+                            }
+                            str = str + '</div></div></div></div>';
+                            t++;
+                        }
+
+                        str = str + '</div>';
+                    }
+                    k = k + data.res.matches.length;
+                    $('#load').before($(str));
+
+                } else {
+                    $('#load').remove();
+                    $('.row:last').after($('<div class="text-center"><h4>No more results...</h4></div>'))
+                }
+            })
         });
     }
 
@@ -403,44 +444,41 @@ $(function(){
 
       $('#load-more').click(function() {
           var i, j, str, t, div_count_in_row ,row_count, ing;
-
           div_count_in_row = 4;
-          $.post('/app_dev.php/',{},
+          $.post('/app_dev.php/loadMoreHomePage',{},
               function(data){
-                  console.log(data.res);
+                  console.log(data);
                   //console.log(data.res);
                   str = '';
                   t = 0;
-                  if(data.res.matches.length > 0){
-
-                      if(data.res.matches.length < 4){
-                          div_count_in_row = data.res.matches.length;
+                  if(data.response.matches.length > 0){
+                      if(data.response.matches.length < 4){
+                          div_count_in_row = data.response.matches.length;
                           row_count = 1;
                       } else {
-                          row_count = Math.ceil(data.res.matches.length/4);
+                          row_count = Math.ceil(data.response.matches.length/4);
                       }
                       for(var i = 0; i < row_count ; i++){
                           console.log(row_count);
                           if((i == row_count - 1)){
-                              div_count_in_row = data.res.matches.length - t;
+                              div_count_in_row = data.response.matches.length - t;
                           }
                           str = str + '<div class="row">';
                           for(var j = 0; j < div_count_in_row; j++){
                               str = str + '<div class="col-md-3"> <div class="thumbnail">'
-                              str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.res.matches[t].id + '">'+ '<img src="'+data.res.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '" alt="bla"></a>';
+                              str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.response.matches[t].id + '">'+ '<img src="'+data.response.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '" alt="' + data.response.matches[t].recipeName + '"></a>';
                               str = str + '<div class="caption">';
-                              str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.res.matches[t].id + '">' + '<h5>' + data.res.matches[t].recipeName + '</h5></a>';
+                              str = str + '<a href="http://hubrecipes.dev/app_dev.php/recipe/' + data.response.matches[t].id + '">' + '<h5>' + data.response.matches[t].recipeName + '</h5></a>';
                               str = str + '<div>';
 
-                              for(var ing = 0; ing < data.res.matches[t].ingredients.length; ing++){
-                                  str = str + data.res.matches[t].ingredients[ing] + ' ';
+                              for(var ing = 0; ing < data.response.matches[t].ingredients.length; ing++){
+                                  str = str + data.response.matches[t].ingredients[ing] + ' ';
                               }
                               str = str + '</div></div></div></div>';
                               t++;
                           }
                           str = str + '</div>';
                       }
-                      k = k + data.res.matches.length;
                       $('#load').before($(str));
                   } else {
                       $('#load').remove();
@@ -449,8 +487,4 @@ $(function(){
               })
       });
   }
-
 });
-
-
-

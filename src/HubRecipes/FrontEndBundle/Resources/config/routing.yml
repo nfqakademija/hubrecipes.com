@@ -2,6 +2,10 @@ hub_recipes_front_end_homepage:
     pattern:  /
     defaults: { _controller: HubRecipesFrontEndBundle:Default:index }
 
+loadMoreHomePage:
+    pattern:  /loadMoreHomePage
+    defaults: { _controller: HubRecipesFrontEndBundle:Default:loadMoreHomePage }
+
 single_recipe:
     pattern: /recipe/{id}
     defaults: { _controller: HubRecipesFrontEndBundle:Default:recipe }

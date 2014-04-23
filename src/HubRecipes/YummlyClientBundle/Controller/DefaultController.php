@@ -29,11 +29,11 @@ class DefaultController extends Controller
         $withoutIngredients = $request->query->get('unlikeIngredients');
 
         for($i=0; $i < count($withIngredients) - 1; $i++){
-            $withIngredientsI[$i] = $withIngredients[$i];
+            $withIngredientsI[$i] = str_replace(' ', '%20', $withIngredients[$i]);
         }
 
         for($i=0; $i < count($withoutIngredients) - 1; $i++){
-            $withoutIngredientsI[$i] = $withoutIngredients[$i];
+            $withoutIngredientsI[$i] = str_replace(' ', '%20', $withoutIngredients[$i]);
         }
 
         $sour = $request->query->get('Sour');
@@ -169,12 +169,7 @@ class DefaultController extends Controller
                 }
                $yra = false;
             }
-
         }
-
         print $new;
-
-
-        //print $results['matches'][0]['ingredients'][0]; exit;
     }
 }
