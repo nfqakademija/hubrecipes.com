@@ -114,7 +114,7 @@ class DefaultController extends Controller
         ));
     }
 
-    public function loadMoreCuisineAction() {
+    public function loadMoreItemsAction() {
         if ($this->get('request')->isXmlHttpRequest()){
             $cuisine = $this->get('request')->request->get('cuisine');
             $sour = $this->get('request')->request->get('sour');

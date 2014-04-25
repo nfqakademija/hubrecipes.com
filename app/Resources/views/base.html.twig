@@ -289,6 +289,14 @@
         {% endblock %}
 
         {% block javascripts %}
+            <script type="application/javascript">
+                var existsUrl, autoCompleteUrl, loadMoreUrl, loadMoreHomePageItemsUrl, baseUrl;
+                existsUrl = '{{ path('exists') }}';
+                autoCompleteUrl = '{{ path('autoComplete') }}';
+                loadMoreUrl = '{{ path('loadMoreItems') }}';
+                loadMoreHomePageItemsUrl = '{{ path('loadMoreHomePage') }}';
+                baseUrl = '{{ url('hub_recipes_front_end_homepage') }}';
+            </script>
             <script type="application/javascript" src="{{ asset('js/all.js') }}"></script>
         {% endblock %}
     </body>

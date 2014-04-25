@@ -10,9 +10,9 @@ by_Cuisine:
     pattern:  /Cuisine/{cuisine}/{start}
     defaults: { _controller: HubRecipesYummlyClientBundle:Default:searchByCuisine }
 
-loadMoreCuisine:
-    pattern:  /loadMoreCuisine
-    defaults: { _controller: HubRecipesYummlyClientBundle:Default:loadMoreCuisine }
+loadMoreItems:
+    pattern:  /loadMoreItems
+    defaults: { _controller: HubRecipesYummlyClientBundle:Default:loadMoreItems }
 
 fill:
     pattern:  /fill
