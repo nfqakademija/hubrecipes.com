@@ -31,6 +31,10 @@ class DefaultController extends Controller
         return $this->render('HubRecipesFrontEndBundle:Default:index.html.twig', array('response' => $results));
     }
 
+    public function favouritesAction(){
+        return $this->render('HubRecipesFrontEndBundle:Default:favourites.html.twig');
+    }
+
     public function loadMoreHomePageAction()
     {
         $getRecipes = $this->get('hub_recipes_yummly_client.search_service');

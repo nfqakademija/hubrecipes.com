@@ -1,0 +1,65 @@
+{% extends '::base.html.twig' %}
+{% block pageheader %} {{ parent() }} {{ 'home page' | trans }}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h2>My Favourites</h2>
+        <div class="row">
+            <div class="col-xs-6 col-md-3 favItem">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="remFav"><a href="#"><span class="glyphicon glyphicon-remove-sign"></span></a></div> <!--remFav-->
+                        <div class="favName"><p>Ham and Egg Crepe Squares</p><div class="overlay"></div></div><!--favName-->
+                        <a href="#" class="thumbnail">
+                            <img src="http://lh4.ggpht.com/CeyTxuiRR3dBwR27D5K2av4YUyiiWixT6FmxlBIZs4vBobxbLdZQjVlFRTPM6y6nHLu1flc_1KtbCnPM7emC0g=s360" data-src="holder.js/100%x180" alt="...">
+                        </a>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+            <div class="col-xs-6 col-md-3 favItem">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="remFav"><a href="#"><span class="glyphicon glyphicon-remove-sign"></span></a></div> <!--remFav-->
+                        <div class="favName"><a href="#"><p>Eggless Chocolate Mousse</p><div class="overlay"></div></a></div><!--favName-->
+                        <a href="#" class="thumbnail">
+                            <img src="http://lh4.ggpht.com/x3lcM9bDaCCBNwFNrM4sMlcVoZqf1xfm7oxobiaGSzcit44VWmarAt5sRE2vzphasKhyMsgZWyUke8v1hQATzw=s360" data-src="holder.js/100%x180" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 favItem">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="remFav"><a href="#"><span class="glyphicon glyphicon-remove-sign"></span></a></div> <!--remFav-->
+                        <div class="favName"><p>Between The Sheets Cocktail</p><div class="overlay"></div></div><!--favName-->
+                        <a href="#" class="thumbnail">
+                            <img src="http://lh3.ggpht.com/MvDIOrvBV7QjUikHE_1gK33doZ3shWL930i82OW-MP7T315yBz54wQnw15FvI10aTI1Z-MtkulxDqLl37dsRoA=s360" data-src="holder.js/100%x180" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 favItem">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="remFav"><a href="#"><span class="glyphicon glyphicon-remove-sign"></span></a></div> <!--remFav-->
+                        <div class="favName"><p>Munchies</p><div class="overlay"></div></div><!--favName-->
+                        <a href="#" class="thumbnail">
+                            <img src="http://lh3.ggpht.com/4w2LGmLyVcoyLzZzsnfcEs6kskbmZH-fMj0GFNdZtRaUQchCzJPFDj_IKgUhrI9oKwLsJMgT0bf9Td0WUspphQ=s360" data-src="holder.js/100%x180" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

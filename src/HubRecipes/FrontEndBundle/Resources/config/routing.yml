@@ -10,6 +10,10 @@ single_recipe:
     pattern: /recipe/{id}
     defaults: { _controller: HubRecipesFrontEndBundle:Default:recipe }
 
+favourites:
+    pattern: /favourites
+    defaults: { _controller: HubRecipesFrontEndBundle:Default:favourites }
+
 full_recipe:
     pattern: /recipe/full/{id}
     defaults: { _controller: HubRecipesFrontEndBundle:Default:fullRecipe }
