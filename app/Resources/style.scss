@@ -177,4 +177,31 @@ $icon-font-path: "../fonts/";
   left: 0;
 }
 
+.profile-view .profile-img,
+.profile-edit .profile-img {
+  text-align: center;
+}
+
+.profile-view .profile-img-wrapper,
+.profile-edit .profile-img-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid #ddd;
+  width: 150px;
+  height: 150px;
+  max-width: 100%;
+  font-size: 0;
+}
+
+.profile-view .profile-img-wrapper:before,
+.profile-edit .profile-img-wrapper:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 0;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
 @import "lib/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";

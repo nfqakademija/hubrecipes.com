@@ -250,6 +250,8 @@ $(function(){
     }
 
     function loadMore(){
+        $('#load-more-div').hide();
+        $('#preloader').show();
         var i, j, str, t, div_count_in_row ,row_count, ing;
         div_count_in_row = 4;
         $.post(loadMoreUrl, {
@@ -267,6 +269,7 @@ $(function(){
                 unlike: unlikeI
             },
             function(data){
+
                 str = '';
                 t = 0;
                 if(data.res.matches.length > 0){
@@ -299,7 +302,8 @@ $(function(){
                     }
                     k = k + data.res.matches.length;
                     $('#load').before($(str));
-
+                    $('#load-more-div').show();
+                    $('#preloader').hide();
                 } else {
                     $('#load').remove();
                     $('.row:last').after($('<div class="text-center"><h4>No more results...</h4></div>'))
@@ -310,6 +314,8 @@ $(function(){
     function loadMoreHomePage(){
         var i, j, str, t, div_count_in_row ,row_count, ing;
         div_count_in_row = 4;
+        $('#load-more-div').hide();
+        $('#preloader').show();
         $.post(loadMoreHomePageItemsUrl,{},
             function(data){
                 str = '';
@@ -342,6 +348,8 @@ $(function(){
                         str = str + '</div>';
                     }
                     $('#load').before($(str));
+                    $('#load-more-div').show();
+                    $('#preloader').hide();
                 } else {
                     $('#load').remove();
                     $('.row:last').after($('<div class="text-center"><h4>No more results...</h4></div>'))

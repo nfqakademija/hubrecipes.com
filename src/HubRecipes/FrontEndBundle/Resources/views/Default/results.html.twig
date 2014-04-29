@@ -21,7 +21,11 @@
                         <a href="{{ path('single_recipe', {'id': recipe.id }) }}"> <h5>{{ recipe.recipeName }}</h5></a>
                         <div>
                             {% for ingredient in recipe.ingredients %}
-                            {{ ingredient }}
+                                {% if not loop.last %}
+                                    {{ ingredient ~ ', ' }}
+                                {% else %}
+                                    {{ ingredient }}
+                                {% endif %}
                             {%  endfor %}
                         </div>
                     </div>
@@ -39,8 +43,11 @@
     </div>
     {% if results.matches|length > 1 %}
     <div id="load" class="row">
-        <div class="span12" style="text-align:center">
+        <div id="load-more-div" class="span12" style="text-align:center">
             <a id="load-more" class="btn btn-large btn-primary">Load more</a>
+        </div>
+        <div id="preloader" class="span12" style="text-align:center" hidden>
+            <img src="{{ asset('img/712.GIF') }}" alt="preloder">
         </div>
     </div>
     {% endif %}
