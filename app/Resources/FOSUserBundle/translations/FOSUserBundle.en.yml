@@ -16,11 +16,11 @@ group:
 
 security:
     login:
-        username: "Username:"
-        password: "Password:"
+        username: "Username"
+        password: "Password"
         remember_me: Remember me
-        submit: Login
-
+        submit: Sign In
+        forgot_password: Forgot Password?
 # Profile
 profile:
     show:
@@ -80,9 +80,9 @@ resetting:
 # Global strings
 layout:
     logout: Logout
-    login: Login
-    register: Register
-    logged_in_as: Logged in as %username%
+    login: Sign In
+    register: Sign Up
+    logged_in_as: %username%
 
 # Form field labels
 form:

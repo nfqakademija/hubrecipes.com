@@ -23,5 +23,7 @@ exists:
     defaults: { _controller: HubRecipesFrontEndBundle:Default:exists }
 
 hub_recipes_front_end_homepage:
-    pattern:  /
+    pattern:  /{start}
     defaults: { _controller: HubRecipesFrontEndBundle:Default:index, start: 0 }
+    requirements:
+          start:  \d+

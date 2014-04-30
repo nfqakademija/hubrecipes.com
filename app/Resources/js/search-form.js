@@ -405,7 +405,7 @@ $(function(){
     });
 
     //auto complete
-    $('body').delegate('input[type="text"]', 'keyup', autoComplete);
+    $('body').delegate('#ing, #no-ing', 'keyup', autoComplete);
 
     if ((window.location.href.indexOf('results') > 0) || (window.location.href.indexOf('Cuisine') > 0) ){
 
