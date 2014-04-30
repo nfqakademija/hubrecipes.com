@@ -2,6 +2,7 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 {% block body%}
+    {% block headerblock %} {{ parent() }} {% endblock %}
 {% block fos_user_content %}
     {% if error %}
         <div>{{ error|trans }}</div>
