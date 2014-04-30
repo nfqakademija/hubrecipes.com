@@ -1,0 +1,12 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form 'FOSUserBundle:Registration:form_theme_registration.html.twig' %}
+
+<form role="form" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal fos_user_registration_register ">
+
+   {{ form_widget(form) }}
+
+
+    <div>
+        <input class="btn btn-default" type="submit" value="{{ 'Create an account'|trans }}" />
+    </div>
+</form>
