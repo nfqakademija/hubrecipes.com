@@ -24,7 +24,7 @@
                                 {% if not loop.last %}
                                     {{ ingredient ~ ', ' }}
                                 {% else %}
-                                    {{ ingredient }}
+                                    {{ ingredient ~ '.' }}
                                 {% endif %}
                             {%  endfor %}
                         </div>

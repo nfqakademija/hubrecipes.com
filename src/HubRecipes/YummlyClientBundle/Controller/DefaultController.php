@@ -23,82 +23,48 @@ class DefaultController extends Controller
     }
 
     public function searchResultsAction(Request $request){
-        $withIngredientsI = [];
-        $withoutIngredientsI = [];
+
+        $removeEmpty = function($value){
+            return $value != "";
+        };
+
+        function replace($value){
+            return explode(',', $value )[0];
+        };
+
         $withIngredients = $request->query->get('likeIngredients');
         $withoutIngredients = $request->query->get('unlikeIngredients');
 
-        for($i=0; $i < count($withIngredients) - 1; $i++){
-            $withIngredientsI[$i] = str_replace(' ', '%20', $withIngredients[$i]);
+        $withIngredients = array_filter($withIngredients, $removeEmpty);
+
+        foreach($withIngredients as &$ingredient){
+            $ingredient = rawurlencode($ingredient);
+
         }
 
-        for($i=0; $i < count($withoutIngredients) - 1; $i++){
-            $withoutIngredientsI[$i] = str_replace(' ', '%20', $withoutIngredients[$i]);
+        $withoutIngredients = array_filter($withoutIngredients, $removeEmpty);
+
+        foreach($withoutIngredients as &$ingredient){
+            $ingredient = rawurlencode($ingredient);
         }
 
-        $sour = $request->query->get('Sour');
-       // print $sour; exit;
-
-        if (strpos($sour, ',') !== false) {
-            $sour = strstr($sour, ',', true);
-        }
-
-        $salty = $request->query->get('Salty');
-
-        if (strpos($salty, ',') !== false) {
-            $salty = strstr($salty, ',', true);
-        }
-
-        $sweet = $request->query->get('Sweet');
-
-        if (strpos($sweet, ',') !== false) {
-            $sweet = strstr($sweet, ',', true);
-        }
-
-        $spicy = $request->query->get('Spicy');
-
-        if (strpos($spicy, ',') !== false) {
-            $spicy = strstr($spicy, ',', true);
-        }
-
-        $bitter = $request->query->get('Bitter');
-
-        if (strpos($bitter, ',') !== false) {
-            $bitter = strstr($bitter, ',', true);
-        }
-
-        $savory = $request->query->get('Savory');
-
-        if (strpos($savory, ',') !== false) {
-            $savory = strstr($savory, ',', true);
-        }
-
-        $time = $request->query->get('Time')*60;
-
-        if (strpos($time, ',') !== false) {
-            $time = strstr($time, ',', true);
-        }
-
-        $type = $request->query->get('Type');
-
-        if (strpos($type, ',') !== false) {
-            $type = strstr($type, ',', true);
-        }
-
-        $cuisine = $request->query->get('Cuisine');
-
-        if (strpos($cuisine, ',') !== false) {
-            $cuisine = strstr($cuisine, ',', true);
-        }
-
+        $sour = replace($request->query->get('Sour'));
+        $salty = replace($request->query->get('Salty'));
+        $sweet = replace($request->query->get('Sweet'));
+        $spicy = replace($request->query->get('Spicy'));
+        $bitter = replace($request->query->get('Bitter'));
+        $savory = replace($request->query->get('Savory'));
+        $time = replace($request->query->get('Time'))*60;
+        $type = replace($request->query->get('Type'));
+        $cuisine = replace($request->query->get('Cuisine'));
         $start = 0;
 
         /** @var SearchService $search */
         $getResults = $this->get('hub_recipes_yummly_client.search_service');
-        $results = $getResults->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredientsI, $withoutIngredientsI, $start, $cuisine);
+        $results = $getResults->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredients, $withoutIngredients, $start, $cuisine);
 
         return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results,
-            'likeI' => $withIngredientsI, 'unlikeI' => $withoutIngredientsI, 'Sour' => $sour, 'Salty' => $salty, 'Sweet' => $sweet, 'Spicy' => $spicy, 'Bitter' => $bitter,
+            'likeI' => $withIngredients, 'unlikeI' => $withoutIngredients, 'Sour' => $sour, 'Salty' => $salty, 'Sweet' => $sweet, 'Spicy' => $spicy, 'Bitter' => $bitter,
             'Savory' => $savory, 'Time' => $time, 'Type' => $type, 'Cuisine' => $cuisine
         ));
     }

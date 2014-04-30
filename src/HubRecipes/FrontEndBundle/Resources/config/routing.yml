@@ -1,7 +1,3 @@
-hub_recipes_front_end_homepage:
-    pattern:  /
-    defaults: { _controller: HubRecipesFrontEndBundle:Default:index }
-
 loadMoreHomePage:
     pattern:  /loadMoreHomePage
     defaults: { _controller: HubRecipesFrontEndBundle:Default:loadMoreHomePage }
@@ -25,3 +21,7 @@ autoComplete:
 exists:
     pattern: /exists
     defaults: { _controller: HubRecipesFrontEndBundle:Default:exists }
+
+hub_recipes_front_end_homepage:
+    pattern:  /{start}
+    defaults: { _controller: HubRecipesFrontEndBundle:Default:index, start: 0 }

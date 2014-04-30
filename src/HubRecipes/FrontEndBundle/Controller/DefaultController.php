@@ -12,7 +12,7 @@ use HubRecipes\YummlyClientBundle\Services\SearchService;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction($start)
     {
         $getRecipes = $this->get('hub_recipes_yummly_client.search_service');
         $withIngredientsI = [];
@@ -26,7 +26,6 @@ class DefaultController extends Controller
         $time = rand(0,10000)/10000;
         $cuisine = '-';
         $type = '-';
-        $start = 0;
         $results = $getRecipes->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredientsI, $withoutIngredientsI, $start, $cuisine);
         return $this->render('HubRecipesFrontEndBundle:Default:index.html.twig', array('response' => $results));
     }

@@ -70,7 +70,8 @@ $(function(){
         $(this).parent().parent().parent().parent().slideUp("slow");
     });
 
-    var like_ingredients, unlike_ingredients;
+    var like_ingredients, unlike_ingredients, pageNr, bstr;
+    pageNr = 0;
     like_ingredients = new Array();
     unlike_ingredients = new Array();
 
@@ -292,7 +293,11 @@ $(function(){
                             str = str + '<a href="' + baseUrl +'recipe/' + data.res.matches[t].id + '">' + '<h5>' + data.res.matches[t].recipeName + '</h5></a>';
                             str = str + '<div>';
                             for(var ing = 0; ing < data.res.matches[t].ingredients.length; ing++){
-                                str = str + data.res.matches[t].ingredients[ing] + ' ';
+                                if(ing != data.res.matches[t].ingredients.length-1){
+                                    str = str + data.res.matches[t].ingredients[ing] + ', ';
+                                }else{
+                                    str = str + data.res.matches[t].ingredients[ing] + '.';
+                                }
                             }
                             str = str + '</div></div></div></div>';
                             t++;
@@ -301,6 +306,7 @@ $(function(){
                         str = str + '</div>';
                     }
                     k = k + data.res.matches.length;
+
                     $('#load').before($(str));
                     $('#load-more-div').show();
                     $('#preloader').hide();
@@ -340,13 +346,19 @@ $(function(){
                             str = str + '<div>';
 
                             for(var ing = 0; ing < data.response.matches[t].ingredients.length; ing++){
-                                str = str + data.response.matches[t].ingredients[ing] + ' ';
+                                if(ing != data.response.matches[t].ingredients.length-1){
+                                    str = str + data.response.matches[t].ingredients[ing] + ', ';
+                                }else{
+                                    str = str + data.response.matches[t].ingredients[ing] + '.';
+                                }
                             }
                             str = str + '</div></div></div></div>';
                             t++;
                         }
                         str = str + '</div>';
                     }
+                    pageNr = pageNr + 1;
+                    history.pushState({},"", pageNr);
                     $('#load').before($(str));
                     $('#load-more-div').show();
                     $('#preloader').hide();
@@ -493,8 +505,19 @@ $(function(){
         var k = 16;
         $('#load-more').click(loadMore);
     }
-
-    if(window.location.href == baseUrl){
+    $("a[name='home']").click(loadMoreHomePage);
+    /*$('#load-more').click(function() {
+        if (pageNr > 0) {
+            if(window.location.href + pageNr.toString() == baseUrl){
+                $('#load-more').click(loadMoreHomePage);
+            }
+        } else {
+            if(window.location.href == baseUrl){
+                $('#load-more').click(loadMoreHomePage);
+            }
+        }
+    })*/
+    /*if(window.location.href == baseUrl){
         $('#load-more').click(loadMoreHomePage);
-    }
+    }*/
 });
