@@ -115,7 +115,7 @@ $(function(){
                             $(add_rodykle).parent().after($(
                                 '<div id="ing-row" class="row">' +
                                     '<div id="ing" class="form-inline col-md-3 input-group-sm">' +
-                                    '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" > ' +
+                                    '<input id="ing" name="likeIngredients[]" type="text" class="form-control" placeholder="Ingredient" autocomplete="off" > ' +
                                     '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
                                     '</div>' +
                                 '<div>'
@@ -123,7 +123,7 @@ $(function(){
                         } else {
                             $(add_rodykle).after($(
                                 '<div id="ing" class="form-inline col-md-3 input-group-sm">' +
-                                    '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" > ' +
+                                    '<input id="ing" name="likeIngredients[]" type="text" class="form-control" placeholder="Ingredient" autocomplete="off" > ' +
                                     '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
                                     '</div>'
                             ));
@@ -154,7 +154,7 @@ $(function(){
                                 $(add_rodykle).parent().after($(
                                     '<div id="ing-row" class="row">' +
                                         '<div id="ing" class="form-inline col-md-3 input-group-sm">' +
-                                        '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" > ' +
+                                        '<input id="ing" name="likeIngredients[]" type="text" class="form-control" placeholder="Ingredient" autocomplete="off" > ' +
                                         '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
                                         '</div>' +
                                     '<div>'
@@ -162,7 +162,7 @@ $(function(){
                             } else {
                                 $(add_rodykle).after($(
                                     '<div id="ing" class="form-inline col-md-3 input-group-sm">' +
-                                        '<input id="ing" name="likeIngredients[]" type="text" class="form-control" autocomplete="off" > ' +
+                                        '<input id="ing" name="likeIngredients[]" type="text" class="form-control" placeholder="Ingredient" autocomplete="off" > ' +
                                         '<button id="add-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>' +
                                         '</div>'
                                 ));
@@ -192,7 +192,7 @@ $(function(){
                             $(add_rodykle).parent().after($(
                                 '<div id="no-ing-row" class="row">' +
                                     '<div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
-                                        '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" >'   +
+                                        '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" placeholder="Ingredient" autocomplete="off" >'   +
                                         '<button id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
                                     '</div>' +
                                 '</div>'
@@ -200,7 +200,7 @@ $(function(){
                         } else {
                             $(add_rodykle).after($(
                                 '<div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
-                                    '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" >'   +
+                                    '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" placeholder="Ingredient" autocomplete="off" >'   +
                                     '<button id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
                                 '</div>'
                             ));
@@ -230,14 +230,14 @@ $(function(){
                             if (divCount % 4 == 0){
                                 $(add_rodykle).parent().after($(
                                     '<div id="no-ing-row" class="row"><div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
-                                        '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" >'   +
+                                        '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" placeholder="Ingredient" autocomplete="off" >'   +
                                         '<button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
                                         '</div></div>'
                                 ))
                             } else {
                                 $(add_rodykle).after($(
                                     '<div id="no-ing" class="form-inline col-md-3  input-group-sm">'    +
-                                        '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" autocomplete="off" >'   +
+                                        '<input id="no-ing" name="unlikeIngredients[]" type="text" class="form-control" placeholder="Ingredient" autocomplete="off" >'   +
                                         '<button style="margin-left: 3.5px" id="add-no-ing" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></button>'  +
                                         '</div>'
                                 ));
@@ -370,6 +370,7 @@ $(function(){
     }
 
     function autoComplete(){
+
         $(this).typeahead({
             source: function (query, process) {
                 return $.post(autoCompleteUrl, { data: query},
@@ -377,8 +378,7 @@ $(function(){
                         return process(data.suggestions);
                     });
             },
-            items: 5,
-            minLength: 1
+            items: 8
         });
     }
 

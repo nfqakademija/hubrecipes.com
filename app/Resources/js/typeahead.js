@@ -277,6 +277,7 @@
         , mouseenter: function (e) {
             this.mousedover = true
             this.$menu.find('.active').removeClass('active')
+            this.show();
             $(e.currentTarget).addClass('active')
         }
 
