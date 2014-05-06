@@ -35,20 +35,18 @@ class DefaultController extends Controller
         $withIngredients = $request->query->get('likeIngredients');
         $withoutIngredients = $request->query->get('unlikeIngredients');
 
+        unset($withIngredients[count($withIngredients)-1]);
         $withIngredients = array_filter($withIngredients, $removeEmpty);
 
         foreach($withIngredients as &$ingredient){
             $ingredient = rawurlencode($ingredient);
         }
-        unset($withIngredients[count($withIngredients)-1]);
-
+        unset($withoutIngredients[count($withoutIngredients)-1]);
         $withoutIngredients = array_filter($withoutIngredients, $removeEmpty);
 
         foreach($withoutIngredients as &$ingredient){
             $ingredient = rawurlencode($ingredient);
         }
-
-        unset($withoutIngredients[count($withoutIngredients)-1]);
 
         $sour = replace($request->query->get('Sour'));
         $salty = replace($request->query->get('Salty'));

@@ -18,6 +18,7 @@ gulp.task('default', function() {
     gulp.src(['app/Resources/lib/jquery/jquery.js',
             'app/Resources/lib/seiyria-bootstrap-slider/js/bootstrap-slider.js',
             'app/Resources/js/search-form.js',
+            'app/Resources/js/calculate-servings.js',
             'app/Resources/js/typeahead.js',
             'app/Resources/js/rate.js',
             'app/Resources/js/scrollToTop.js',

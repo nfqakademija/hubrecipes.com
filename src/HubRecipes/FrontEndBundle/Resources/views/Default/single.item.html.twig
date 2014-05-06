@@ -14,16 +14,22 @@
                 <a href="{{ path('full_recipe', {'id': response.id }) }}" class="btn btn-primary btn-lg active btn-block" role="button">Full Recipe</a>
                 <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" />
 
-
+                <p>Servings:</p>
+                <div class="row">
+                    <div class="col-md-5 form-inline input-group-sm">
+                        <input id="numberOfServings" name="numberOfServings" value="{{ response.numberOfServings }}" hidden="yes">
+                        <input class="form-control" id="newServings" type="number" min="1" name="newServings"  value="{{ response.numberOfServings }}">
+                        <button class="btn btn-info btn-sm" id="newServingsCalc"><span class="glyphicon glyphicon-refresh"></span></button>
+                    </div>
+                </div>
+                <p id="alert" class="text-danger" hidden="yes">Please enter a whole number.</p>
             </div>
             <div class="col-md-8">
                 <h2>{{ response.name }}</h2>
                 <h3>Ingredients:</h3>
                 <ul class="list-group">
                     {% for ingredient in response.ingredientLines %}
-                        <li class="list-group-item">
-                            {{ ingredient }}
-                        </li>
+                        <li id="ing" class="list-group-item"> {{ ingredient }}</li>
                     {% endfor %}
                 </ul>
                 {% if response.totalTime != null %}
@@ -32,18 +38,17 @@
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <a href="#" class="btn btn-default pull-right btn-md active" role="button">Add to favourites</a>
                 <div class="fb-share-button" data-href="{{ app.request.uri }}" data-type="button"></div>
                 <div class="g-plus" data-action="share" data-annotation="none"></div>
-
-
             </div>
-
         </div>
     </div>
+
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -52,19 +57,19 @@
         </div>
     </div>
 
-
-
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=640212159391500";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        <script>
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=640212159391500";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
     <script type="text/javascript">
         (function() {
             var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
