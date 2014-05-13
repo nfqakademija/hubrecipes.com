@@ -3,8 +3,15 @@
 {% block body%}
     {% block headerblock %} {{ parent() }} {% endblock %}
     {% block fos_user_content %}
+        {{ form_errors(form) }}
+
+
         <div class="container">
             <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                    {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+                </div>
+                {#
                 <div class="col-md-4">
                     <h3 class="bg-primary">
                         You'll be able to find all your favourite recipes, from different cuisines in one place
@@ -12,7 +19,7 @@
                 </div>
                 <div class="col-md-8 pull-right">
                     {% include "FOSUserBundle:Registration:register_content.html.twig" %}
-                </div>
+                </div>#}
             </div>
         </div>
     {% endblock fos_user_content %}

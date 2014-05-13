@@ -4,7 +4,7 @@
 {% block body%}
     {% block headerblock %} {{ parent() }} {% endblock %}
 {% block fos_user_content %}
-    {% if error %}
+   {% if error %}
         <p class="text-danger text-center">
             {{ error|trans }}
         </p>

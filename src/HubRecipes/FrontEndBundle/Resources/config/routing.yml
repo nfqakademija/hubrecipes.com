@@ -27,3 +27,7 @@ hub_recipes_front_end_homepage:
     defaults: { _controller: HubRecipesFrontEndBundle:Default:index, start: 0 }
     requirements:
           start:  \d+
+
+confirmed:
+    pattern: /register/confirmed
+    defaults: { _controller: HubRecipesFrontEndBundle:Registration:confirmed }
