@@ -24,6 +24,11 @@ class User extends BaseUser
     protected  $id;
 
     /**
+     * @ORM\ManyToMany(targetEntity="\HubRecipes\FavouritesBundle\Entity\Recipes", mappedBy="users")
+     **/
+    protected  $recipes;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
@@ -92,5 +97,47 @@ class User extends BaseUser
     public function getSurname()
     {
         return $this->surname;
+    }
+
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->recipes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add recipes
+     *
+     * @param \HubRecipes\FavouritesBundle\Entity\Recipes $recipes
+     * @return User
+     */
+    public function addRecipe(\HubRecipes\FavouritesBundle\Entity\Recipes $recipes)
+    {
+        $this->recipes[] = $recipes;
+
+        return $this;
+    }
+
+    /**
+     * Remove recipes
+     *
+     * @param \HubRecipes\FavouritesBundle\Entity\Recipes $recipes
+     */
+    public function removeRecipe(\HubRecipes\FavouritesBundle\Entity\Recipes $recipes)
+    {
+        $this->recipes->removeElement($recipes);
+    }
+
+    /**
+     * Get recipes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecipes()
+    {
+        return $this->recipes;
     }
 }

@@ -1,0 +1,31 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+    <div class="container-fluid well span6">
+        <div class="row">
+            <div class="col-md-2" >
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8SDw4QDhEPDxAODg0MDw8ODxEQFQ4WFRIWFhQdFhYYHCggGCYlGxUUITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OFw8PGywkHCQsLCwrLCsrLCwsLCwrLCssLCwrKys3LCwsLCwsLCwsKywrLCwrNys3KyssKysrNywrK//AABEIAHgAeAMBIgACEQEDEQH/xAAbAAEBAAMBAQEAAAAAAAAAAAAABQMEBgIBB//EAC0QAAIBAgUDAgQHAAAAAAAAAAABAgMRBAUSIVExQWEiIxMycZEzUnKBgsHR/8QAGAEBAAMBAAAAAAAAAAAAAAAAAAECAwT/xAAdEQEBAQEBAAIDAAAAAAAAAAAAAQIRMQMhEkFR/9oADAMBAAIRAxEAPwD9EAB0sgAAADJRpSk7RV2BjCLOHyhLeo7vhdDfpUIR+WKRS7i34ucjhpvpF/YxHTYyk5QcYuzZzlWm4u0lZjOuos48AAugAAAAAAAAAAGSjScpKK6t/Y6LDYeMI2j+75JGSr3H4iy6Zbv3xfMAAZrBgxeFjUVn17PgzgDlakHFuL6p2PJu5uvdflJmkdEvYzoACUAAAAAAAAKOSP3JfpLZDyVP4jdttLVy4Y79aZ8AAUSAACDnH4v8UaJvZun8VvwreTRN8+M76AAsgAAAAAAABXyKW015TKpAyqvpnZ9J2j9C+Y7n20z4AAokAAEfPZeqC8Nks2sxr66jfaPpRqm+ZyM76AAsgAAAAAAAB9Ts012dzqKNRSipLurnLFnI5vTJdk9jPc+urZUwAZLhixVXTCUuEZSVnsnaC7O7ZOZ2oqQADoZgAAAAAAAAAAF7KKLjB6lbU7kbD0JTkkk3urvg6ZIz+S/pbMfQAZLhOzmi5RTW+m7f0KJ5nG6a5ViZeXpXKgyVqMoO0k1/ZjOhkAAAAAANnCYKdTptH8zLGGy+nDtqfLK3UiZOo1DB1J9Fty+hSw+UxW83qfHYpAzu7V5l5hBJWSSXCPQBRIAAAAA8zgpK0kmuGTsRlEXvB6fD3RTBMtiOOar4WcPmW3K6GA6xo08RltOW69L5X+Gk+T+q3LnwbGKwk6b9W67SQL9VdHCKSSWyWx9AOdqAAAAAAAAAAAAAAAA81KakmnunsfACe0f/2Q==" class="img-circle">
+            </div>
+
+            <div class="col-md-8">
+                <h3>{{ user.username }}</h3>
+                <h6>{{ 'profile.show.email'|trans }}: {{ user.email }}</h6>
+            </div>
+
+            <div class="col-md-2">
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+                        Action
+                        <span class="icon-cog icon-white"></span><span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('fos_user_profile_edit') }}"><span class="icon-wrench"></span>Change info</a></li>
+                        <li><a href="{{ path('fos_user_change_password') }}"><span class="icon-trash"></span>Change password</a></li>
+                        <li><a href="{{ path('favourites') }}"><span class="icon-trash"></span>My favourite</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

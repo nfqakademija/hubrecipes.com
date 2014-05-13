@@ -134,6 +134,39 @@ $(function(){
         }
     }
 
+    function addToFav(){
+        console.log(receptId);
+        $.post(addUrl, {recId: receptId,
+                        recName: receptName,
+                        recPhotoUrl: receptPhoto
+            },
+            function (msg) {
+                console.log(msg.response);
+                if(msg.response == 'successfullyAdded'){
+                    successfullyAdded();
+                }
+                if(msg.response == 'exists'){
+                   recipeAlreadyExists();
+                }
+        });
+    }
+
+    function recipeAlreadyExists(){
+        var parent;
+        parent = $('#add-to-fav').parent();
+        $('#add-to-fav').remove();
+        $(parent).prepend($('<p class="alert pull-right alert-info">This recipe already exists in your favourite list!</p>'));
+    }
+
+    function successfullyAdded(){
+        var parent;
+        parent = $('#add-to-fav').parent();
+        $('#add-to-fav').remove();
+        $(parent).prepend($('<p class="alert pull-right alert-info">Recipe added successfully!</p>'));
+    }
+
     $('#newServingsCalc').click(calculate);
+
+    $('#add-to-fav').click(addToFav)
 
 });

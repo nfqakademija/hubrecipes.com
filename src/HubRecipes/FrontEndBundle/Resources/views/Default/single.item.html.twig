@@ -7,8 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img src="{{ response.images[0].hostedLargeUrl }}"
-                     class="img-responsive img-thumbnail" alt="Responsive image">
+                <img src="{{ response.images[0].hostedLargeUrl }}" class="img-responsive img-thumbnail" alt="Responsive image">
                 <br>
                 <br>
                 <a href="{{ path('full_recipe', {'id': response.id }) }}" class="btn btn-primary btn-lg active btn-block" role="button">Full Recipe</a>
@@ -42,7 +41,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a href="#" class="btn btn-default pull-right btn-md active" role="button">Add to favourites</a>
+                <a id="add-to-fav" class="btn btn-default pull-right btn-md active" role="button">Add to favourites</a>
                 <div class="fb-share-button" data-href="{{ app.request.uri }}" data-type="button"></div>
                 <div class="g-plus" data-action="share" data-annotation="none"></div>
             </div>
@@ -60,7 +59,15 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script type="application/javascript">
+        var receptId, addUrl, receptName, receptPhoto;
+        receptId = '{{ response.id }}';
+        addUrl = '{{ path('add-to-favourite') }}';
+        receptName = '{{ response.name }}';
+        receptPhoto = '{{ response.images[0].hostedLargeUrl }}';
+    </script>
     <div id="fb-root"></div>
+
         <script>
             (function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];

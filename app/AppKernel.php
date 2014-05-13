@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Hubrecipes\UsersBundle\HubrecipesUsersBundle(),
             new HubRecipes\YummlyClientBundle\HubRecipesYummlyClientBundle(),
+            new HubRecipes\FavouritesBundle\FavouritesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    {% block headerblock %} {{ parent() }} {% endblock %}
+    {% block fos_user_content %}
+        <div class="container">
+            {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+        </div>
+        <div class="row">
+
+        </div>
+    {% endblock fos_user_content %}
+{% endblock body %}

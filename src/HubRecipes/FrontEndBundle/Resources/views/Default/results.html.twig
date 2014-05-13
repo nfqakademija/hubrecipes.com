@@ -7,7 +7,7 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        {% if results.matches|length > 1 %}
+        {% if results.matches|length > 0 %}
         {% for recipe in results.matches %}
             {% if loop.index %4 == 0  %}
                 <div class="row">

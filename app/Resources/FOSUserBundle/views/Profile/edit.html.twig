@@ -1,0 +1,28 @@
+
+{% extends "::base.html.twig" %}
+{% block body %}
+    {% block headerblock %} {{ parent() }} {% endblock %}
+    {% block fos_user_content %}
+        <div class="container">
+            <div class="profile-edit">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="profile-img">
+                            <div class="profile-img-wrapper">
+                                <img src="{{ asset('img/user-blank.jpg') }}" alt="asd">
+                            </div>
+                            <!-- this will open popup-->
+                            <button class="btn btn-default btn-xs">change image</button>
+                        </div>
+                    </div>
+
+                    <div class="center-bloc">
+                        <div class="col-md-6 col-md-offset-2">
+                            {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+                        </div>
+                    </div>
+                </div>
+        </div>
+            </div>
+    {% endblock fos_user_content %}
+{% endblock body %}

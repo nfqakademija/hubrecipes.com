@@ -5,60 +5,32 @@
     <div class="container">
         <h2>My Favourites</h2>
         <div class="row">
-            <div class="col-xs-6 col-md-3 favItem">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="remFav"><a href="#"><span class="glyphicon glyphicon-remove-sign"></span></a></div> <!--remFav-->
-                        <div class="favName"><a href="#"><p>Ham and Egg Crepe Squares</p><div class="overlay"></div></a></div><!--favName-->
-                        <a href="#" class="thumbnail">
-                            <img src="http://lh4.ggpht.com/CeyTxuiRR3dBwR27D5K2av4YUyiiWixT6FmxlBIZs4vBobxbLdZQjVlFRTPM6y6nHLu1flc_1KtbCnPM7emC0g=s360" data-src="holder.js/100%x180" alt="...">
-                        </a>
+            {% if response|length > 0 %}
+            {% for recipe in response %}
+                {% if loop.index %4 == 0  %}
+                    <div class="row">
+                {% endif %}
+                <div class="col-xs-6 col-md-3 favItem">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="remFav"><a href="{{ path('remove-from-favourites',{'recipeId': recipe.recipeId }) }}"><span class="glyphicon glyphicon-remove-sign"></span></a></div> <!--remFav-->
+                            <div class="favName"><a href="{{ path('single_recipe', {'id': recipe.recipeId }) }}"><p>{{ recipe.name }}</p><div class="overlay"></div></a></div><!--favName-->
+                            <a href="{{ path('single_recipe', {'id': recipe.recipeId }) }}" class="thumbnail">
+                                <img src="{{ recipe.photoUrl }}" data-src="holder.js/100%x180" alt="{{ recipe.name }}">
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-
-
-            </div>
-
-
-            <div class="col-xs-6 col-md-3 favItem">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="remFav"><a href="#"><span class="glyphicon glyphicon-remove-sign"></span></a></div> <!--remFav-->
-                        <div class="favName"><a href="#"><p>Eggless Chocolate Mousse</p><div class="overlay"></div></a></div><!--favName-->
-                        <a href="#" class="thumbnail">
-                            <img src="http://lh4.ggpht.com/x3lcM9bDaCCBNwFNrM4sMlcVoZqf1xfm7oxobiaGSzcit44VWmarAt5sRE2vzphasKhyMsgZWyUke8v1hQATzw=s360" data-src="holder.js/100%x180" alt="...">
-                        </a>
+                {% if loop.index %4 == 0 or loop.last %}
                     </div>
+                {% endif %}
+            {% endfor %}
+            {% else %}
+                <div class="text-center">
+                    <h4>This list is empty...</h4>
                 </div>
-            </div>
-
-            <div class="col-xs-6 col-md-3 favItem">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="remFav"><a href="#"><span class="glyphicon glyphicon-remove-sign"></span></a></div> <!--remFav-->
-                        <div class="favName"><a href="#"><p>Between The Sheets Cocktail</p><div class="overlay"></div></a></div><!--favName-->
-                        <a href="#" class="thumbnail">
-                            <img src="http://lh3.ggpht.com/MvDIOrvBV7QjUikHE_1gK33doZ3shWL930i82OW-MP7T315yBz54wQnw15FvI10aTI1Z-MtkulxDqLl37dsRoA=s360" data-src="holder.js/100%x180" alt="...">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-6 col-md-3 favItem">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="remFav"><a href="#"><span class="glyphicon glyphicon-remove-sign"></span></a></div> <!--remFav-->
-                        <div class="favName"><a href="#"><p>Munchies</p><div class="overlay"></div></a></div><!--favName-->
-                        <a href="#" class="thumbnail">
-                            <img src="http://lh3.ggpht.com/4w2LGmLyVcoyLzZzsnfcEs6kskbmZH-fMj0GFNdZtRaUQchCzJPFDj_IKgUhrI9oKwLsJMgT0bf9Td0WUspphQ=s360" data-src="holder.js/100%x180" alt="...">
-                        </a>
-                    </div>
-                </div>
-            </div>
+            {% endif %}
         </div>
-    </div>
-
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

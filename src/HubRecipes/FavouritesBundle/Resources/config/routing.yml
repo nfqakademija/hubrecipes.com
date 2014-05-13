@@ -1,0 +1,7 @@
+add-to-favourite:
+    pattern:  /addToFav
+    defaults: { _controller: FavouritesBundle:Default:addToFavourite }
+
+remove-from-favourites:
+    pattern:  /removeFromFav/{recipeId}
+    defaults: { _controller: FavouritesBundle:Default:removeFromFavourites }

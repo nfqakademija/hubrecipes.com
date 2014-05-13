@@ -1,0 +1,7 @@
+parameters:
+#    favourites.example.class: HubRecipes\FavouritesBundle\Example
+
+services:
+#    favourites.example:
+#        class: %favourites.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

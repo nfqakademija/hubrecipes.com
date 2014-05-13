@@ -12,6 +12,10 @@ use HubRecipes\YummlyClientBundle\Services\SearchService;
 
 class DefaultController extends Controller
 {
+
+    public function getHomePageRecipes(){
+
+    }
     public function indexAction($start)
     {
         $getRecipes = $this->get('hub_recipes_yummly_client.search_service');
