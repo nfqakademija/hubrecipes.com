@@ -13,11 +13,7 @@ use HubRecipes\YummlyClientBundle\Services\SearchService;
 class DefaultController extends Controller
 {
 
-    public function getHomePageRecipes(){
-
-    }
-    public function indexAction($start)
-    {
+    public function getHomePageRecipes($start){
         $getRecipes = $this->get('hub_recipes_yummly_client.search_service');
         $withIngredientsI = [];
         $withoutIngredientsI = [];
@@ -31,6 +27,11 @@ class DefaultController extends Controller
         $cuisine = '-';
         $type = '-';
         $results = $getRecipes->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredientsI, $withoutIngredientsI, $start, $cuisine);
+        return $results;
+    }
+    public function indexAction($start)
+    {
+        $results = $this->getHomePageRecipes($start);
         return $this->render('HubRecipesFrontEndBundle:Default:index.html.twig', array('response' => $results));
     }
 
@@ -40,20 +41,7 @@ class DefaultController extends Controller
 
     public function loadMoreHomePageAction()
     {
-        $getRecipes = $this->get('hub_recipes_yummly_client.search_service');
-        $withIngredientsI = [];
-        $withoutIngredientsI = [];
-        $sour = randomize();
-        $salty = randomize();
-        $sweet = randomize();
-        $spicy = randomize();
-        $bitter = randomize();
-        $savory = randomize();
-        $time = randomize();
-        $cuisine = '-';
-        $type = '-';
-        $start = 0;
-        $results = $getRecipes->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredientsI, $withoutIngredientsI, $start, $cuisine);
+        $results = $this->getHomePageRecipes(0);
         return new JsonResponse(array('response'=>$results));
     }
 
@@ -114,9 +102,5 @@ class DefaultController extends Controller
                 return new JsonResponse(array("exists" => 'yes'));
             }
         }
-    }
-
-    private function randomize() {
-        return rand(0,10000)/10000;
     }
 }
