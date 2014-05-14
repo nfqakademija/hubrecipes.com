@@ -116,7 +116,6 @@ class DefaultController extends Controller
         $getResults = $this->get('hub_recipes_yummly_client.search_service');
         $results = $getResults->fillIngredients();
         $em = $this->getDoctrine()->getManager();
-        $yra = false;
         $new = 0;
         for($i = 0; $i < count($results); $i++){
             $yra = false;

@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Model\UserInterface;
-use Hubrecipes\UsersBundle\Entity\User;
 use HubRecipes\FavouritesBundle\Entity\Recipes;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
