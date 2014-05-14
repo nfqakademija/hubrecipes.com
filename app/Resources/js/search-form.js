@@ -290,7 +290,7 @@ $(function(){
                             str = str + '<div class="col-md-3"> <div class="thumbnail">'
                             str = str + '<a href="' + baseUrl +'recipe/' + data.res.matches[t].id + '">'+ '<img src="'+data.res.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '" alt="' + data.res.matches[t].recipeName + '"></a>';
                             str = str + '<div class="caption">';
-                            str = str + '<a href="' + baseUrl +'recipe/' + data.res.matches[t].id + '">' + '<h5>' + data.res.matches[t].recipeName + '</h5></a>';
+                            str = str + '<a class="rec-name" href="' + baseUrl +'recipe/' + data.res.matches[t].id + '">' + '<h4>' + data.res.matches[t].recipeName + '</h4></a>';
                             str = str + '<div>';
                             for(var ing = 0; ing < data.res.matches[t].ingredients.length; ing++){
                                 if(ing != data.res.matches[t].ingredients.length-1){
@@ -342,7 +342,7 @@ $(function(){
                             str = str + '<div class="col-md-3"> <div class="thumbnail">'
                             str = str + '<a href="' + baseUrl +'recipe/' + data.response.matches[t].id + '">'+ '<img src="'+data.response.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '" alt="' + data.response.matches[t].recipeName + '"></a>';
                             str = str + '<div class="caption">';
-                            str = str + '<a href="' + baseUrl +'recipe/' + data.response.matches[t].id + '">' + '<h5>' + data.response.matches[t].recipeName + '</h5></a>';
+                            str = str + '<a class="rec-name" href="' + baseUrl +'recipe/' + data.response.matches[t].id + '">' + '<h4>' + data.response.matches[t].recipeName + '</h4></a>';
                             str = str + '<div>';
 
                             for(var ing = 0; ing < data.response.matches[t].ingredients.length; ing++){

@@ -194,7 +194,7 @@
                                         {% set replace_with_value_var = 's360' %}
                                         <a href="{{ path('single_recipe', {'id': recipe.id }) }}"><img src="{{ recipe.imageUrlsBySize['90']|replace({ (replace_value_var): replace_with_value_var }) }}" alt="{{ recipe.recipeName }}"></a>
                                         <div class="caption">
-                                            <a href="{{ path('single_recipe', {'id': recipe.id }) }}"> <h5>{{ recipe.recipeName }}</h5></a>
+                                            <a class="rec-name" href="{{ path('single_recipe', {'id': recipe.id }) }}"> <h4>{{ recipe.recipeName }}</h4></a>
                                             <div>
                                                 {% for ingredient in recipe.ingredients %}
                                                     {% if not loop.last %}

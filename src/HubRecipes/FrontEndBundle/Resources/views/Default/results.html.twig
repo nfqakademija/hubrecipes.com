@@ -11,13 +11,14 @@
             {% if (loop.index - 1) %4 == 0 or loop.index == 1 %}
                 <div class="row">
             {% endif %}
+
             <div class="col-md-3">
                 <div class="thumbnail">
                     {% set replace_value_var= 's90' %}
                     {% set replace_with_value_var = 's360' %}
                     <a href="{{ path('single_recipe', {'id': recipe.id }) }}"><img src="{{ recipe.imageUrlsBySize['90']|replace({ (replace_value_var): replace_with_value_var }) }}" alt="{{ recipe.recipeName }}"></a>
                     <div class="caption">
-                        <a href="{{ path('single_recipe', {'id': recipe.id }) }}"> <h5>{{ recipe.recipeName }}</h5></a>
+                        <a class="rec-name" href="{{ path('single_recipe', {'id': recipe.id }) }}"> <h4>{{ recipe.recipeName }}</h4></a>
                         <div>
                             {% for ingredient in recipe.ingredients %}
                                 {% if not loop.last %}
@@ -30,6 +31,7 @@
                     </div>
                 </div>
             </div>
+
             {% if loop.index %4 == 0 or loop.last %}
                 </div>
             {% endif %}
