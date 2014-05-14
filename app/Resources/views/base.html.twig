@@ -240,7 +240,10 @@
                                 <div class="modal-body">
                                     <div class="container">
                                         <div class="row center-block">
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-american', 'start': 0}) }}"><img src="{{ asset('img/americanCuisine.jpg') }}" class="img-thumbnail" alt="America" title="America"></a>
+                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-american', 'start': 0}) }}">
+                                                <img src="{{ asset('img/americanCuisine.jpg') }}" class="img-thumbnail" alt="America" title="America">
+                                                <p>America</p><div class="overlay"></div>
+                                            </a>
                                             <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-chinese', 'start': 0}) }}"><img src="{{ asset('img/chineseCuisine.jpg') }}" class="img-thumbnail" alt="China" title="China"></a>
                                             <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-english', 'start': 0}) }}"><img src="{{ asset('img/englishCuisine.jpg') }}" class="img-thumbnail" alt="England" title="England"></a>
                                             <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-french', 'start': 0}) }}"><img src="{{ asset('img/frenchCuisine.jpg') }}" class="img-thumbnail" alt="France" title="France"></a>
