@@ -13,7 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Ingredients
 {
     /**
-     * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
