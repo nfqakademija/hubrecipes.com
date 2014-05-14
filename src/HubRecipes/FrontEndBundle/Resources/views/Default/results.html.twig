@@ -6,10 +6,9 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
         {% if results.matches|length > 0 %}
         {% for recipe in results.matches %}
-            {% if loop.index %4 == 0  %}
+            {% if (loop.index - 1) %4 == 0 or loop.index == 1 %}
                 <div class="row">
             {% endif %}
             <div class="col-md-3">
@@ -40,7 +39,6 @@
                 <h4>No results...</h4>
             </div>
         {% endif %}
-    </div>
     {% if results.matches|length > 1 %}
     <div id="load" class="row">
         <div id="load-more-div" class="span12" style="text-align:center">
