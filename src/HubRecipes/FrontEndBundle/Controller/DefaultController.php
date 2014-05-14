@@ -43,13 +43,13 @@ class DefaultController extends Controller
         $getRecipes = $this->get('hub_recipes_yummly_client.search_service');
         $withIngredientsI = [];
         $withoutIngredientsI = [];
-        $sour = rand(0,10000)/10000;
-        $salty = rand(0,10000)/10000;
-        $sweet = rand(0,10000)/10000;
-        $spicy = rand(0,10000)/10000;
-        $bitter = rand(0,10000)/10000;
-        $savory = rand(0,10000)/10000;
-        $time = rand(0,10000)/10000;
+        $sour = randomize();
+        $salty = randomize();
+        $sweet = randomize();
+        $spicy = randomize();
+        $bitter = randomize();
+        $savory = randomize();
+        $time = randomize();
         $cuisine = '-';
         $type = '-';
         $start = 0;
@@ -114,5 +114,9 @@ class DefaultController extends Controller
                 return new JsonResponse(array("exists" => 'yes'));
             }
         }
+    }
+
+    private function randomize() {
+        return rand(0,10000)/10000;
     }
 }
