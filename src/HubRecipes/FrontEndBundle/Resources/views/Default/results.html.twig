@@ -41,6 +41,7 @@
                 <h4>No results...</h4>
             </div>
         {% endif %}
+
     {% if results.matches|length > 1 %}
     <div id="load" class="row">
         <div id="load-more-div" class="span12" style="text-align:center">
@@ -54,7 +55,11 @@
     <a href="#top" id="toTop"></a>
 </div>
 {% endblock %}
+
 {% block emotionModal %}
+    {{ parent() }}
+{% endblock %}
+{% block footer %}
     {{ parent() }}
 {% endblock %}
 {% block javascripts %}
