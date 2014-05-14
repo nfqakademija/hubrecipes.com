@@ -11,14 +11,20 @@ use HubRecipes\FrontEndBundle\Entity\Ingredients;
 
 class DefaultController extends Controller
 {
+    public function getRec($id) {
+        $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
+        $recipe = $getRecipe->getRecipe($id);
+        return $recipe;
+    }
+
     public function indexAction($name)
     {
         /** @var SearchService $search */
       //  $search = $this->get('hub_recipes_yummly_client.search_service');
 
       //  $results = $search->search(['sss' => 'sdfsf']);
-        $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
-        $recipe = $getRecipe->getRecipe($name);
+        //$getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
+        $recipe = $this->getRec($name);
         return $this->render('HubRecipesYummlyClientBundle:Default:index.html.twig', array('response' => $recipe));
     }
 

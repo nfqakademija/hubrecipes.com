@@ -7,11 +7,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-
 use HubRecipes\YummlyClientBundle\Services\SearchService;
 
 class DefaultController extends Controller
 {
+    public function getRec($id) {
+        $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
+        $recipe = $getRecipe->getRecipe($id);
+        return $recipe;
+    }
 
     public function getHomePageRecipes($start){
         $getRecipes = $this->get('hub_recipes_yummly_client.search_service');
@@ -48,15 +52,17 @@ class DefaultController extends Controller
 
     public function recipeAction($id)
     {
-        $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
-        $recipe = $getRecipe->getRecipe($id);
+        $recipe = $this->getRec($id);
+        /*$getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
+        $recipe = $getRecipe->getRecipe($id);*/
         return $this->render('HubRecipesFrontEndBundle:Default:single.item.html.twig', array('response' => $recipe));
     }
 
     public function fullRecipeAction($id)
     {
-        $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
-        $recipe = $getRecipe->getRecipe($id);
+        $recipe = $this->getRec($id);
+        /*$getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
+        $recipe = $getRecipe->getRecipe($id);*/
         return $this->render('HubRecipesFrontEndBundle:Default:full.page.html.twig', array('response' => $recipe));
     }
     //ingredients auto complete
