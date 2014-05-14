@@ -238,39 +238,275 @@
                                     <h4 class="modal-title">Where do you want to travel today?</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="container">
+                                    <div >
                                         <div class="row center-block">
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-american', 'start': 0}) }}">
-                                                <img src="{{ asset('img/americanCuisine.jpg') }}" class="img-thumbnail" alt="America" title="America">
-                                                <p>America</p><div class="overlay"></div>
-                                            </a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-chinese', 'start': 0}) }}"><img src="{{ asset('img/chineseCuisine.jpg') }}" class="img-thumbnail" alt="China" title="China"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-english', 'start': 0}) }}"><img src="{{ asset('img/englishCuisine.jpg') }}" class="img-thumbnail" alt="England" title="England"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-french', 'start': 0}) }}"><img src="{{ asset('img/frenchCuisine.jpg') }}" class="img-thumbnail" alt="France" title="France"></a>
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-american', 'start': 0}) }}">
+
+                                                        <p>America</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-american', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/americanCuisine.jpg') }}" class="img-thumbnail" alt="America" title="America">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-chinese', 'start': 0}) }}">
+
+                                                        <p>China</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-chinese', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/chineseCuisine.jpg') }}" class="img-thumbnail" alt="China" title="China">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-english', 'start': 0}) }}">
+
+                                                        <p>England</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-english', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/englishCuisine.jpg') }}" class="img-thumbnail" alt="England" title="England">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-french', 'start': 0}) }}">
+
+                                                        <p>France</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-french', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/frenchCuisine.jpg') }}" class="img-thumbnail" alt="France" title="France">
+
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="row center-block">
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-german', 'start': 0}) }}"><img src="{{ asset('img/germanCuisine.jpg') }}" class="img-thumbnail"  alt="Germany" title="Germany"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-greek', 'start': 0}) }}"><img src="{{ asset('img/greekCuisine.jpg') }}" class="img-thumbnail" alt="Greece" title="Greece"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-indian', 'start': 0}) }}"><img src="{{ asset('img/indianCuisine.jpg') }}" class="img-thumbnail" alt="India" title="India"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-irish', 'start': 0}) }}"><img src="{{ asset('img/irishCuisine.jpg') }}" class="img-thumbnail" alt="Ireland" title="Ireland"></a>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-german', 'start': 0}) }}">
+
+                                                        <p>Germany</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-german', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/germanCuisine.jpg') }}" class="img-thumbnail"  alt="Germany" title="Germany">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-greek', 'start': 0}) }}">
+
+                                                        <p>Greece</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-greek', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/greekCuisine.jpg') }}" class="img-thumbnail" alt="Greece" title="Greece">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-indian', 'start': 0}) }}">
+
+                                                        <p>India</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-indian', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/indianCuisine.jpg') }}" class="img-thumbnail" alt="India" title="India">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-irish', 'start': 0}) }}">
+
+                                                        <p>Ireland</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-irish', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/irishCuisine.jpg') }}" class="img-thumbnail" alt="Ireland" title="Ireland">
+
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="row center-block">
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-italian', 'start': 0}) }}"><img src="{{ asset('img/italianCuisine.jpg') }}" class="img-thumbnail"  alt="Italy" title="Italy"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-mexican', 'start': 0}) }}"><img src="{{ asset('img/mexicanCuisine.jpg') }}" class="img-thumbnail" alt="Mexico" title="Mexico"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-spanish', 'start': 0}) }}"><img src="{{ asset('img/spanishCuisine.jpg') }}" class="img-thumbnail" alt="Spain" title="Spain"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-thai', 'start': 0}) }}"><img src="{{ asset('img/thaiCuisine.jpg') }}" class="img-thumbnail" alt="Thailand" title="Thailand"></a>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-italian', 'start': 0}) }}">
+
+                                                        <p>Italy</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-italian', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/italianCuisine.jpg') }}" class="img-thumbnail"  alt="Italy" title="Italy">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-mexican', 'start': 0}) }}">
+
+                                                        <p>Mexico</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-mexican', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/mexicanCuisine.jpg') }}" class="img-thumbnail" alt="Mexico" title="Mexico">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-spanish', 'start': 0}) }}">
+
+                                                        <p>Spain</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-spanish', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/spanishCuisine.jpg') }}" class="img-thumbnail" alt="Spain" title="Spain">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-thai', 'start': 0}) }}">
+
+                                                        <p>Thailand</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-thai', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/thaiCuisine.jpg') }}" class="img-thumbnail" alt="Thailand" title="Thailand">
+
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="row center-block">
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-hawaiian', 'start': 0}) }}"><img src="{{ asset('img/hawaiianCuisine.jpg') }}" class="img-thumbnail"  alt="Hawaii" title="Hawaii"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-japanese', 'start': 0}) }}"><img src="{{ asset('img/japaneseCuisine.jpg') }}" class="img-thumbnail" alt="Japan" title="Japan"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-moroccan', 'start': 0}) }}"><img src="{{ asset('img/moroccanCuisine.jpg') }}" class="img-thumbnail" alt="Morocco" title="Morocco"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-cuban', 'start': 0}) }}"><img src="{{ asset('img/cubanCuisine.jpg') }}" class="img-thumbnail" alt="Cuba" title="Cuba"></a>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-hawaiian', 'start': 0}) }}">
+
+                                                        <p>Hawaii</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-hawaiian', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/hawaiianCuisine.jpg') }}" class="img-thumbnail"  alt="Hawaii" title="Hawaii">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-japanese', 'start': 0}) }}">
+
+                                                        <p>Thailand</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-japanese', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/japaneseCuisine.jpg') }}" class="img-thumbnail" alt="Japan" title="Japan">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-moroccan', 'start': 0}) }}">
+
+                                                        <p>Morocco</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-moroccan', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/moroccanCuisine.jpg') }}" class="img-thumbnail" alt="Morocco" title="Morocco">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-cuban', 'start': 0}) }}">
+
+                                                        <p>Cuba</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-cuban', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/cubanCuisine.jpg') }}" class="img-thumbnail" alt="Cuba" title="Cuba">
+
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="row center-block">
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-swedish', 'start': 0}) }}"><img src="{{ asset('img/swedishCuisine.jpg') }}" class="img-thumbnail"  alt="Sweden" title="Sweden"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-portuguese', 'start': 0}) }}"><img src="{{ asset('img/portugeseCuisine.jpg') }}" class="img-thumbnail" alt="Portugal" title="Portugal"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-hungarian', 'start': 0}) }}"><img src="{{ asset('img/hungarianCuisine.jpg') }}" class="img-thumbnail" alt="Hungary" title="Hungary"></a>
-                                            <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-mediterranean', 'start': 0}) }}"><img src="{{ asset('img/mediterraneanCuisine.jpg') }}" class="img-thumbnail" alt="Mediterranean" title="Mediterranean"></a>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-swedish', 'start': 0}) }}">
+
+                                                        <p>Sweden</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-swedish', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/swedishCuisine.jpg') }}" class="img-thumbnail"  alt="Sweden" title="Sweden">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-portuguese', 'start': 0}) }}">
+
+                                                        <p>Portugal</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-portuguese', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/portugeseCuisine.jpg') }}" class="img-thumbnail" alt="Portugal" title="Portugal">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-hungarian', 'start': 0}) }}">
+
+                                                        <p>Hungary</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-hungarian', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/hungarianCuisine.jpg') }}" class="img-thumbnail" alt="Hungary" title="Hungary">
+
+                                                </a>
+                                            </div>
+
+                                            <div class="country col-md-3">
+                                                <div class="countryName">
+                                                    <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-mediterranean', 'start': 0}) }}">
+
+                                                        <p>Mediterranean</p><div class="overlay"></div>
+                                                    </a>
+                                                </div>
+                                                <a href="{{ path('by_Cuisine',{'cuisine':'cuisine^cuisine-mediterranean', 'start': 0}) }}">
+                                                    <img src="{{ asset('img/mediterraneanCuisine.jpg') }}" class="img-thumbnail" alt="Mediterranean" title="Mediterranean">
+
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

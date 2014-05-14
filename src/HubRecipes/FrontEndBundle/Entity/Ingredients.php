@@ -20,6 +20,7 @@ class Ingredients
     private $id;
 
     /**
+     * @ORM\Column(name="ingredient", type="string", length=255)
      * @var string
      */
     private $ingredient;
