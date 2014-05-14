@@ -24,7 +24,6 @@ class Ingredients
      */
     private $ingredient;
 
-
     /**
      * Get id
      *

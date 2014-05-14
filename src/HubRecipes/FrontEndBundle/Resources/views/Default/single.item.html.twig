@@ -11,7 +11,7 @@
                 <br>
                 <br>
                 <a href="{{ path('full_recipe', {'id': response.id }) }}" class="btn btn-primary btn-lg active btn-block" role="button">Full Recipe</a>
-                <input class="rating" data-max="5" data-min="1" id="some_id" name="your_awesome_parameter" type="number" />
+
 
                 <p>Servings:</p>
                 <div class="row">
@@ -41,7 +41,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a id="add-to-fav" class="btn btn-default pull-right btn-md active" role="button">Add to favourites</a>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a id="add-to-fav" class="btn btn-default pull-right btn-md active" role="button">Add to favourites</a>
+                {% else %}
+                    <p class="alert pull-right alert-info">Sing in and add this recipe to Favoutites!</p>
+                {% endif %}
                 <div class="fb-share-button" data-href="{{ app.request.uri }}" data-type="button"></div>
                 <div class="g-plus" data-action="share" data-annotation="none"></div>
             </div>
