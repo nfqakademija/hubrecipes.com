@@ -579,6 +579,7 @@ $(function(){
         });
     }
 
+
     if (window.location.href.indexOf('surprised') > 0){
         $('#load-more').click(function(){
             loadMoreByEmotion(surprised);
