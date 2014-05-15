@@ -104,11 +104,21 @@ class SearchService
         return $data;
     }
 
-    public function getCuisineResults($cuisine, $start){
+    public function constructQuery(){
         $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
         $query = $r->getQuery();
         $query->set('_app_id', $this->appID);
         $query->set('_app_key', $this->appKey);
+        return $r;
+    }
+
+    public function getCuisineResults($cuisine, $start){
+        $r = $this->constructQuery();
+        $query = $r->getQuery();
+        /*$r = $this->client->createRequest('get', $this->baseURL . 'recipes');
+        $query = $r->getQuery();
+        $query->set('_app_id', $this->appID);
+        $query->set('_app_key', $this->appKey);*/
         $query->set('allowedCuisine', $cuisine);
         $query->set('maxResult', 16);
         $query->set('start', $start);
@@ -123,11 +133,13 @@ class SearchService
     }
 
     public function getResultsByEmotion($start){
-        $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
+        /*$r = $this->client->createRequest('get', $this->baseURL . 'recipes');
         $query = $r->getQuery();
         $query->set('_app_id', $this->appID);
-        $query->set('_app_key', $this->appKey);
+        $query->set('_app_key', $this->appKey);*/
 
+        $r = $this->constructQuery();
+        $query = $r->getQuery();
         $query->set('allowedCourse', 'course^course-Desserts');
 
         $query->set('maxResult', 16);
