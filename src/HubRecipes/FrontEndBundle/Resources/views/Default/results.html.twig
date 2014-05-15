@@ -65,7 +65,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        var sour, salty, sweet, spicy, bitter, savory, timee, typeS, likeI, cuisine, happy;
+        var sour, salty, sweet, spicy, bitter, savory, timee, typeS, likeI, cuisine, happy, sad, angry, surprised;
         sour = "{{ Sour }}";
         salty = "{{ Salty }}";
         sweet = "{{ Sweet }}";
@@ -78,5 +78,8 @@
         likeI = {{ likeI|json_encode|raw }};
         unlikeI = {{ unlikeI|json_encode|raw}};
         happy = "{{ path('by_Emotion_load_more',{'emotion': 'happy'}) }}";
+        sad = "{{ path('by_Emotion_load_more',{'emotion': 'sad'}) }}";
+        angry = "{{ path('by_Emotion_load_more',{'emotion': 'angry'}) }}";
+        surprised = "{{ path('by_Emotion_load_more',{'emotion': 'surprised'}) }}";
     </script>
 {% endblock %}

@@ -508,18 +508,17 @@ $(function(){
     var k = 16;
     $("a[name='home']").click(loadMoreHomePage);
 
-    function loadMoreByEmotion(){
+    function loadMoreByEmotion(emotionUrl){
         $('#load-more-div').hide();
         $('#preloader').show();
         var i, j, str, t, div_count_in_row ,row_count, ing;
         div_count_in_row = 4;
-        $.post(happy, {
+        $.post(emotionUrl, {
                 start: k
             },
             function(data){
                 str = '';
                 t = 0;
-                console.log(data);
                 if(data.res.matches.length > 0){
                     if(data.res.matches.length < 4){
                         div_count_in_row = data.res.matches.length;
@@ -563,7 +562,26 @@ $(function(){
                 }
             })
     }
-    if (window.location.href.indexOf('Emotion') > 0){
-        $('#load-more').click(loadMoreByEmotion);
+    if (window.location.href.indexOf('happy') > 0){
+        $('#load-more').click(function(){
+            loadMoreByEmotion(happy);
+        });
+    }
+    if (window.location.href.indexOf('sad') > 0){
+        $('#load-more').click(function(){
+            loadMoreByEmotion(sad);
+        });
+    }
+
+    if (window.location.href.indexOf('angry') > 0){
+        $('#load-more').click(function(){
+            loadMoreByEmotion(angry);
+        });
+    }
+
+    if (window.location.href.indexOf('surprised') > 0){
+        $('#load-more').click(function(){
+            loadMoreByEmotion(surprised);
+        });
     }
 });
