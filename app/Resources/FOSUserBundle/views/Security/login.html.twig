@@ -27,7 +27,7 @@
 				<span class="button-checkbox">
 
                     <input  type="checkbox" id="remember_me" name="_remember_me" value="on" />  {{ 'security.login.remember_me'|trans }}
-					<a href="" class="btn btn-link pull-right">{{ 'security.login.forgot_password'|trans }}</a>
+					<a href="{{ path('fos_user_resetting_request') }}" class="btn btn-link pull-right">{{ 'security.login.forgot_password'|trans }}</a>
 				</span>
                         <hr class="colorgraph">
                         <div class="row">

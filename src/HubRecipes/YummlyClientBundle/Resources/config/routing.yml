@@ -10,6 +10,14 @@ by_Cuisine:
     pattern:  /Cuisine/{cuisine}/{start}
     defaults: { _controller: HubRecipesYummlyClientBundle:Default:searchByCuisine }
 
+by_Emotion:
+    pattern:  /Emotion/{emotion}
+    defaults: { _controller: HubRecipesYummlyClientBundle:Default:getRecipesByEmotion }
+
+by_Emotion_load_more:
+    pattern:  /Emotions/{emotion}
+    defaults: { _controller: HubRecipesYummlyClientBundle:Default:loadMoreByEmotion }
+
 loadMoreItems:
     pattern:  /loadMoreItems
     defaults: { _controller: HubRecipesYummlyClientBundle:Default:loadMoreItems }

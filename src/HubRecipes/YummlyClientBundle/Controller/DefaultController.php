@@ -112,6 +112,34 @@ class DefaultController extends Controller
         }
     }
 
+    public function getRecipesByEmotionAction($emotion){
+        $getResults = $this->get('hub_recipes_yummly_client.search_service');
+        if($emotion == "happy"){
+            $results = $getResults->getResultsByEmotion(0);
+            return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results,
+                'likeI' => [], 'unlikeI' => [], 'Sour' => '', 'Salty' => '', 'Sweet' => '', 'Spicy' => '', 'Bitter' => '',
+                'Savory' => '', 'Time' => '', 'Type' => 'Desserts', 'Cuisine' => '-'
+            ));
+        }
+        $results = $getResults->getResults('','', '', '', '', '', '', '-', [], [], 0, '-');
+        return $this->render('HubRecipesFrontEndBundle:Default:index.html.twig', array('response' => $results));
+    }
+
+    public function loadMoreByEmotionAction($emotion){
+        $getResults = $this->get('hub_recipes_yummly_client.search_service');
+        if ($this->get('request')->isXmlHttpRequest()){
+            if($emotion == "happy"){
+                $start = $this->get('request')->request->get('start');
+                $results = $getResults->getResultsByEmotion($start);
+                return new JsonResponse(array('res' => $results));
+            }
+            /*return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results,
+                'likeI' => [], 'unlikeI' => [], 'Sour' => '', 'Salty' => '', 'Sweet' => '', 'Spicy' => '', 'Bitter' => '',
+                'Savory' => '', 'Time' => '', 'Type' => 'Desserts', 'Cuisine' => '-'
+            ));*/
+        }
+    }
+
     public function fillIngredientsAction(){
         $getResults = $this->get('hub_recipes_yummly_client.search_service');
         $results = $getResults->fillIngredients();

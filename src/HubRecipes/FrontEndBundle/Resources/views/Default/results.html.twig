@@ -65,7 +65,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        var sour, salty, sweet, spicy, bitter, savory, timee, typeS, likeI, cuisine;
+        var sour, salty, sweet, spicy, bitter, savory, timee, typeS, likeI, cuisine, happy;
         sour = "{{ Sour }}";
         salty = "{{ Salty }}";
         sweet = "{{ Sweet }}";
@@ -76,6 +76,7 @@
         typeS = "{{ Type }}";
         cuisine = "{{ Cuisine }}";
         likeI = {{ likeI|json_encode|raw }};
-        unlikeI = {{ unlikeI|json_encode|raw}}
+        unlikeI = {{ unlikeI|json_encode|raw}};
+        happy = "{{ path('by_Emotion_load_more',{'emotion': 'happy'}) }}";
     </script>
 {% endblock %}

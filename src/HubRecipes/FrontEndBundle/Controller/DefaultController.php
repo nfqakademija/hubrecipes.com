@@ -110,7 +110,4 @@ class DefaultController extends Controller
         }
     }
 
-    private function randomize() {
-        return rand(0,10000)/10000;
-    }
 }

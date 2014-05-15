@@ -34,70 +34,61 @@ class SearchService
         $this->appKey = $appKey;
     }
 
+    function setFlavor($string, $flavor, $query){
+        if ($flavor != ""){
+            $query->set('flavor.'. $string .'.min',0);
+            $query->set('flavor.'. $string .'.max',$flavor);
+        }
+        return $query;
+    }
+
     /**
      * @param array $params
      * @return RecipeModel[]
      */
+
     public function getResults($sour,$salty,$sweet, $spicy, $bitter, $savory
         ,$time, $type, $allowedIngredients, $excludedIngredients, $start, $cuisine)
     {
+
         //$out = [];
         $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
         $query = $r->getQuery();
         $query->set('_app_id', $this->appID);
         $query->set('_app_key', $this->appKey);
 
-        if(count($allowedIngredients) > 0){
-            $query->set('allowedIngredient', $allowedIngredients);
-        }
+        $query->set('allowedIngredient', $allowedIngredients);
 
-        if(count($excludedIngredients) > 0){
-            $query->set('excludedIngredient', $excludedIngredients);
-        }
+        $query->set('excludedIngredient', $excludedIngredients);
+
 
         if ($type != "-") {
             $query->set('allowedCourse', 'course^course-' . $type);
         }
+        $query = $this->setFlavor('sour', $sour, $query);
 
-        if($sour != ""){
-            $query->set('flavor.sour.min',0);
-            $query->set('flavor.sour.max',$sour);
-        }
+        $query = $this->setFlavor('sweet', $sweet, $query);
 
-        if($sweet != ""){
-            $query->set('flavor.sweet.min',0);
-            $query->set('flavor.sweet.max',$sweet);
-        }
+        $query = $this->setFlavor('piquant', $spicy, $query);
 
-        if($spicy != ""){
-            $query->set('flavor.piquant.min',0);
-            $query->set('flavor.piquant.max',$spicy);
-        }
+        $query = $this->setFlavor('bitter', $bitter, $query);
 
-        if($bitter != ""){
-            $query->set('flavor.bitter.min',0);
-            $query->set('flavor.bitter.max',$bitter);
-        }
+        $query = $this->setFlavor('meaty', $savory, $query);
 
-        if($savory != ""){
-            $query->set('flavor.meaty.min',0);
-            $query->set('flavor.meaty.max',$bitter);
-        }
-
-        if($salty != ""){
-            $query->set('flavor.salty.min',0);
-            $query->set('flavor.salty.max',$salty);
-        }
+        $query = $this->setFlavor('salty', $salty, $query);
 
         if ($time > 0){
             $query->set('maxTotalTimeInSeconds', $time);
         }
+
         if ($cuisine != "-") {
             $query->set('allowedCuisine', $cuisine);
         }
+
         $query->set('maxResult', 16);
         $query->set('start', $start);
         $query->set('requirePictures', true);
+
         $query->setEncodingType(false);
         $query->setAggregator(Query::phpAggregator(false));
 
@@ -127,6 +118,26 @@ class SearchService
         $query->setAggregator(Query::phpAggregator(false));
         $response = $this->client->send($r);
 
+        $data = $response->json();
+        return $data;
+    }
+
+    public function getResultsByEmotion($start){
+        $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
+        $query = $r->getQuery();
+        $query->set('_app_id', $this->appID);
+        $query->set('_app_key', $this->appKey);
+
+        $query->set('allowedCourse', 'course^course-Desserts');
+
+        $query->set('maxResult', 16);
+        $query->set('start', $start);
+        $query->set('requirePictures', true);
+
+        $query->setEncodingType(false);
+        $query->setAggregator(Query::phpAggregator(false));
+
+        $response = $this->client->send($r);
         $data = $response->json();
         return $data;
     }

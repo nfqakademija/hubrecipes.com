@@ -505,19 +505,65 @@ $(function(){
         var k = 16;
         $('#load-more').click(loadMore);
     }
+    var k = 16;
     $("a[name='home']").click(loadMoreHomePage);
-    /*$('#load-more').click(function() {
-        if (pageNr > 0) {
-            if(window.location.href + pageNr.toString() == baseUrl){
-                $('#load-more').click(loadMoreHomePage);
-            }
-        } else {
-            if(window.location.href == baseUrl){
-                $('#load-more').click(loadMoreHomePage);
-            }
-        }
-    })*/
-    /*if(window.location.href == baseUrl){
-        $('#load-more').click(loadMoreHomePage);
-    }*/
+
+    function loadMoreByEmotion(){
+        $('#load-more-div').hide();
+        $('#preloader').show();
+        var i, j, str, t, div_count_in_row ,row_count, ing;
+        div_count_in_row = 4;
+        $.post(happy, {
+                start: k
+            },
+            function(data){
+                str = '';
+                t = 0;
+                console.log(data);
+                if(data.res.matches.length > 0){
+                    if(data.res.matches.length < 4){
+                        div_count_in_row = data.res.matches.length;
+                        row_count = 1;
+                    } else {
+                        row_count = Math.ceil(data.res.matches.length/4);
+                    }
+                    for(var i = 0; i < row_count ; i++){
+                        if((i == row_count - 1)){
+                            div_count_in_row = data.res.matches.length - t;
+                        }
+                        str = str + '<div class="row">';
+
+                        for(var j = 0; j < div_count_in_row; j++){
+                            str = str + '<div class="col-md-3"> <div class="thumbnail">'
+                            str = str + '<a href="' + baseUrl +'recipe/' + data.res.matches[t].id + '">'+ '<img src="'+data.res.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '" alt="' + data.res.matches[t].recipeName + '"></a>';
+                            str = str + '<div class="caption">';
+                            str = str + '<a class="rec-name" href="' + baseUrl +'recipe/' + data.res.matches[t].id + '">' + '<h4>' + data.res.matches[t].recipeName + '</h4></a>';
+                            str = str + '<div>';
+                            for(var ing = 0; ing < data.res.matches[t].ingredients.length; ing++){
+                                if(ing != data.res.matches[t].ingredients.length-1){
+                                    str = str + data.res.matches[t].ingredients[ing] + ', ';
+                                }else{
+                                    str = str + data.res.matches[t].ingredients[ing] + '.';
+                                }
+                            }
+                            str = str + '</div></div></div></div>';
+                            t++;
+                        }
+
+                        str = str + '</div>';
+                    }
+                    k = k + data.res.matches.length;
+
+                    $('#load').before($(str));
+                    $('#load-more-div').show();
+                    $('#preloader').hide();
+                } else {
+                    $('#load').remove();
+                    $('.row:last').after($('<div class="text-center"><h4>No more results...</h4></div>'))
+                }
+            })
+    }
+    if (window.location.href.indexOf('Emotion') > 0){
+        $('#load-more').click(loadMoreByEmotion);
+    }
 });
