@@ -132,15 +132,30 @@ class SearchService
         return $data;
     }
 
-    public function getResultsByEmotion($start){
-        /*$r = $this->client->createRequest('get', $this->baseURL . 'recipes');
-        $query = $r->getQuery();
-        $query->set('_app_id', $this->appID);
-        $query->set('_app_key', $this->appKey);*/
-
+    public function getResultsByEmotion($emotion, $start){
         $r = $this->constructQuery();
         $query = $r->getQuery();
-        $query->set('allowedCourse', 'course^course-Desserts');
+
+        if ($emotion == "happy"){
+            $query->set('allowedCourse', 'course^course-Desserts');
+        }
+
+        if ($emotion == "sad"){
+            $query->set('allowedIngredient', array('fish'));
+        }
+
+        if ($emotion == "angry"){
+            $query->set('nutrition.FAT.min',0);
+            $query->set('nutrition.FAT.max',1);
+            $query->set('nutrition.CHOLE.min',0);
+            $query->set('nutrition.CHOLE.max',0);
+            $query->set('nutrition.K.min',0);
+            $query->set('nutrition.K.max',100);
+        }
+
+        if ($emotion == "surprised"){
+            $query->set('allowedCourse', 'course^course-Main%20Dishes');
+        }
 
         $query->set('maxResult', 16);
         $query->set('start', $start);
