@@ -34,6 +34,14 @@ class SearchService
         $this->appKey = $appKey;
     }
 
+    public function constructQuery(){
+        $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
+        $query = $r->getQuery();
+        $query->set('_app_id', $this->appID);
+        $query->set('_app_key', $this->appKey);
+        return $r;
+    }
+
     function setFlavor($string, $flavor, $query){
         if ($flavor != ""){
             $query->set('flavor.'. $string .'.min',0);
@@ -52,10 +60,8 @@ class SearchService
     {
 
         //$out = [];
-        $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
+        $r = $this->constructQuery();
         $query = $r->getQuery();
-        $query->set('_app_id', $this->appID);
-        $query->set('_app_key', $this->appKey);
 
         $query->set('allowedIngredient', $allowedIngredients);
 
@@ -102,14 +108,6 @@ class SearchService
             $out[] = $recipe;
         }*/
         return $data;
-    }
-
-    public function constructQuery(){
-        $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
-        $query = $r->getQuery();
-        $query->set('_app_id', $this->appID);
-        $query->set('_app_key', $this->appKey);
-        return $r;
     }
 
     public function getCuisineResults($cuisine, $start){
@@ -170,10 +168,8 @@ class SearchService
     }
 
     public function fillIngredients(){
-        $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
+        $r = $this->constructQuery();
         $query = $r->getQuery();
-        $query->set('_app_id', $this->appID);
-        $query->set('_app_key', $this->appKey);
         $query->set('allowedCourse', 'course^course-Breads');
         $query->set('maxResult', 4000);
         $query->set('start', 8000);
