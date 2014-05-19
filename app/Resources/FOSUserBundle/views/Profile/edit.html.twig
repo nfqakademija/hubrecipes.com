@@ -4,10 +4,8 @@
     {% block headerblock %} {{ parent() }} {% endblock %}
     {% block fos_user_content %}
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
-                </div>
+            <div class="col-md-6 col-md-offset-3" >
+                {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
             </div>
         </div>
     {% endblock fos_user_content %}

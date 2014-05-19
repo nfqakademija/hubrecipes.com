@@ -17,6 +17,10 @@ class DefaultController extends Controller
         return $recipe;
     }
 
+    public function getSearchService(){
+        return $this->get('hub_recipes_yummly_client.search_service');
+    }
+
     public function indexAction($name)
     {
         /** @var SearchService $search */
@@ -66,7 +70,7 @@ class DefaultController extends Controller
         $start = 0;
 
         /** @var SearchService $search */
-        $getResults = $this->get('hub_recipes_yummly_client.search_service');
+        $getResults = $this->getSearchService();
         $results = $getResults->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredients, $withoutIngredients, $start, $cuisine);
 
         return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results,
@@ -77,7 +81,7 @@ class DefaultController extends Controller
 
     public function searchByCuisineAction($cuisine, $start){
 
-        $getResults = $this->get('hub_recipes_yummly_client.search_service');
+        $getResults = $this->getSearchService();
         $results = $getResults->getCuisineResults($cuisine, $start);
 
         return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results,
@@ -87,6 +91,12 @@ class DefaultController extends Controller
     }
 
     public function loadMoreItemsAction() {
+        function checkIfEmpty($ingredients){
+            if($ingredients == ""){
+                return [];
+            }
+            else return $ingredients;
+        }
         if ($this->get('request')->isXmlHttpRequest()){
             $cuisine = $this->get('request')->request->get('cuisine');
             $sour = $this->get('request')->request->get('sour');
@@ -99,21 +109,17 @@ class DefaultController extends Controller
             $type = $this->get('request')->request->get('typeS');
             $k = $this->get('request')->request->get('start');
             $like = $this->get('request')->request->get('like');
-            if ($like == ""){
-                $like = [];
-            }
+            $like = checkIfEmpty($like);
             $unlike = $this->get('request')->request->get('unlike');
-            if ($unlike == ""){
-                $unlike = [];
-            }
-            $getResults = $this->get('hub_recipes_yummly_client.search_service');
+            $unlike = checkIfEmpty($unlike);
+            $getResults = $this->getSearchService();
             $results = $getResults->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $like, $unlike, $k, $cuisine);
             return new JsonResponse(array('res'=>$results));
         }
     }
 
     public function getRecipesByEmotionAction($emotion){
-        $getResults = $this->get('hub_recipes_yummly_client.search_service');
+        $getResults = $this->getSearchService();;
 
         $results = $getResults->getResultsByEmotion($emotion,0);
         return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results,
@@ -123,7 +129,7 @@ class DefaultController extends Controller
     }
 
     public function loadMoreByEmotionAction($emotion){
-        $getResults = $this->get('hub_recipes_yummly_client.search_service');
+        $getResults = $this->getSearchService();
         if ($this->get('request')->isXmlHttpRequest()){
             $start = $this->get('request')->request->get('start');
             $results = $getResults->getResultsByEmotion($emotion, $start);
@@ -132,7 +138,7 @@ class DefaultController extends Controller
     }
 
     public function fillIngredientsAction(){
-        $getResults = $this->get('hub_recipes_yummly_client.search_service');
+        $getResults = $this->getSearchService();
         $results = $getResults->fillIngredients();
         $em = $this->getDoctrine()->getManager();
         $new = 0;

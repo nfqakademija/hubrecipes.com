@@ -342,11 +342,9 @@
 {% block form_errors %}
     {% spaceless %}
         {% if errors|length > 0 %}
-            <ul>
                 {% for error in errors %}
-                    <li>{{ error.message }}</li>
+                    <p>{{ error.message }}</p>
                 {% endfor %}
-            </ul>
         {% endif %}
     {% endspaceless %}
 {% endblock form_errors %}

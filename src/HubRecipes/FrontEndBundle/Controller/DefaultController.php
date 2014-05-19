@@ -80,7 +80,6 @@ class DefaultController extends Controller
             $products = $query->getArrayResult();
             $a = [];
             if (!$products) {
-
                 $a =[''];
                 return new JsonResponse(array("suggestions" => $a));
             }

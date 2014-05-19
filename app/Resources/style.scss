@@ -35,6 +35,7 @@ $icon-font-path: "../fonts/";
   padding-right: 5%;
   border-radius: 4px;
   margin-bottom: 10px;
+
 }
 .h5{
   display: inline-block;
@@ -301,6 +302,10 @@ ul.text-danger {
 
 .rec-name{
   color: black !important;
+}
+
+.flavors{
+  margin-top: 20px;
 }
 
 @import "lib/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
