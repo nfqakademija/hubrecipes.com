@@ -12,16 +12,13 @@
                 <br>
                 <a href="{{ path('full_recipe', {'id': response.id }) }}" class="btn btn-primary btn-lg active btn-block" role="button">Full Recipe</a>
 
-
-                <p>Servings:</p>
-                <div class="row">
-                    <div class="col-md-5 form-inline input-group-sm">
-                        <input id="numberOfServings" name="numberOfServings" value="{{ response.numberOfServings }}" hidden="yes">
-                        <input class="form-control" id="newServings" type="number" min="1" name="newServings"  value="{{ response.numberOfServings }}">
-                        <button class="btn btn-info btn-sm" id="newServingsCalc"><span class="glyphicon glyphicon-refresh"></span></button>
-                    </div>
+                <div class="share-buttons">
+                    <div class="fb-share-button" data-href="{{ app.request.uri }}" data-type="button"></div>
+                    <div class="g-plus" data-action="share" data-annotation="none"></div>
                 </div>
-                <p id="alert" class="text-danger" hidden="yes">Please enter a whole number.</p>
+
+
+
             </div>
             <div class="col-md-8">
                 <h2>{{ response.name }}</h2>
@@ -34,6 +31,20 @@
                 {% if response.totalTime != null %}
                     <h3>Total time: {{ response.totalTime }}</h3>
                 {% endif %}
+
+
+
+                    <p>Servings:</p>
+                    <div class="row">
+                        <div class="col-md-5 form-inline input-group-sm">
+                            <input id="numberOfServings" name="numberOfServings" value="{{ response.numberOfServings }}" hidden="yes">
+                            <input class="form-control" id="newServings" type="number" min="1" name="newServings"  value="{{ response.numberOfServings }}">
+                            <button class="btn btn-info btn-sm" id="newServingsCalc"><span class="glyphicon glyphicon-refresh"></span></button>
+                        </div>
+                    </div>
+                    <p id="alert" class="text-danger" hidden="yes">Please enter a whole number.</p>
+
+
             </div>
         </div>
     </div>
@@ -46,8 +57,7 @@
                 {% else %}
                     <p class="alert pull-right alert-info">Sing in and add this recipe to Favoutites!</p>
                 {% endif %}
-                <div class="fb-share-button" data-href="{{ app.request.uri }}" data-type="button"></div>
-                <div class="g-plus" data-action="share" data-annotation="none"></div>
+
             </div>
         </div>
     </div>

@@ -318,7 +318,7 @@ body {
 
 .ingredientList {
   display: none;
-  color: white;
+  color: navajowhite;
   background: #000000;
   opacity: 0.7;
   margin-left: 7%;
@@ -333,8 +333,20 @@ body {
   z-index:30;
 }
 
+.fb-share-button {
+  top: -5px;
+}
+
+.share-buttons {
+  margin-left: 32%;
+  margin-top: 15px;
+}
 /*a:hover + #ingredList {
   display: block;
 }*/
 
 @import "lib/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
+
+h1, h2, h3, h4, h5, h6, p {
+  color: white;
+}
