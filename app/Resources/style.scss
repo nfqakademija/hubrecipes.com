@@ -345,8 +345,78 @@ body {
   display: block;
 }*/
 
+
 @import "lib/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
 
 h1, h2, h3, h4, h5, h6, p {
+  color: white;
+}
+
+$bgDefault      : #ffffff;
+$bgHighlight    : #5e5e5e;
+$colDefault     : #040404;
+$colHighlight   : #002f2f;
+.navbar-default {
+  opacity: 0.5;
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus {
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus, {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
+
+.search-form p, h5 {
+  color: #000000;
+}
+
+.search-form {
+  opacity: 0.9;
+}
+
+.fos_user_user_show p, h3, h6 {
+  color: #000000;
+}
+
+legend, label {
   color: white;
 }
