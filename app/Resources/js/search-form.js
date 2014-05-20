@@ -579,10 +579,16 @@ $(function(){
         });
     }
 
-
     if (window.location.href.indexOf('surprised') > 0){
         $('#load-more').click(function(){
             loadMoreByEmotion(surprised);
         });
     }
+
+    $('.recipe').hover(function(){
+        $(this).children('.ingredientList').show();
+    },function(){
+        $(this).children('.ingredientList').hide();
+    });
+
 });
