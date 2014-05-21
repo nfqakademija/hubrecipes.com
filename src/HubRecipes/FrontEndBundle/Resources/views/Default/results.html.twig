@@ -13,25 +13,25 @@
             {% endif %}
 
             <div class="col-xs-6 col-md-3 favItem">
-            <div class="row recipe">
-                <div class="col-md-12">
-                    {% set replace_value_var= 's90' %}
-                    {% set replace_with_value_var = 's360' %}
-                    <div class="favName"><a href="{{ path('single_recipe', {'id': recipe.id }) }}"><p>{{ recipe.recipeName }}</p><div class="overlay"></div></a></div><!--favName-->
-                    <a href="{{ path('single_recipe', {'id': recipe.id }) }}" class="thumbnail">
-                        <img src="{{ recipe.imageUrlsBySize['90']|replace({ (replace_value_var): replace_with_value_var }) }}" data-src="holder.js/100%x180" alt="{{ recipe.recipeName }}">
-                    </a>
+                <div class="row recipe">
+                    <div class="col-md-12">
+                        {% set replace_value_var= 's90' %}
+                        {% set replace_with_value_var = 's360' %}
+                        <div class="favName"><a href="{{ path('single_recipe', {'id': recipe.id }) }}"><p>{{ recipe.recipeName }}</p><div class="overlay"></div></a></div><!--favName-->
+                        <a href="{{ path('single_recipe', {'id': recipe.id }) }}" class="thumbnail">
+                            <img src="{{ recipe.imageUrlsBySize['90']|replace({ (replace_value_var): replace_with_value_var }) }}" data-src="holder.js/100%x180" alt="{{ recipe.recipeName }}">
+                        </a>
+                    </div>
+                    <div class="ingredientList">
+                        {% for ingredient in recipe.ingredients %}
+                            {% if not loop.last %}
+                                {{ ingredient ~ ', ' }}
+                            {% else %}
+                                {{ ingredient ~ '.' }}
+                            {% endif %}
+                        {%  endfor %}
+                    </div>
                 </div>
-                <div class="ingredientList">
-                    {% for ingredient in recipe.ingredients %}
-                        {% if not loop.last %}
-                            {{ ingredient ~ ', ' }}
-                        {% else %}
-                            {{ ingredient ~ '.' }}
-                        {% endif %}
-                    {%  endfor %}
-                </div>
-            </div>
             </div>
 
             {% if loop.index %4 == 0 or loop.last %}

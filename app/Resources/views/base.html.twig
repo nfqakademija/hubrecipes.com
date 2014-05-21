@@ -169,45 +169,42 @@
 
             {% endblock %}
             {% block content %}
-
-
-
                 <div class="container">
-                        {% if response.matches|length > 0 %}
-                            {% for recipe in response.matches %}
-                                {% if (loop.index - 1) %4 == 0 or loop.index == 1 %}
-                                    <div class="row">
-                                {% endif %}
-                                <div class="col-xs-6 col-md-3 favItem">
-                                    <div class="row recipe">
-                                        <div class="col-md-12">
-                                            {% set replace_value_var= 's90' %}
-                                            {% set replace_with_value_var = 's360' %}
-                                            <div class="favName"><a href="{{ path('single_recipe', {'id': recipe.id }) }}"><p>{{ recipe.recipeName }}</p><div class="overlay"></div></a></div><!--favName-->
-                                            <a href="{{ path('single_recipe', {'id': recipe.id }) }}" class="thumbnail">
-                                                <img src="{{ recipe.imageUrlsBySize['90']|replace({ (replace_value_var): replace_with_value_var }) }}" data-src="holder.js/100%x180" alt="{{ recipe.recipeName }}">
-                                            </a>
-                                        </div>
-                                        <div class="ingredientList">
-                                            {% for ingredient in recipe.ingredients %}
-                                                {% if not loop.last %}
-                                                    {{ ingredient ~ ', ' }}
-                                                {% else %}
-                                                    {{ ingredient ~ '.' }}
-                                                {% endif %}
-                                            {%  endfor %}
-                                        </div>
+                    {% if response.matches|length > 0 %}
+                        {% for recipe in response.matches %}
+                            {% if (loop.index - 1) %4 == 0 or loop.index == 1 %}
+                                <div class="row">
+                            {% endif %}
+                            <div class="col-xs-6 col-md-3 favItem">
+                                <div class="row recipe">
+                                    <div class="col-md-12">
+                                        {% set replace_value_var= 's90' %}
+                                        {% set replace_with_value_var = 's360' %}
+                                        <div class="favName"><a href="{{ path('single_recipe', {'id': recipe.id }) }}"><p>{{ recipe.recipeName }}</p><div class="overlay"></div></a></div><!--favName-->
+                                        <a href="{{ path('single_recipe', {'id': recipe.id }) }}" class="thumbnail">
+                                            <img src="{{ recipe.imageUrlsBySize['90']|replace({ (replace_value_var): replace_with_value_var }) }}" data-src="holder.js/100%x180" alt="{{ recipe.recipeName }}">
+                                        </a>
+                                    </div>
+                                    <div class="ingredientList">
+                                        {% for ingredient in recipe.ingredients %}
+                                            {% if not loop.last %}
+                                                {{ ingredient ~ ', ' }}
+                                            {% else %}
+                                                {{ ingredient ~ '.' }}
+                                            {% endif %}
+                                        {%  endfor %}
                                     </div>
                                 </div>
-                                {% if loop.index %4 == 0 or loop.last %}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            <div class="text-center">
-                                <h4>No results...</h4>
                             </div>
-                        {% endif %}
+                            {% if loop.index %4 == 0 or loop.last %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center">
+                            <h4>No results...</h4>
+                        </div>
+                    {% endif %}
                     {% if response.matches|length > 1 %}
                         <div id="load" class="row">
                             <div id="load-more-div" class="span12" style="text-align:center">
@@ -220,8 +217,6 @@
                     {% endif %}
                     <a href="#top" id="toTop"></a>
                     </div>
-
-
             {% endblock %}
         {% endblock %}
 
