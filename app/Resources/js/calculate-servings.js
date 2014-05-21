@@ -42,6 +42,7 @@ $(function(){
                 j = 0;
                 $("li#ing").each(function( index ) {
                     value = 0;
+                    console.log($(this).text());
                     str = $( this ).text().trim().split(' ');     //split by spaces
                     k = 0;
                     for(i = 0; i < 2; i++){
@@ -63,6 +64,10 @@ $(function(){
                                         value = value + eval(str[i]);
                                         k++;
                                     }
+                            }
+                            if(str[i] == '½'){
+                                value = value + 0.5;
+                                k++;
                             }
                     }
 

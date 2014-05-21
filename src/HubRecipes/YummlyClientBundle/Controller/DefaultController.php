@@ -82,7 +82,7 @@ class DefaultController extends Controller
     public function searchByCuisineAction($cuisine, $start){
 
         $getResults = $this->getSearchService();
-        $results = $getResults->getCuisineResults($cuisine, $start);
+        $results = $getResults->getCuisineResults($cuisine, $start * 16);
 
         return $this->render('HubRecipesFrontEndBundle:Default:results.html.twig', array('results' => $results,
             'likeI' => '', 'unlikeI' => '', 'Sour' => '', 'Salty' => '', 'Sweet' => '', 'Spicy' => '', 'Bitter' => '',

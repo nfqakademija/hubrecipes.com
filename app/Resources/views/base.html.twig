@@ -185,7 +185,7 @@
                                             <img src="{{ recipe.imageUrlsBySize['90']|replace({ (replace_value_var): replace_with_value_var }) }}" data-src="holder.js/100%x180" alt="{{ recipe.recipeName }}">
                                         </a>
                                     </div>
-                                    <div class="ingredientList">
+                                    <a href="{{ path('single_recipe', {'id': recipe.id }) }}" ><div class="ingredientList">
                                         {% for ingredient in recipe.ingredients %}
                                             {% if not loop.last %}
                                                 {{ ingredient ~ ', ' }}
@@ -193,7 +193,7 @@
                                                 {{ ingredient ~ '.' }}
                                             {% endif %}
                                         {%  endfor %}
-                                    </div>
+                                    </div></a>
                                 </div>
                             </div>
                             {% if loop.index %4 == 0 or loop.last %}

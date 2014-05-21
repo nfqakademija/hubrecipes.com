@@ -71,6 +71,7 @@ $(function(){
     });
 
     var like_ingredients, unlike_ingredients, pageNr, bstr;
+    console.log(history);
     pageNr = 0;
     like_ingredients = new Array();
     unlike_ingredients = new Array();
@@ -291,7 +292,7 @@ $(function(){
                             str = str + '<div class="favName"><a href="' + baseUrl +'recipe/' + data.res.matches[t].id + '">'+ '<p>' + data.res.matches[t].recipeName +'</p><div class="overlay"></div></a></div>';
                             str = str + '<a href="' + baseUrl +'recipe/' + data.res.matches[t].id + '" ' + 'class="thumbnail"' + '><img src=' + '"' + data.res.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '"data-src="holder.js/100%x180" alt="' + data.res.matches[t].recipeName +'"></a>';
                             str = str + '</div>';
-                            str = str + '<div class="ingredientList">';
+                            str = str + '<a href="' + baseUrl +'recipe/' + data.res.matches[t].id + '">' + '<div class="ingredientList">';
                             for(var ing = 0; ing < data.res.matches[t].ingredients.length; ing++){
                                 if(ing != data.res.matches[t].ingredients.length-1){
                                     str = str + data.res.matches[t].ingredients[ing] + ', ';
@@ -299,14 +300,15 @@ $(function(){
                                     str = str + data.res.matches[t].ingredients[ing] + '.';
                                 }
                             }
-                            str = str + '</div></div></div>';
+                            str = str + '</div></a></div></div>';
                             t++;
                         }
 
                         str = str + '</div>';
                     }
                     k = k + data.res.matches.length;
-
+                    pageNr = pageNr + 1;
+                    history.pushState({},"", pageNr);
                     $('#load').before($(str));
                     $('#load-more-div').show();
                     $('#preloader').hide();
@@ -343,7 +345,7 @@ $(function(){
                             str = str + '<div class="favName"><a href="' + baseUrl +'recipe/' + data.response.matches[t].id + '">'+ '<p>' + data.response.matches[t].recipeName +'</p><div class="overlay"></div></a></div>';
                             str = str + '<a href="' + baseUrl +'recipe/' + data.response.matches[t].id + '" ' + 'class="thumbnail"' + '><img src=' + '"' + data.response.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '"data-src="holder.js/100%x180" alt="' + data.response.matches[t].recipeName +'"></a>';
                             str = str + '</div>';
-                            str = str + '<div class="ingredientList">';
+                            str = str + '<a href="' + baseUrl +'recipe/' + data.response.matches[t].id + '">' +'<div class="ingredientList">';
 
                             for(var ing = 0; ing < data.response.matches[t].ingredients.length; ing++){
                                 if(ing != data.response.matches[t].ingredients.length-1){
@@ -352,7 +354,7 @@ $(function(){
                                     str = str + data.response.matches[t].ingredients[ing] + '.';
                                 }
                             }
-                            str = str + '</div></div></div>';
+                            str = str + '</div></a></div></div>';
                             t++;
                         }
                         str = str + '</div>';
@@ -537,7 +539,7 @@ $(function(){
                             str = str + '<div class="favName"><a href="' + baseUrl +'recipe/' + data.res.matches[t].id + '">'+ '<p>' + data.res.matches[t].recipeName +'</p><div class="overlay"></div></a></div>';
                             str = str + '<a href="' + baseUrl +'recipe/' + data.res.matches[t].id + '" ' + 'class="thumbnail"' + '><img src=' + '"' + data.res.matches[t].imageUrlsBySize['90'].replace('s90', 's360') + '"data-src="holder.js/100%x180" alt="' + data.res.matches[t].recipeName +'"></a>';
                             str = str + '</div>';
-                            str = str + '<div class="ingredientList">';
+                            str = str + '<a href="' + baseUrl +'recipe/' + data.res.matches[t].id + '">' + '<div class="ingredientList">';
                             for(var ing = 0; ing < data.res.matches[t].ingredients.length; ing++){
                                 if(ing != data.res.matches[t].ingredients.length-1){
                                     str = str + data.res.matches[t].ingredients[ing] + ', ';
@@ -545,7 +547,7 @@ $(function(){
                                     str = str + data.res.matches[t].ingredients[ing] + '.';
                                 }
                             }
-                            str = str + '</div></div></div>';
+                            str = str + '</div></a></div></div>';
                             t++;
                         }
 
@@ -586,7 +588,7 @@ $(function(){
     }
 
     $('body').delegate(".recipe", "mouseover mouseout", function(event) {
-        if (event.type == "mouseover") $(this).children('.ingredientList').show();
-        else $(this).children('.ingredientList').hide();
+        if (event.type == "mouseover") $(this).children('a').children('.ingredientList').show();
+        else $(this).children('a').children('.ingredientList').hide();
     });
 });
