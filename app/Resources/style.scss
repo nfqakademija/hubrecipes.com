@@ -430,3 +430,39 @@ $colHighlight   : #002f2f;
 legend, label {
   color: white;
 }
+
+.btn-custom-darken.active {
+  color: rgba(255, 255, 255, 0.75);
+}
+.btn-custom-darken {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #e73529;
+  background-image: -moz-linear-gradient(top, #ed4337, #dd2114);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ed4337), to(#dd2114));
+  background-image: -webkit-linear-gradient(top, #ed4337, #dd2114);
+  background-image: -o-linear-gradient(top, #ed4337, #dd2114);
+  background-image: linear-gradient(to bottom, #ed4337, #dd2114);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffed4337', endColorstr='#ffdd2114', GradientType=0);
+  border-color: #dd2114 #dd2114 #97170e;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #dd2114;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-custom-darken:hover,
+.btn-custom-darken:focus,
+.btn-custom-darken:active,
+.btn-custom-darken.active,
+.btn-custom-darken.disabled,
+.btn-custom-darken[disabled] {
+  color: #ffffff;
+  background-color: #dd2114;
+  *background-color: #c61e12;
+}
+.btn-custom-darken:active,
+.btn-custom-darken.active {
+  background-color: #ae1a10 ;
+}
