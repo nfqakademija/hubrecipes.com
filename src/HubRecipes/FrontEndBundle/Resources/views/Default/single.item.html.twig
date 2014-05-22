@@ -10,7 +10,7 @@
                 <img src="{{ response.images[0].hostedLargeUrl }}" class="img-responsive img-thumbnail" alt="Responsive image">
                 <br>
                 <br>
-                <a href="{{ path('full_recipe', {'id': response.id }) }}" class="btn btn-primary btn-lg active btn-block" role="button">Full Recipe</a>
+                <a href="{{ path('full_recipe', {'id': response.id }) }}" class="btn btn-default btn-lg active btn-block transparent-btn" role="button">Full Recipe</a>
 
                 <div class="share-buttons">
                     <div class="fb-share-button" data-href="{{ app.request.uri }}" data-type="button"></div>
