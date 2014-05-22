@@ -357,7 +357,7 @@ $bgHighlight    : #5e5e5e;
 $colDefault     : #040404;
 $colHighlight   : #002f2f;
 .navbar-default {
-  opacity: 0.5;
+  opacity: 0.8;
   background-color: $bgDefault;
   border-color: $bgHighlight;
   .navbar-brand {
@@ -418,6 +418,9 @@ $colHighlight   : #002f2f;
     color: #000000;
   }
 
+}
+.list-group {
+  opacity: 0.8;
 }
 
 #externalPage {
