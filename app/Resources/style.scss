@@ -413,8 +413,15 @@ $colHighlight   : #002f2f;
   opacity: 0.9;
 }
 
-.fos_user_user_show p, h3, h6 {
-  color: #000000;
+.fos_user_user_show {
+  p, h3, h6 {
+    color: #000000;
+  }
+
+}
+
+#externalPage {
+  background: white;
 }
 
 legend, label {
