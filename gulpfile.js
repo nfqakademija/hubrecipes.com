@@ -39,16 +39,15 @@ gulp.task('default', function() {
         .pipe(concat('all.js'))
         .pipe(gulp.dest('web/js'));
 
+
+    gulp.src('app/Resources/style.scss')
+        .pipe(sass())
+                .pipe(gulp.dest('web/css'));
+
     gulp.src('app/Resources/lib/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*')
         .pipe(gulp.dest('web/fonts'));
 
 });
 
-gulp.task('watch', function() {
-    gulp.src('app/Resources/style.scss')
-        .pipe(watch(function(files) {
-            return files.pipe(sass())
-                .pipe(gulp.dest('web/css'));
-        }));
-});
+
 
