@@ -169,6 +169,11 @@ $icon-font-path: "../fonts/";
   background: transparent none;
 }
 
+#emotion{
+  background: transparent;
+  border: 0;
+}
+
 #externalPage {
   position: absolute;
   padding-top: 50px;
@@ -307,7 +312,9 @@ ul.text-danger {
 .flavors{
   margin-top: 20px;
 }
-
+.modal-content{
+  background: url('../img/background.jpg') repeat center center fixed;
+}
 body {
   background: url('../img/background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;

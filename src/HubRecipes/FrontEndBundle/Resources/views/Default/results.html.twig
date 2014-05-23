@@ -9,7 +9,7 @@
         {% if results.matches|length > 0 %}
         {% for recipe in results.matches %}
             {% if (loop.index - 1) %4 == 0 or loop.index == 1 %}
-                <div class="row">
+                <div id="recipes" class="row">
             {% endif %}
 
             <div class="col-xs-6 col-md-3 favItem">

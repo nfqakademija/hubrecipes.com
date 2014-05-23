@@ -16,9 +16,6 @@
                     <div class="fb-share-button" data-href="{{ app.request.uri }}" data-type="button"></div>
                     <div class="g-plus" data-action="share" data-annotation="none"></div>
                 </div>
-
-
-
             </div>
             <div class="col-md-8">
                 <h2>{{ response.name }}</h2>
@@ -32,8 +29,6 @@
                     <h3>Total time: {{ response.totalTime }}</h3>
                 {% endif %}
 
-
-
                     <p>Servings:</p>
                     <div class="row">
                         <div class="col-md-5 form-inline input-group-sm">
@@ -42,7 +37,7 @@
                             <button class="btn btn-info btn-sm" id="newServingsCalc"><span class="glyphicon glyphicon-refresh"></span></button>
                         </div>
                     </div>
-                    <p id="alert" class="text-danger" hidden="yes">Please enter a whole number.</p>
+                    <p id="alert" hidden="yes">Please enter a whole number.</p>
 
 
             </div>

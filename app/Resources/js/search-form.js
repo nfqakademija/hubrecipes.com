@@ -307,14 +307,13 @@ $(function(){
                         str = str + '</div>';
                     }
                     k = k + data.res.matches.length;
-                    pageNr = pageNr + 1;
-                    history.pushState({},"", pageNr);
+
                     $('#load').before($(str));
                     $('#load-more-div').show();
                     $('#preloader').hide();
                 } else {
-                    $('#load').remove();
-                    $('.row:last').after($('<div class="text-center"><h4>No more results...</h4></div>'))
+                    $('#load').children().remove();
+                    $('#load').append($('<div class="text-center"><h4>No more results...</h4></div>'));
                 }
             })
     }
@@ -365,8 +364,8 @@ $(function(){
                     $('#load-more-div').show();
                     $('#preloader').hide();
                 } else {
-                    $('#load').remove();
-                    $('.row:last').after($('<div class="text-center"><h4>No more results...</h4></div>'))
+                    $('#load').children().remove();
+                    $('#load').append($('<div class="text-center"><h4>No more results...</h4></div>'));
                 }
             })
     }
@@ -559,8 +558,8 @@ $(function(){
                     $('#load-more-div').show();
                     $('#preloader').hide();
                 } else {
-                    $('#load').remove();
-                    $('.row:last').after($('<div class="text-center"><h4>No more results...</h4></div>'))
+                    $('#load').children().remove();
+                    $('#load').append($('<div class="text-center"><h4>No more results...</h4></div>'));
                 }
             })
     }
