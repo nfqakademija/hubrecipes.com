@@ -11,12 +11,21 @@ use HubRecipes\YummlyClientBundle\Services\SearchService;
 
 class DefaultController extends Controller
 {
-    public function getRec($id) {
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getRecipe($id) {
         $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
         $recipe = $getRecipe->getRecipe($id);
         return $recipe;
     }
 
+    /**
+     * @param $start
+     * @return mixed
+     */
     public function getHomePageRecipes($start){
         $getRecipes = $this->get('hub_recipes_yummly_client.search_service');
         $withIngredientsI = [];
@@ -33,16 +42,27 @@ class DefaultController extends Controller
         $results = $getRecipes->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredientsI, $withoutIngredientsI, $start, $cuisine);
         return $results;
     }
+
+    /**
+     * @param $start
+     * @return Response
+     */
     public function indexAction($start)
     {
         $results = $this->getHomePageRecipes($start);
         return $this->render('HubRecipesFrontEndBundle:Default:index.html.twig', array('response' => $results));
     }
 
+    /**
+     * @return Response
+     */
     public function favouritesAction(){
         return $this->render('HubRecipesFrontEndBundle:Default:favourites.html.twig');
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function loadMoreHomePageAction()
     {
         $results = $this->getHomePageRecipes(0);
@@ -50,22 +70,30 @@ class DefaultController extends Controller
     }
 
 
+    /**
+     * @param $id
+     * @return Response
+     */
     public function recipeAction($id)
     {
-        $recipe = $this->getRec($id);
-        /*$getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
-        $recipe = $getRecipe->getRecipe($id);*/
+        $recipe = $this->getRecipe($id);
         return $this->render('HubRecipesFrontEndBundle:Default:single.item.html.twig', array('response' => $recipe));
     }
 
+
+    /**
+     * @param $id
+     * @return Response
+     */
     public function fullRecipeAction($id)
     {
-        $recipe = $this->getRec($id);
-        /*$getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
-        $recipe = $getRecipe->getRecipe($id);*/
+        $recipe = $this->getRecipe($id);
         return $this->render('HubRecipesFrontEndBundle:Default:full.page.html.twig', array('response' => $recipe));
     }
-    //ingredients auto complete
+
+    /**
+     * @return JsonResponse
+     */
     public function getIngredientsAction(){
         if ($this->get('request')->isXmlHttpRequest()){
             $what = $this->get('request')->request->get('data');
@@ -83,13 +111,16 @@ class DefaultController extends Controller
                 $a =[''];
                 return new JsonResponse(array("suggestions" => $a));
             }
-            for($i = 0; $i< count($products); $i++){
+            for($i = 0; $i < count($products); $i++){
                 $a[$i] = $products[$i]['ingredient'];
             }
             return new JsonResponse(array("suggestions" => $a));
         }
     }
-    //exists ingredient
+
+    /**
+     * @return JsonResponse
+     */
     public function existsAction(){
         if ($this->get('request')->isXmlHttpRequest()){
             $what = $this->get('request')->request->get('data');

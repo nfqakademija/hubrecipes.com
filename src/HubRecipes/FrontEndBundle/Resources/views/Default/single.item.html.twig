@@ -29,17 +29,15 @@
                     <h3>Total time: {{ response.totalTime }}</h3>
                 {% endif %}
 
-                    <p>Servings:</p>
-                    <div class="row">
-                        <div class="col-md-5 form-inline input-group-sm">
-                            <input id="numberOfServings" name="numberOfServings" value="{{ response.numberOfServings }}" hidden="yes">
-                            <input class="form-control" id="newServings" type="number" min="1" name="newServings"  value="{{ response.numberOfServings }}">
-                            <button class="btn btn-info btn-sm" id="newServingsCalc"><span class="glyphicon glyphicon-refresh"></span></button>
-                        </div>
+                <p>Servings:</p>
+                <div class="row">
+                    <div class="col-md-5 form-inline input-group-sm">
+                        <input id="numberOfServings" name="numberOfServings" value="{{ response.numberOfServings }}" hidden="yes">
+                        <input class="form-control" id="newServings" type="number" min="1" name="newServings"  value="{{ response.numberOfServings }}">
+                        <button class="btn btn-info btn-sm" id="newServingsCalc"><span class="glyphicon glyphicon-refresh"></span></button>
                     </div>
-                    <p id="alert" hidden="yes">Please enter a whole number.</p>
-
-
+                </div>
+                <p id="alert" hidden="yes">Please enter a whole number.</p>
             </div>
         </div>
     </div>
@@ -52,7 +50,6 @@
                 {% else %}
                     <p class="alert pull-right alert-info">Sing in and add this recipe to Favoutites!</p>
                 {% endif %}
-
             </div>
         </div>
     </div>

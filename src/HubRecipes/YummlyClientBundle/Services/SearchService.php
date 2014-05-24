@@ -26,6 +26,14 @@ class SearchService
      * @var String
      */
     protected $baseURL;
+
+
+    /**
+     * @param $client
+     * @param $appKey
+     * @param $appId
+     * @param $baseURL
+     */
     public function __construct($client, $appKey, $appId, $baseURL)
     {
         $this->baseURL = $baseURL;
@@ -34,6 +42,10 @@ class SearchService
         $this->appKey = $appKey;
     }
 
+
+    /**
+     * @return \GuzzleHttp\Message\RequestInterface
+     */
     public function constructQuery(){
         $r = $this->client->createRequest('get', $this->baseURL . 'recipes');
         $query = $r->getQuery();
@@ -42,6 +54,13 @@ class SearchService
         return $r;
     }
 
+
+    /**
+     * @param $string
+     * @param $flavor
+     * @param $query
+     * @return mixed
+     */
     function setFlavor($string, $flavor, $query){
         if ($flavor != ""){
             $query->set('flavor.'. $string .'.min',0);
@@ -50,23 +69,32 @@ class SearchService
         return $query;
     }
 
-    /**
-     * @param array $params
-     * @return RecipeModel[]
-     */
 
+    /**
+     * @param $sour
+     * @param $salty
+     * @param $sweet
+     * @param $spicy
+     * @param $bitter
+     * @param $savory
+     * @param $time
+     * @param $type
+     * @param $allowedIngredients
+     * @param $excludedIngredients
+     * @param $start
+     * @param $cuisine
+     * @return mixed
+     */
     public function getResults($sour,$salty,$sweet, $spicy, $bitter, $savory
         ,$time, $type, $allowedIngredients, $excludedIngredients, $start, $cuisine)
     {
 
-        //$out = [];
         $r = $this->constructQuery();
         $query = $r->getQuery();
 
         $query->set('allowedIngredient', $allowedIngredients);
 
         $query->set('excludedIngredient', $excludedIngredients);
-
 
         if ($type != "-") {
             $query->set('allowedCourse', 'course^course-' . $type);
@@ -101,22 +129,18 @@ class SearchService
         $response = $this->client->send($r);
 
         $data = $response->json();
-        /* foreach ($response as $item) {
-            $recipe = new RecipeModel();
-            $recipe->setTitle($item['title']);
-            // ...
-            $out[] = $recipe;
-        }*/
         return $data;
     }
 
+
+    /**
+     * @param $cuisine
+     * @param $start
+     * @return mixed
+     */
     public function getCuisineResults($cuisine, $start){
         $r = $this->constructQuery();
         $query = $r->getQuery();
-        /*$r = $this->client->createRequest('get', $this->baseURL . 'recipes');
-        $query = $r->getQuery();
-        $query->set('_app_id', $this->appID);
-        $query->set('_app_key', $this->appKey);*/
         $query->set('allowedCuisine', $cuisine);
         $query->set('maxResult', 16);
         $query->set('start', $start);
@@ -130,6 +154,12 @@ class SearchService
         return $data;
     }
 
+
+    /**
+     * @param $emotion
+     * @param $start
+     * @return mixed
+     */
     public function getResultsByEmotion($emotion, $start){
         $r = $this->constructQuery();
         $query = $r->getQuery();
@@ -166,6 +196,7 @@ class SearchService
         $data = $response->json();
         return $data;
     }
+
 
     public function fillIngredients(){
         $r = $this->constructQuery();

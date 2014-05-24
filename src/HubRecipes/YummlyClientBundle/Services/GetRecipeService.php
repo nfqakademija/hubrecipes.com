@@ -30,6 +30,13 @@ class GetRecipeService {
      */
     protected $baseURL;
 
+
+    /**
+     * @param $client
+     * @param $appKey
+     * @param $appId
+     * @param $baseURL
+     */
     public function __construct($client, $appKey, $appId, $baseURL)
     {
         $this->baseURL = $baseURL;
@@ -38,19 +45,17 @@ class GetRecipeService {
         $this->appKey = $appKey;
     }
 
+    /**
+     * @param $id
+     * @return \GuzzleHttp\Message\ResponseInterface|mixed
+     */
     public function getRecipe($id){
         $response = $this->client->get($this->baseURL . "recipe/" . $id , [
             'query' => ['_app_id' => $this->appID,
                         '_app_key' => $this->appKey]
         ] );
         $response = $response->json();
-
-        //return var_dump($data['flavors']);
         return $response;
-        //['ingredientLines']
-       // $client->get('http://httpbin.org', [
-       //     'query' => ['foo' => 'bar']
-       // ]);
     }
 
 } 

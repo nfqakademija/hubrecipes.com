@@ -14,6 +14,11 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class DefaultController extends Controller
 {
 
+    /**
+     * @param $user
+     * @param $recipe
+     * @return bool
+     */
     function userExistsRecipe($user, $recipe){
         $recipes = $user->getRecipes();
         foreach($recipes as $rec){
@@ -24,6 +29,9 @@ class DefaultController extends Controller
         return true;
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function addToFavouriteAction(){
         if ($this->get('request')->isXmlHttpRequest()){
             $recipeId = $this->get('request')->request->get('recId');
@@ -33,9 +41,9 @@ class DefaultController extends Controller
 
             $em = $em = $this->getDoctrine()->getManager();
             $recipe = $em->getRepository('FavouritesBundle:Recipes')->findOneBy(array('recipeId' => array($recipeId)));
-
+            //check if recipe exists in database
             if (count($recipe) > 0){
-                if($this->userExistsRecipe($user, $recipe)){
+                if($this->userExistsRecipe($user, $recipe)){ //chef if user have recipe in favourites
                     $recipe->addUser($user);
                     $em->persist($recipe);
                     $em->flush();
@@ -44,7 +52,7 @@ class DefaultController extends Controller
                 $em->flush();
                 return new JsonResponse(array('response' => 'exists'));
             }
-
+            // create new recipe
             $recipes = new Recipes();
             $recipes->setRecipeId($recipeId);
             $recipes->setName($recipeName);
@@ -57,6 +65,10 @@ class DefaultController extends Controller
         }
     }
 
+    /**
+     * @param $recipeId
+     * @return RedirectResponse
+     */
     public function removeFromFavouritesAction($recipeId){
         $em = $this->getDoctrine()->getManager();
         $recipe = $em->getRepository('FavouritesBundle:Recipes')->findOneBy(array('recipeId' =>array($recipeId)));
@@ -65,6 +77,9 @@ class DefaultController extends Controller
         return new RedirectResponse($this->generateUrl('favourites'));
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getUserRecipesAction(){
         $recipes = $this->getUser()->getRecipes()->toArray();
         return $this->render('HubRecipesFrontEndBundle:Default:favourites.html.twig', array('response' => $recipes));

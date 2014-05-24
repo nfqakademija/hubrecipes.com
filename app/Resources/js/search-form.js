@@ -21,37 +21,43 @@ $(function(){
     $('#Sour').slider({
         formater: function (value) {
             return 'Current value: ' + value;
-        }
+        },
+        tooltip:'hide'
     });
 
     $('#Salty').slider({
         formater: function (value) {
             return 'Current value: ' + value;
-        }
+        },
+        tooltip:'hide'
     });
 
     $('#Sweet').slider({
         formater: function (value) {
             return 'Current value: ' + value;
-        }
+        },
+        tooltip:'hide'
     });
 
     $('#Spicy').slider({
         formater: function (value) {
             return 'Current value: ' + value;
-        }
+        },
+        tooltip:'hide'
     });
 
     $('#Bitter').slider({
         formater: function (value) {
             return 'Current value: ' + value;
-        }
+        },
+        tooltip:'hide'
     });
 
     $('#Savory').slider({
         formater: function (value) {
             return 'Current value: ' + value;
-        }
+        },
+        tooltip:'hide'
     });
 
     $('#Time').slider({

@@ -11,27 +11,38 @@ use HubRecipes\FrontEndBundle\Entity\Ingredients;
 
 class DefaultController extends Controller
 {
+
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getRec($id) {
         $getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
         $recipe = $getRecipe->getRecipe($id);
         return $recipe;
     }
 
+    /**
+     * @return object
+     */
     public function getSearchService(){
         return $this->get('hub_recipes_yummly_client.search_service');
     }
 
+    /**
+     * @param $name
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction($name)
     {
-        /** @var SearchService $search */
-      //  $search = $this->get('hub_recipes_yummly_client.search_service');
-
-      //  $results = $search->search(['sss' => 'sdfsf']);
-        //$getRecipe = $this->get('hub_recipes_yummly_client.getrecipe_service');
         $recipe = $this->getRec($name);
         return $this->render('HubRecipesYummlyClientBundle:Default:index.html.twig', array('response' => $recipe));
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function searchResultsAction(Request $request){
 
         $removeEmpty = function($value){
@@ -79,6 +90,11 @@ class DefaultController extends Controller
         ));
     }
 
+    /**
+     * @param $cuisine
+     * @param $start
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function searchByCuisineAction($cuisine, $start){
 
         $getResults = $this->getSearchService();
@@ -90,6 +106,10 @@ class DefaultController extends Controller
         ));
     }
 
+
+    /**
+     * @return JsonResponse
+     */
     public function loadMoreItemsAction() {
         function checkIfEmpty($ingredients){
             if($ingredients == ""){
@@ -118,6 +138,11 @@ class DefaultController extends Controller
         }
     }
 
+
+    /**
+     * @param $emotion
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getRecipesByEmotionAction($emotion){
         $getResults = $this->getSearchService();;
 
@@ -128,6 +153,10 @@ class DefaultController extends Controller
         ));
     }
 
+    /**
+     * @param $emotion
+     * @return JsonResponse
+     */
     public function loadMoreByEmotionAction($emotion){
         $getResults = $this->getSearchService();
         if ($this->get('request')->isXmlHttpRequest()){
@@ -137,7 +166,9 @@ class DefaultController extends Controller
         }
     }
 
+    //this function fill ingredients table
     public function fillIngredientsAction(){
+
         $getResults = $this->getSearchService();
         $results = $getResults->fillIngredients();
         $em = $this->getDoctrine()->getManager();
