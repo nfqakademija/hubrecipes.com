@@ -5,7 +5,7 @@
     {% block headerblock %} {{ parent() }} {% endblock %}
 {% block fos_user_content %}
    {% if error %}
-        <p class="text-danger text-center">
+        <p class="text-center">
                 {{ error|trans }}
         </p>
     {% endif %}

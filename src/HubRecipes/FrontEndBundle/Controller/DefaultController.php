@@ -11,6 +11,22 @@ use HubRecipes\YummlyClientBundle\Services\SearchService;
 
 class DefaultController extends Controller
 {
+    private $sour;
+    private $salty;
+    private $sweet;
+    private $spicy;
+    private $bitter;
+    private $savory;
+
+    function __construct()
+    {
+        $this->sour = rand(0,10000)/10000;
+        $this->salty = rand(0,10000)/10000;
+        $this->sweet = rand(0,10000)/10000;
+        $this->spicy = rand(0,10000)/10000;
+        $this->bitter = rand(0,10000)/10000;
+        $this->savory = rand(0,10000)/10000;
+    }
 
     /**
      * @param $id
@@ -30,13 +46,13 @@ class DefaultController extends Controller
         $getRecipes = $this->get('hub_recipes_yummly_client.search_service');
         $withIngredientsI = [];
         $withoutIngredientsI = [];
-        $sour = rand(0,10000)/10000;
-        $salty = rand(0,10000)/10000;
-        $sweet = rand(0,10000)/10000;
-        $spicy = rand(0,10000)/10000;
-        $bitter = rand(0,10000)/10000;
-        $savory = rand(0,10000)/10000;
-        $time = rand(0,10000)/10000;
+        $sour = $this->sour;
+        $salty = $this->salty;
+        $sweet = $this->sweet;
+        $spicy = $this->spicy;
+        $bitter = $this->bitter;
+        $savory = $this->savory;
+        $time = "";
         $cuisine = '-';
         $type = '-';
         $results = $getRecipes->getResults($sour,$salty, $sweet, $spicy, $bitter, $savory, $time, $type, $withIngredientsI, $withoutIngredientsI, $start, $cuisine);
@@ -65,10 +81,12 @@ class DefaultController extends Controller
      */
     public function loadMoreHomePageAction()
     {
-        $results = $this->getHomePageRecipes(0);
-        return new JsonResponse(array('response'=>$results));
+        if ($this->get('request')->isXmlHttpRequest()){
+            $start = $this->get('request')->request->get('start');
+            $results = $this->getHomePageRecipes($start);
+            return new JsonResponse(array('response'=>$results));
+        }
     }
-
 
     /**
      * @param $id

@@ -313,7 +313,7 @@ ul.text-danger {
   margin-top: 20px;
 }
 .modal-content{
-  background: url('../img/background.jpg') repeat center center fixed;
+  background: url('../img/background.jpg') repeat center center;
 }
 body {
   background: url('../img/background.jpg') no-repeat center center fixed;
@@ -421,6 +421,7 @@ $colHighlight   : #002f2f;
 }
 
 .fos_user_user_show {
+  opacity: 0.8;
   p, h3, h6 {
     color: #000000;
   }

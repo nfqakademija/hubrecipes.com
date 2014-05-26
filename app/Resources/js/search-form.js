@@ -77,7 +77,6 @@ $(function(){
     });
 
     var like_ingredients, unlike_ingredients, pageNr, bstr;
-    console.log(history);
     pageNr = 0;
     like_ingredients = new Array();
     unlike_ingredients = new Array();
@@ -329,7 +328,7 @@ $(function(){
         div_count_in_row = 4;
         $('#load-more-div').hide();
         $('#preloader').show();
-        $.post(loadMoreHomePageItemsUrl,{},
+        $.post(loadMoreHomePageItemsUrl,{start: k},
             function(data){
                 str = '';
                 t = 0;
@@ -364,6 +363,8 @@ $(function(){
                         }
                         str = str + '</div>';
                     }
+                    k = k + data.response.matches.length;
+                    console.log(k);
                     pageNr = pageNr + 1;
                     history.pushState({},"", pageNr);
                     $('#load').before($(str));
@@ -385,7 +386,7 @@ $(function(){
                         return process(data.suggestions);
                     });
             },
-            items: 8
+            items: 5
         });
     }
 
